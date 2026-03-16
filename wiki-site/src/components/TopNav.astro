@@ -720,8 +720,8 @@ const wikiNav = getWikiNav(locale, base);
   /* 모바일 전용 플로팅 햄버거 버튼 */
   .topnav-fab {
     position: fixed;
-    right: 1.25rem;
-    bottom: 1.5rem;
+    right: calc(1.25rem + env(safe-area-inset-right, 0px));
+    bottom: calc(1.5rem + env(safe-area-inset-bottom, 0px));
     z-index: 260;
     width: 3rem;
     height: 3rem;

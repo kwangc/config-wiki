@@ -80,6 +80,9 @@ const isNoSidebar =
     width: 100%;
   }
   @media (max-width: 768px) {
+    .wiki-app {
+      padding-top: calc(3rem + env(safe-area-inset-top, 0px));
+    }
     .wiki-layout {
       flex-direction: row;
     }
@@ -90,6 +93,8 @@ const isNoSidebar =
       flex: 1;
       min-height: 0;
       padding: 1rem;
+      /* FAB(3rem) + bottom(1.5rem) + 여유 → 스크롤 끝에서 콘텐츠가 FAB에 가리지 않도록 */
+      padding-bottom: calc(5.5rem + env(safe-area-inset-bottom, 0px));
     }
   }
 </style>
