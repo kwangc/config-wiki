@@ -1,14 +1,37 @@
 #!/usr/bin/env node
 import { cpSync, mkdirSync, readdirSync, statSync, rmSync, existsSync, writeFileSync } from 'fs';
-import { join, dirname } from 'path';
+import { join, dirname, relative } from 'path';
 import { fileURLToPath } from 'url';
+import { execSync } from 'child_process';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = join(__dirname, '..');
+const repoRoot = join(root, '..');
 const wikiSrc = join(root, '..', 'wiki');
 const wikiDest = join(root, 'src', 'content', 'wiki');
 
-/** @type {Record<string, string>} id -> YYYY-MM-DD (source file mtime) */
+const tz = process.env.WIKI_TZ || 'Asia/Seoul';
+
+function formatDateInTz(date) {
+  const parts = new Intl.DateTimeFormat('en-CA', { timeZone: tz, year: 'numeric', month: '2-digit', day: '2-digit' }).formatToParts(date);
+  const y = parts.find((p) => p.type === 'year').value;
+  const m = parts.find((p) => p.type === 'month').value;
+  const day = parts.find((p) => p.type === 'day').value;
+  return `${y}-${m}-${day}`;
+}
+
+/** Try to get last commit date for file (repo-relative path). Returns YYYY-MM-DD or null. */
+function getLastCommitDate(repoRelPath) {
+  try {
+    const out = execSync(`git log -1 --format=%cI -- "${repoRelPath}"`, { cwd: repoRoot, encoding: 'utf8' }).trim();
+    if (!out) return null;
+    return formatDateInTz(new Date(out));
+  } catch (_) {
+    return null;
+  }
+}
+
+/** @type {Record<string, string>} id -> YYYY-MM-DD */
 const lastModified = {};
 
 function copyRecursive(src, dest, locale, relPath) {
@@ -25,13 +48,9 @@ function copyRecursive(src, dest, locale, relPath) {
       mkdirSync(dirname(d), { recursive: true });
       cpSync(s, d);
       const id = `${locale}/${nextRel.replace(/\.(md|mdx)$/, '')}`;
-      const mtime = statSync(s).mtime;
-      const tz = process.env.WIKI_TZ || 'Asia/Seoul';
-      const parts = new Intl.DateTimeFormat('en-CA', { timeZone: tz, year: 'numeric', month: '2-digit', day: '2-digit' }).formatToParts(mtime);
-      const y = parts.find((p) => p.type === 'year').value;
-      const m = parts.find((p) => p.type === 'month').value;
-      const day = parts.find((p) => p.type === 'day').value;
-      lastModified[id] = `${y}-${m}-${day}`;
+      const repoRelPath = relative(repoRoot, s);
+      const fromGit = getLastCommitDate(repoRelPath);
+      lastModified[id] = fromGit ?? formatDateInTz(statSync(s).mtime);
     }
   }
 }
