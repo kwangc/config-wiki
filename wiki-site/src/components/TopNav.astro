@@ -122,9 +122,23 @@ const wikiNav = getWikiNav(locale, base);
         item.children ? (
           <div class="topnav-drawer-group">
             <div class="topnav-drawer-group-title">{item.label}</div>
-            {item.children.map((child) => (
-              <a href={child.href} class="topnav-drawer-wiki-link">{child.label}</a>
-            ))}
+            {item.children.map((child) =>
+              child.children ? (
+                <details class="topnav-drawer-subgroup" id="topnav-drawer-ai-ml">
+                  <summary class="topnav-drawer-subgroup-title">
+                    <span>{child.label}</span>
+                    <span class="topnav-drawer-chevron" aria-hidden="true">▾</span>
+                  </summary>
+                  <div class="topnav-drawer-subgroup-body">
+                    {child.children.map((grand) => (
+                      <a href={grand.href} class="topnav-drawer-wiki-link topnav-drawer-wiki-link--deep">{grand.label}</a>
+                    ))}
+                  </div>
+                </details>
+              ) : (
+                <a href={child.href} class="topnav-drawer-wiki-link">{child.label}</a>
+              ),
+            )}
           </div>
         ) : (
           <a href={item.href} class="topnav-drawer-wiki-link topnav-drawer-wiki-link--flat">{item.label}</a>
@@ -204,6 +218,17 @@ const wikiNav = getWikiNav(locale, base);
       drawer.querySelectorAll('a[href]').forEach(function (a) {
         a.addEventListener('click', closeDrawer);
       });
+      var drawerAiMl = document.getElementById('topnav-drawer-ai-ml');
+      if (drawerAiMl) {
+        try {
+          var saved = localStorage.getItem('wiki-nav-ai-ml-open');
+          if (saved === '0') drawerAiMl.removeAttribute('open');
+          else if (saved === '1') drawerAiMl.setAttribute('open', '');
+        } catch (_) {}
+        drawerAiMl.addEventListener('toggle', function () {
+          try { localStorage.setItem('wiki-nav-ai-ml-open', drawerAiMl.open ? '1' : '0'); } catch (_) {}
+        });
+      }
     }
 
     function setSidebarCollapsed(on) {
@@ -684,6 +709,38 @@ const wikiNav = getWikiNav(locale, base);
   }
   .topnav-drawer-wiki-link--flat {
     padding-left: 1rem;
+  }
+  .topnav-drawer-subgroup {
+    margin: 0.15rem 0;
+    border-radius: 6px;
+  }
+  .topnav-drawer-subgroup-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
+    cursor: pointer;
+    padding: 0.35rem 1rem 0.35rem 1.25rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text);
+  }
+  .topnav-drawer-subgroup-title::-webkit-details-marker {
+    display: none;
+  }
+  .topnav-drawer-chevron {
+    font-size: 0.6rem;
+    opacity: 0.7;
+    transition: transform 0.12s ease;
+  }
+  .topnav-drawer-subgroup[open] .topnav-drawer-chevron {
+    transform: rotate(180deg);
+  }
+  .topnav-drawer-subgroup-body {
+    padding-bottom: 0.25rem;
+  }
+  .topnav-drawer-wiki-link--deep {
+    padding-left: 1.75rem;
   }
   .topnav-drawer-footer {
     flex-shrink: 0;

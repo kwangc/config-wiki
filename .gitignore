@@ -5,6 +5,7 @@ node_modules/
 wiki-site/dist/
 wiki-site/.astro/
 wiki-site/src/content/wiki/
+wiki-site/src/data/wiki-last-modified.json
 .wiki-site/
 *.log
 .DS_Store
