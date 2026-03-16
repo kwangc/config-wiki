@@ -15,31 +15,65 @@ const t = i18n[locale] ?? i18n.en;
 <WikiLayout title={t.about.title} locale={locale}>
   <article class="about-page">
     <div class="about-header">
-      <img src={`${base}/images/tony-lee.png`} alt="Tony Lee" class="about-photo" width="160" height="160" />
+      <img src={`${base}/images/tony-lee.png`} alt={t.about.title} class="about-photo" width="160" height="160" />
       <div class="about-intro">
-        <h1>Tony Lee</h1>
+        <h1>{t.about.title}</h1>
         <p class="about-role">{t.about.role}</p>
+        <div class="about-links" aria-label="Social links">
+          <a href="https://www.linkedin.com/in/kwangc/" target="_blank" rel="noreferrer" class="about-link" aria-label="LinkedIn">
+            <svg class="about-link-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M4.98 3.5C4.98 4.88 3.9 6 2.5 6S0 4.88 0 3.5 1.08 1 2.5 1s2.48 1.12 2.48 2.5zM.32 8.16h4.36V24H.32V8.16zM8.34 8.16h4.18v2.16h.06c.58-1.1 2-2.26 4.12-2.26 4.4 0 5.21 2.9 5.21 6.68V24h-4.36v-8.02c0-1.92-.04-4.4-2.68-4.4-2.68 0-3.09 2.09-3.09 4.26V24H8.34V8.16z"
+              />
+            </svg>
+          </a>
+          <a href="https://github.com/kwangc" target="_blank" rel="noreferrer" class="about-link" aria-label="GitHub">
+            <svg class="about-link-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M12 .5C5.73.5.7 5.53.7 11.8c0 5 3.26 9.23 7.78 10.72.57.1.78-.25.78-.55 0-.27-.01-1.15-.02-2.08-3.17.69-3.84-1.36-3.84-1.36-.52-1.3-1.27-1.64-1.27-1.64-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.02 1.76 2.68 1.25 3.33.96.1-.74.4-1.25.72-1.54-2.53-.29-5.2-1.27-5.2-5.64 0-1.25.45-2.27 1.19-3.07-.12-.29-.52-1.47.11-3.06 0 0 .98-.31 3.2 1.17.93-.26 1.92-.39 2.9-.4.98.01 1.97.14 2.9.4 2.22-1.48 3.2-1.17 3.2-1.17.63 1.59.23 2.77.11 3.06.74.8 1.19 1.82 1.19 3.07 0 4.38-2.68 5.35-5.23 5.64.41.35.77 1.05.77 2.12 0 1.53-.01 2.76-.01 3.14 0 .3.21.66.79.55 4.52-1.49 7.77-5.72 7.77-10.72C23.3 5.53 18.27.5 12 .5z"
+              />
+            </svg>
+          </a>
+          <a href="https://www.instagram.com/kwangc" target="_blank" rel="noreferrer" class="about-link" aria-label="Instagram">
+            <svg class="about-link-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M12 5.8A6.2 6.2 0 1 0 18.2 12 6.19 6.19 0 0 0 12 5.8Zm0 10.2A4 4 0 1 1 16 12a4 4 0 0 1-4 4Zm6.4-10.44a1.44 1.44 0 1 1-1.44-1.44 1.44 1.44 0 0 1 1.44 1.44ZM24 7.24v9.52A7.24 7.24 0 0 1 16.76 24H7.24A7.24 7.24 0 0 1 0 16.76V7.24A7.24 7.24 0 0 1 7.24 0h9.52A7.24 7.24 0 0 1 24 7.24Zm-2 9.52a5.24 5.24 0 0 0-5.24-5.24H7.24A5.24 5.24 0 0 0 2 16.76v.52A5.24 5.24 0 0 0 7.24 22.5h9.52A5.24 5.24 0 0 0 22 17.28Z"
+              />
+            </svg>
+          </a>
+        </div>
       </div>
     </div>
 
     <section class="about-section">
       <h2>{t.about.education}</h2>
-      <p><strong>UC Berkeley</strong> — B.S. Chemical Engineering</p>
+      <ul class="about-edu-list">
+        <li>
+          <strong>University of California, Berkeley</strong> — {t.about.degree}
+        </li>
+        <li>
+          <strong>{t.about.highSchool}</strong> — {t.about.highSchoolMajor}
+        </li>
+      </ul>
     </section>
 
     <section class="about-section">
-      <h2>{t.about.experience}</h2>
+      <h2>
+        {t.about.experience}
+        <span class="about-exp-total">· {t.about.totalExperience}</span>
+      </h2>
       <ul>
-        <li><strong>Config Intelligence Inc.</strong> — Head of Product (from Apr 2026). Data infrastructure & foundation models for general-purpose bimanual robotics.</li>
-        <li><strong>Toss</strong> — Product Owner (current until Apr 2026).</li>
-        <li><strong>Tridge</strong> — Product Manager.</li>
-        <li><strong>Lineable</strong> — Product Manager.</li>
+        <li><strong>2026.04.~</strong> · <strong>Config Intelligence Inc.</strong> — Head of Product. Data infrastructure & foundation models for general-purpose bimanual robotics.</li>
+        <li><strong>2022.02.~2026.04.</strong> · <strong>Toss</strong> — Platform Product Owner</li>
+        <li><strong>2021.03.~2022.01.</strong> · <strong>Tridge</strong> — Senior Product Manager</li>
+        <li><strong>2018.07.~2021.03.</strong> · <strong>Lineable</strong> — COO & CTO</li>
+        <li><strong>2014.07.~2016.11.</strong> · <strong>Samsung E&A</strong> — Process Engineer</li>
       </ul>
     </section>
 
     <section class="about-section">
       <h2>{t.about.focus}</h2>
-      <p>AI, LLM, VLA, robotics—learning and tracking industry research. Using this wiki to organize company knowledge, domains, and news; and Claude/Claude Code for workflow automation.</p>
+      <p>{t.about.focusDesc}</p>
     </section>
   </article>
 </WikiLayout>
@@ -62,8 +96,55 @@ const t = i18n[locale] ?? i18n.en;
   }
   .about-intro h1 { font-size: 1.75rem; margin: 0 0 0.5rem 0; }
   .about-role { color: var(--muted); margin: 0; font-size: 1rem; }
+  .about-links {
+    margin-top: 0.75rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .about-link {
+    width: 34px;
+    height: 34px;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(15, 23, 42, 0.9);
+    color: #e5e7eb;
+    text-decoration: none;
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.35);
+  }
+  .about-link:hover {
+    background: rgba(37, 99, 235, 0.95);
+    color: #fff;
+    text-decoration: none;
+  }
+  .about-link-icon {
+    width: 18px;
+    height: 18px;
+    display: block;
+    fill: currentColor;
+  }
   .about-section { margin-top: 1.5rem; }
-  .about-section h2 { font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--muted); border-bottom: 1px solid var(--border); padding-bottom: 0.25rem; }
+  .about-section h2 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--muted);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.25rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 0.5rem;
+    align-items: baseline;
+  }
   .about-section ul { margin: 0.5rem 0 0; padding-left: 1.25rem; }
   .about-section li { margin-bottom: 0.5rem; line-height: 1.5; }
+  .about-edu-list {
+    list-style: disc;
+  }
+  .about-exp-total {
+    font-size: 0.85rem;
+    color: var(--muted);
+    font-weight: 400;
+  }
 </style>

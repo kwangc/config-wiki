@@ -139,6 +139,17 @@ const wikiNav = getWikiNav(locale, base);
   </div>
 </div>
 
+<!-- 모바일 전용: 우측 하단 플로팅 햄버거 버튼 (기존 드로어와 동일 동작) -->
+<button
+  type="button"
+  id="topnav-fab"
+  class="topnav-fab"
+  aria-label={sidebarLabel}
+  title={sidebarLabel}
+>
+  <span class="topnav-fab-icon" aria-hidden="true"></span>
+</button>
+
 <script>
   (function () {
     function run() {
@@ -154,6 +165,7 @@ const wikiNav = getWikiNav(locale, base);
       var sidebarShell = document.getElementById('wiki-sidebar-shell');
       var sidebarToggle = document.getElementById('wiki-sidebar-toggle');
       var menuBtn = document.querySelector('.topnav-menu-wrap .topnav-menu');
+      var fabBtn = document.getElementById('topnav-fab');
 
       function isMobile() {
         return window.matchMedia(MOBILE).matches;
@@ -297,6 +309,15 @@ const wikiNav = getWikiNav(locale, base);
           e.stopPropagation();
           openDrawer();
         }
+      });
+    }
+
+    if (fabBtn && drawer) {
+      fabBtn.addEventListener('click', function (e) {
+        if (!isMobile()) return;
+        e.preventDefault();
+        e.stopPropagation();
+        openDrawer();
       });
     }
     }
@@ -524,6 +545,9 @@ const wikiNav = getWikiNav(locale, base);
   }
 
   @media (max-width: 768px) {
+    .topnav-menu-wrap {
+      display: none;
+    }
     .topnav-links {
       display: none;
     }
@@ -556,16 +580,17 @@ const wikiNav = getWikiNav(locale, base);
   .topnav-drawer-panel {
     position: absolute;
     top: 0;
-    left: 0;
+    right: 0;
+    left: auto;
     bottom: 0;
     width: min(300px, 85vw);
     max-width: 300px;
     background: var(--surface);
-    border-right: 1px solid var(--border);
-    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.3);
+    border-left: 1px solid var(--border);
+    box-shadow: -4px 0 24px rgba(0, 0, 0, 0.3);
     display: flex;
     flex-direction: column;
-    transform: translateX(-100%);
+    transform: translateX(100%);
     transition: transform 0.25s ease;
     overflow: hidden;
   }
@@ -689,6 +714,59 @@ const wikiNav = getWikiNav(locale, base);
   @media (min-width: 769px) {
     .topnav-drawer {
       display: none !important;
+    }
+  }
+
+  /* 모바일 전용 플로팅 햄버거 버튼 */
+  .topnav-fab {
+    position: fixed;
+    right: 1.25rem;
+    bottom: 1.5rem;
+    z-index: 260;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 999px;
+    border: none;
+    padding: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(15, 23, 42, 0.95);
+    color: #fff;
+    box-shadow:
+      0 10px 25px rgba(15, 23, 42, 0.4),
+      0 0 0 1px rgba(148, 163, 184, 0.45);
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+  }
+  .topnav-fab:hover {
+    background: rgba(37, 99, 235, 0.98);
+  }
+  .topnav-fab-icon,
+  .topnav-fab-icon::before,
+  .topnav-fab-icon::after {
+    display: block;
+    width: 1.2rem;
+    height: 2px;
+    background: currentColor;
+    border-radius: 999px;
+    position: relative;
+  }
+  .topnav-fab-icon::before,
+  .topnav-fab-icon::after {
+    content: '';
+    position: absolute;
+    left: 0;
+  }
+  .topnav-fab-icon::before {
+    top: -5px;
+  }
+  .topnav-fab-icon::after {
+    top: 5px;
+  }
+  @media (max-width: 768px) {
+    .topnav-fab {
+      display: inline-flex;
     }
   }
 </style>
