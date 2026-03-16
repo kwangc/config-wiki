@@ -22,5 +22,5 @@
 ## 참고
 
 - `../research/` — LLM 논문 요약
-- `../../study/ai-llm/` — 학습 노트
+- `../../study/llm/` — 학습 노트
 

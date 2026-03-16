@@ -1,5 +1,7 @@
 import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
 
 const isVercel = !!process.env.VERCEL;
 const base = isVercel ? '/' : '/Config';
@@ -8,7 +10,16 @@ const site = isVercel
   : 'https://kwangc.github.io';
 
 export default defineConfig({
-  integrations: [mdx()],
+  integrations: [
+    mdx({
+      remarkPlugins: [remarkMath],
+      rehypePlugins: [rehypeKatex],
+    }),
+  ],
+  markdown: {
+    remarkPlugins: [remarkMath],
+    rehypePlugins: [rehypeKatex],
+  },
   site,
   base,
   output: 'static',

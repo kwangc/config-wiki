@@ -28,9 +28,38 @@ function isActive(href: string): boolean {
       item.children ? (
         <div class="nav-group">
           <span class="nav-group-title">{item.label}</span>
-          {item.children.map((child) => (
-            <a href={child.href} class:list={['nav-item', 'nav-child', { 'is-active': isActive(child.href ?? '') }]}>{child.label}</a>
-          ))}
+          {item.children.map((child) =>
+            child.children && child.label === 'AI / ML' ? (
+              <details class="nav-subgroup" id="nav-ai-ml">
+                <summary class="nav-subgroup-title">
+                  <span>{child.label}</span>
+                  <span class="nav-group-chevron" aria-hidden="true">▾</span>
+                </summary>
+                <div class="nav-group-body">
+                  {child.children.map((grand) => (
+                    <a
+                      href={grand.href}
+                      class:list={[
+                        'nav-item',
+                        'nav-child',
+                        'nav-child--deep',
+                        { 'is-active': isActive(grand.href ?? '') },
+                      ]}
+                    >
+                      {grand.label}
+                    </a>
+                  ))}
+                </div>
+              </details>
+            ) : (
+              <a
+                href={child.href}
+                class:list={['nav-item', 'nav-child', { 'is-active': isActive(child.href ?? '') }]}
+              >
+                {child.label}
+              </a>
+            ),
+          )}
         </div>
       ) : (
         <a href={item.href} class:list={['nav-item', { 'is-active': isActive(item.href ?? '') }]}>{item.label}</a>
@@ -38,6 +67,24 @@ function isActive(href: string): boolean {
     )}
   </nav>
 </aside>
+
+<script>
+  (function () {
+    try {
+      var KEY = 'wiki-nav-ai-ml-open';
+      var el = document.getElementById('nav-ai-ml');
+      if (!el) return;
+      var saved = localStorage.getItem(KEY);
+      if (saved === '0') el.removeAttribute('open');
+      else if (saved === '1') el.setAttribute('open', '');
+      el.addEventListener('toggle', function () {
+        try {
+          localStorage.setItem(KEY, el.open ? '1' : '0');
+        } catch (_) {}
+      });
+    } catch (_) {}
+  })();
+</script>
 
 <style>
   .sidebar {
@@ -78,7 +125,42 @@ function isActive(href: string): boolean {
     margin-bottom: 0.15rem;
     padding-left: 0.4rem;
   }
+  .nav-subgroup {
+    border-radius: 6px;
+    margin-top: 0.15rem;
+  }
+  .nav-subgroup-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
+    cursor: pointer;
+    padding: 0.3rem 0.4rem;
+    padding-left: 0.75rem;
+    font-size: 0.82rem;
+    font-weight: 500;
+    text-transform: none;
+    letter-spacing: 0;
+    color: var(--muted);
+  }
+  .nav-group-chevron {
+    font-size: 0.6rem;
+    opacity: 0.7;
+    transition: transform 0.12s ease;
+  }
+  .nav-group--domains[open] .nav-group-chevron {
+    transform: rotate(180deg);
+  }
+  .nav-group-body {
+    padding-top: 0.1rem;
+  }
+  .nav-separator {
+    border-bottom: 1px solid var(--border);
+    margin: 0.3rem 0;
+    padding: 0;
+  }
   .nav-child { padding-left: 0.75rem !important; }
+  .nav-child--deep { padding-left: 1.25rem !important; }
   .nav-item.is-active { color: var(--accent); font-weight: 500; background: rgba(51, 123, 250, 0.12); }
   @media (max-width: 768px) {
     .sidebar { width: 100%; min-height: auto; border-right: none; border-bottom: 1px solid var(--border); }

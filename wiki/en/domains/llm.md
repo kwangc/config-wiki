@@ -22,4 +22,4 @@
 ## See also
 
 - `../research/` — LLM papers
-- `../../study/ai-llm/` — notes
+- `../../study/llm/` — notes

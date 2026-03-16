@@ -21,7 +21,16 @@ export function getWikiNav(locale: Locale, base: string): WikiNavItem[] {
     {
       label: 'Domains',
       children: [
-        { label: 'AI / ML', href: w('domains/ai-ml.md') },
+        {
+          label: 'AI / ML',
+          children: [
+            { label: 'Overview', href: w('domains/ai-ml.md') },
+            { label: '01. Teleops', href: w('domains/teleops.md') },
+            { label: '02. Behavior Cloning', href: w('domains/behavior-cloning.md') },
+            { label: '03. Robot Learning (RL)', href: w('domains/robot-learning-rl.md') },
+            { label: '04. Deep Learning & VLA', href: w('domains/deep-learning-vla.md') },
+          ],
+        },
         { label: 'LLM', href: w('domains/llm.md') },
         { label: 'VLA', href: w('domains/vla.md') },
         { label: 'Robotics', href: w('domains/robotics.md') },

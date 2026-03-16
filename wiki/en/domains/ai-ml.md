@@ -23,4 +23,4 @@ Core concepts for understanding Foundation Models and robot products.
 ## See also
 
 - `../research/` — related papers
-- `../../study/ai-llm/` — personal notes
+- `../../study/ai-ml/` — personal notes
