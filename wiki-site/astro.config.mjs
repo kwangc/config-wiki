@@ -4,7 +4,8 @@ import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 
 const isVercel = !!process.env.VERCEL;
-const base = isVercel ? '/' : '/Config';
+// GitHub Pages URL is case-sensitive: use lowercase to match repo name (e.g. config)
+const base = isVercel ? '/' : '/config';
 const site = isVercel
   ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL || process.env.VERCEL_URL || 'config-wiki.vercel.app'}`
   : 'https://kwangc.github.io';
@@ -23,6 +24,7 @@ export default defineConfig({
   site,
   base,
   output: 'static',
+  trailingSlash: 'always',
   build: {
     assets: '_assets',
   },

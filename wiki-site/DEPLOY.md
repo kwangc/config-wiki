@@ -18,10 +18,28 @@ npm run build
 
 ## 1. GitHub Pages
 
-### 저장소 이름이 `Config`인 경우 (예: `tonylee/Config`)
+### ⚠️ "Creating Pages deployment failed" / 404가 나올 때
+
+`actions/deploy-pages@v4` 실행 시 **404 (Not Found)** 가 나오면, 대부분 **Pages가 켜져 있지 않거나 Source가 잘못된 경우**입니다.
+
+1. 저장소 **Settings → Pages** 로 이동:  
+   `https://github.com/<owner>/<repo>/settings/pages`  
+   (예: `https://github.com/kwangc/config/settings/pages`)
+2. **Build and deployment** 에서:
+   - **Source** 를 반드시 **GitHub Actions** 로 선택합니다.  
+     ("Deploy from a branch"가 아닌 **GitHub Actions** 여야 합니다.)
+3. 저장 후 워크플로를 다시 실행해 보세요.
+
+- **비공개(Private) 저장소**인 경우: GitHub Pages 배포는 **GitHub Pro/Team/Enterprise** 플랜이 필요합니다. 공개 repo로 두거나 Vercel 등 다른 호스팅을 쓰면 됩니다.
+
+- **`/Config/en/` 접속 시 404**: GitHub Pages URL은 **대소문자 구분**합니다. 저장소 이름이 `config`(소문자)이면 `https://kwangc.github.io/config/en/` 로 접속해야 합니다. `astro.config.mjs`의 `base`를 `'/config'`로 맞춰 두었습니다.
+
+---
+
+### 저장소 이름이 config / Config 인 경우 (예: kwangc/config)
 
 1. **astro.config.mjs** 확인:
-   - `base: '/Config'`
+   - `base: '/config'` — GitHub Pages URL은 **대소문자 구분**하므로 저장소 이름과 동일하게 (보통 소문자)
    - `site: 'https://<당신의 GitHub 아이디>.github.io'`
 
 2. GitHub 저장소 **Settings → Pages**:
@@ -62,8 +80,8 @@ jobs:
       - run: npm run build
         working-directory: wiki-site
         env:
-          # base가 /Config 이면 이미 설정됨
-          BASE_URL: /Config
+          # base가 /config 이면 이미 astro.config.mjs에 설정됨 (선택)
+          # BASE_URL: /config
       - uses: actions/upload-pages-artifact@v3
         with:
           path: wiki-site/dist

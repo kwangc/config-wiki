@@ -1,7 +1,7 @@
 import type { Locale } from './i18n';
 import { i18n } from './i18n';
 
-export type WikiNavItem = { label: string; href?: string; children?: WikiNavItem[] };
+export type WikiNavItem = { label: string; href?: string; children?: WikiNavItem[]; id?: string };
 
 export function getWikiNav(locale: Locale, base: string): WikiNavItem[] {
   const prefix = `${base}/${locale}`;
@@ -9,39 +9,65 @@ export function getWikiNav(locale: Locale, base: string): WikiNavItem[] {
   const w = (path: string) => `${prefix}/wiki/${path}`;
   return [
     { label: s.wikiDocs, children: [{ label: s.home, href: `${prefix}/` }] },
-    { label: s.companyGroup, children: [{ label: s.companyAbout, href: w('company/about.md') }] },
+    { label: s.companyGroup, children: [{ label: s.companyAbout, href: w('01-company/about.md') }] },
     {
       label: 'Product',
       children: [
-        { label: s.productOverview, href: w('product/README.md') },
-        { label: 'Data Platform', href: w('product/data-platform.md') },
-        { label: 'Foundation Model', href: w('product/foundation-model.md') },
+        { label: s.productOverview, href: w('02-product/README.md') },
+        { label: 'Data Platform', href: w('02-product/01-data-platform.md') },
+        { label: 'Foundation Model', href: w('02-product/02-foundation-model.md') },
+        { label: 'Operations', href: w('02-product/03-operations.md') },
       ],
     },
     {
       label: 'Domains',
       children: [
+        { label: 'Robotics', href: w('03-domains/01-robotics/01-robotics.md') },
         {
-          label: 'AI / ML',
+          id: 'model-class',
+          label: 'Model class',
           children: [
-            { label: 'Overview', href: w('domains/ai-ml.md') },
-            { label: '01. Teleops', href: w('domains/teleops.md') },
-            { label: '02. Behavior Cloning', href: w('domains/behavior-cloning.md') },
-            { label: '03. Robot Learning (RL)', href: w('domains/robot-learning-rl.md') },
-            { label: '04. Deep Learning & VLA', href: w('domains/deep-learning-vla.md') },
+            { label: 'Overview', href: w('03-domains/02-model-class/01-overview.md') },
+            { label: 'LLM', href: w('03-domains/02-model-class/02-llm.md') },
+            { label: 'VLA', href: w('03-domains/02-model-class/03-vla.md') },
           ],
         },
-        { label: 'LLM', href: w('domains/llm.md') },
-        { label: 'VLA', href: w('domains/vla.md') },
-        { label: 'Robotics', href: w('domains/robotics.md') },
-        { label: 'Simulation & Sim2Real', href: w('domains/sim2real.md') },
-        { label: 'Data & Scaling', href: w('domains/data-scaling.md') },
-        { label: 'Deployment', href: w('domains/deployment.md') },
+        {
+          id: 'model-algorithm',
+          label: 'Model Algorithm (VLA deepdive)',
+          children: [
+            { label: 'Overview', href: w('03-domains/03-model-algorithm/01-overview.md') },
+            { label: 'Deep Learning & VLA', href: w('03-domains/03-model-algorithm/02-deep-learning-vla.md') },
+          ],
+        },
+        {
+          id: 'model-training',
+          label: 'Model Training',
+          children: [
+            { label: 'Overview', href: w('03-domains/04-model-training/01-overview.md') },
+            { label: 'Teleops', href: w('03-domains/04-model-training/02-teleops.md') },
+            { label: 'Behavior Cloning', href: w('03-domains/04-model-training/03-behavior-cloning.md') },
+            { label: 'Robot Learning (RL)', href: w('03-domains/04-model-training/04-robot-learning-rl.md') },
+          ],
+        },
+        { label: 'Data & Scaling', href: w('03-domains/05-data-scaling/01-data-scaling.md') },
+        { label: 'Simulation', href: w('03-domains/06-simulation-sim2real/01-simulation-sim2real.md') },
+        { label: 'Evaluation', href: w('03-domains/07-evaluation/01-overview.md') },
+        { label: 'Deployment', href: w('03-domains/08-deployment/01-deployment.md') },
+        { label: 'Safety', href: w('03-domains/09-safety/01-overview.md') },
       ],
     },
-    { label: 'Research', href: w('research/README.md') },
-    { label: 'Industry', href: w('industry/README.md') },
-    { label: 'Glossary', href: w('glossary/README.md') },
-    { label: 'Safety & Evaluation', href: w('safety-eval/README.md') },
+    {
+      label: 'Research',
+      children: [{ label: 'Overview', href: w('04-research/README.md') }],
+    },
+    {
+      label: 'Industry',
+      children: [{ label: 'Overview', href: w('05-industry/README.md') }],
+    },
+    {
+      label: 'Glossary',
+      children: [{ label: 'Overview', href: w('06-glossary/README.md') }],
+    },
   ];
 }

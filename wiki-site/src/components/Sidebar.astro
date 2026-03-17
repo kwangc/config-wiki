@@ -28,9 +28,10 @@ function isActive(href: string): boolean {
       item.children ? (
         <div class="nav-group">
           <span class="nav-group-title">{item.label}</span>
-          {item.children.map((child) =>
-            child.children && child.label === 'AI / ML' ? (
-              <details class="nav-subgroup" id="nav-ai-ml">
+          {item.children.map((child) => {
+            const subId = child.id ?? child.label.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+            return child.children ? (
+              <details class="nav-subgroup" id={`nav-${subId}`} data-nav-id={subId}>
                 <summary class="nav-subgroup-title">
                   <span>{child.label}</span>
                   <span class="nav-group-chevron" aria-hidden="true">▾</span>
@@ -58,8 +59,8 @@ function isActive(href: string): boolean {
               >
                 {child.label}
               </a>
-            ),
-          )}
+            );
+          })}
         </div>
       ) : (
         <a href={item.href} class:list={['nav-item', { 'is-active': isActive(item.href ?? '') }]}>{item.label}</a>
@@ -71,16 +72,18 @@ function isActive(href: string): boolean {
 <script>
   (function () {
     try {
-      var KEY = 'wiki-nav-ai-ml-open';
-      var el = document.getElementById('nav-ai-ml');
-      if (!el) return;
-      var saved = localStorage.getItem(KEY);
-      if (saved === '0') el.removeAttribute('open');
-      else if (saved === '1') el.setAttribute('open', '');
-      el.addEventListener('toggle', function () {
-        try {
-          localStorage.setItem(KEY, el.open ? '1' : '0');
-        } catch (_) {}
+      document.querySelectorAll('.nav-subgroup[data-nav-id]').forEach(function (el) {
+        var id = el.getAttribute('data-nav-id');
+        if (!id) return;
+        var key = 'wiki-nav-' + id + '-open';
+        var saved = localStorage.getItem(key);
+        if (saved === '0') el.removeAttribute('open');
+        else if (saved === '1') el.setAttribute('open', '');
+        el.addEventListener('toggle', function () {
+          try {
+            localStorage.setItem(key, el.open ? '1' : '0');
+          } catch (_) {}
+        });
       });
     } catch (_) {}
   })();
@@ -148,7 +151,7 @@ function isActive(href: string): boolean {
     opacity: 0.7;
     transition: transform 0.12s ease;
   }
-  .nav-group--domains[open] .nav-group-chevron {
+  .nav-subgroup[open] .nav-group-chevron {
     transform: rotate(180deg);
   }
   .nav-group-body {

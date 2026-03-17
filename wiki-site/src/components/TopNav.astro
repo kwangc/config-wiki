@@ -122,9 +122,10 @@ const wikiNav = getWikiNav(locale, base);
         item.children ? (
           <div class="topnav-drawer-group">
             <div class="topnav-drawer-group-title">{item.label}</div>
-            {item.children.map((child) =>
-              child.children ? (
-                <details class="topnav-drawer-subgroup" id="topnav-drawer-ai-ml">
+            {item.children.map((child) => {
+              const subId = child.id ?? child.label.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+              return child.children ? (
+                <details class="topnav-drawer-subgroup" id={`topnav-drawer-${subId}`} data-nav-id={subId}>
                   <summary class="topnav-drawer-subgroup-title">
                     <span>{child.label}</span>
                     <span class="topnav-drawer-chevron" aria-hidden="true">▾</span>
@@ -137,8 +138,8 @@ const wikiNav = getWikiNav(locale, base);
                 </details>
               ) : (
                 <a href={child.href} class="topnav-drawer-wiki-link">{child.label}</a>
-              ),
-            )}
+              );
+            })}
           </div>
         ) : (
           <a href={item.href} class="topnav-drawer-wiki-link topnav-drawer-wiki-link--flat">{item.label}</a>
@@ -218,17 +219,19 @@ const wikiNav = getWikiNav(locale, base);
       drawer.querySelectorAll('a[href]').forEach(function (a) {
         a.addEventListener('click', closeDrawer);
       });
-      var drawerAiMl = document.getElementById('topnav-drawer-ai-ml');
-      if (drawerAiMl) {
+      drawer.querySelectorAll('.topnav-drawer-subgroup[data-nav-id]').forEach(function (el) {
+        var id = el.getAttribute('data-nav-id');
+        if (!id) return;
+        var key = 'wiki-nav-' + id + '-open';
         try {
-          var saved = localStorage.getItem('wiki-nav-ai-ml-open');
-          if (saved === '0') drawerAiMl.removeAttribute('open');
-          else if (saved === '1') drawerAiMl.setAttribute('open', '');
+          var saved = localStorage.getItem(key);
+          if (saved === '0') el.removeAttribute('open');
+          else if (saved === '1') el.setAttribute('open', '');
         } catch (_) {}
-        drawerAiMl.addEventListener('toggle', function () {
-          try { localStorage.setItem('wiki-nav-ai-ml-open', drawerAiMl.open ? '1' : '0'); } catch (_) {}
+        el.addEventListener('toggle', function () {
+          try { localStorage.setItem(key, el.open ? '1' : '0'); } catch (_) {}
         });
-      }
+      });
     }
 
     function setSidebarCollapsed(on) {
