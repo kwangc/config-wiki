@@ -193,6 +193,19 @@ const wikiNav = getWikiNav(locale, base);
       document.body.style.overflow = '';
       document.removeEventListener('click', closeDrawerOutside);
     }
+    function syncDrawerNavFromStorage() {
+      if (!drawer) return;
+      try {
+        drawer.querySelectorAll('.topnav-drawer-subgroup[data-nav-id]').forEach(function (el) {
+          var id = el.getAttribute('data-nav-id');
+          if (!id) return;
+          var key = 'wiki-nav-' + id + '-open';
+          var saved = localStorage.getItem(key);
+          if (saved === '0') el.removeAttribute('open');
+          else if (saved === '1') el.setAttribute('open', '');
+        });
+      } catch (_) {}
+    }
     function openDrawer() {
       if (!drawer) return;
       if (langDropdown && !langDropdown.hasAttribute('hidden')) {
@@ -203,6 +216,7 @@ const wikiNav = getWikiNav(locale, base);
         quickPanel.setAttribute('hidden', '');
         if (quickTrigger) quickTrigger.setAttribute('aria-expanded', 'false');
       }
+      syncDrawerNavFromStorage();
       drawer.classList.add('is-open');
       drawer.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
@@ -213,6 +227,28 @@ const wikiNav = getWikiNav(locale, base);
       if (drawer && drawer.contains(t) && !drawerBackdrop.contains(t) && !drawerClose.contains(t)) return;
       closeDrawer();
     }
+    function syncSidebarNavFromEvent(id, open) {
+      var el = document.querySelector('.nav-subgroup[data-nav-id="' + id + '"]');
+      if (el) {
+        if (open) el.setAttribute('open', '');
+        else el.removeAttribute('open');
+      }
+    }
+    function syncDrawerNavFromEvent(id, open) {
+      if (!drawer) return;
+      var el = drawer.querySelector('.topnav-drawer-subgroup[data-nav-id="' + id + '"]');
+      if (el) {
+        if (open) el.setAttribute('open', '');
+        else el.removeAttribute('open');
+      }
+    }
+    window.addEventListener('wiki-nav-toggle', function (e) {
+      var id = e.detail && e.detail.id;
+      var open = e.detail && e.detail.open;
+      if (id == null || open === undefined) return;
+      syncSidebarNavFromEvent(id, open);
+      syncDrawerNavFromEvent(id, open);
+    });
     if (drawerBackdrop) drawerBackdrop.addEventListener('click', closeDrawer);
     if (drawerClose) drawerClose.addEventListener('click', closeDrawer);
     if (drawer) {
@@ -229,7 +265,10 @@ const wikiNav = getWikiNav(locale, base);
           else if (saved === '1') el.setAttribute('open', '');
         } catch (_) {}
         el.addEventListener('toggle', function () {
-          try { localStorage.setItem(key, el.open ? '1' : '0'); } catch (_) {}
+          try {
+            localStorage.setItem(key, el.open ? '1' : '0');
+            window.dispatchEvent(new CustomEvent('wiki-nav-toggle', { detail: { id: id, open: el.open } }));
+          } catch (_) {}
         });
       });
     }

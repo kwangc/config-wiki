@@ -34,7 +34,7 @@ const sections: { key: string; path: string }[] = [
       <ul class="browse-list">
         {sections.map(({ key, path }) => (
           <li>
-            <a href={`${prefix}/wiki/${path}`}>{t.dirNames[key] ?? key}</a>
+            <a href={`${prefix}/wiki/${path.replace(/\/+$/, '')}/`}>{t.dirNames[key] ?? key}</a>
           </li>
         ))}
       </ul>

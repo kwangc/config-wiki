@@ -1,0 +1,326 @@
+---
+import WikiLayout from '../../../../layouts/WikiLayout.astro';
+import type { Locale } from '../../../../data/i18n';
+
+export async function getStaticPaths() {
+  return [{ params: { locale: 'en' } }, { params: { locale: 'ko' } }];
+}
+
+const { locale } = Astro.params as { locale: Locale };
+const base = import.meta.env.BASE_URL.replace(/\/$/, '') || '';
+const prefix = `${base}/${locale}`;
+
+type Item = {
+  title: string;
+  category: string;
+  youtubeId: string;
+  description?: string;
+  tags?: string[];
+};
+
+const pageTitle = 'Task & Applications';
+const intro =
+  locale === 'ko'
+    ? '실제 로봇 유즈케이스를 작업(Task) 단위로 정리하고, 데모 영상을 갤러리 형태로 모아봅니다.'
+    : 'A gallery of real robot tasks & applications, organized by use case categories.';
+
+const categoryLabel = (cat: string) => {
+  if (locale !== 'ko') return cat;
+  if (cat === 'Serving') return 'Serving';
+  if (cat === 'Organizing & Cleaning') return 'Organizing & Cleaning';
+  return cat;
+};
+
+function inferTags(title: string, category: string): string[] {
+  const t = title.toLowerCase();
+  const tags = new Set<string>();
+  tags.add('demo');
+  tags.add('4x');
+  if (category === 'Serving') tags.add('serving');
+  if (category === 'Organizing & Cleaning') tags.add('organizing');
+  if (t.includes('coffee')) tags.add('coffee');
+  if (t.includes('popcorn')) tags.add('popcorn');
+  if (t.includes('toast')) tags.add('toast');
+  if (t.includes('candy')) tags.add('candy');
+  if (t.includes('beer')) tags.add('beer');
+  if (t.includes('plate')) tags.add('plate');
+  if (t.includes('paper')) tags.add('paper');
+  if (t.includes('towel')) tags.add('towel');
+  if (t.includes('polo')) tags.add('polo');
+  if (t.includes('laundry')) tags.add('laundry');
+  if (t.includes('fold')) tags.add('folding');
+  if (t.includes('clean')) tags.add('cleaning');
+  if (t.includes('organ')) tags.add('organizing');
+  return Array.from(tags);
+}
+
+const items: Item[] = [
+  // Serving
+  { category: 'Serving', title: 'Beer serving (4x speed)', youtubeId: 'bvKv4tFyHHQ' },
+  { category: 'Serving', title: 'Candy serving (4x speed)', youtubeId: 'p0CJ0jcGsnk' },
+  { category: 'Serving', title: 'Coffee serving (4x speed)', youtubeId: '2byBVv60gWA' },
+  { category: 'Serving', title: 'Popcorn serving (4x speed)', youtubeId: 'sAolOx0SR4w' },
+  { category: 'Serving', title: 'Toast serving (4x speed)', youtubeId: '0uWVWzTsvVs' },
+  // Organizing & Cleaning
+  { category: 'Organizing & Cleaning', title: 'Plate organization (4x speed)', youtubeId: 'A1yDzTiI80Y' },
+  { category: 'Organizing & Cleaning', title: 'Paper cleaning (4x speed)', youtubeId: '6mO7RtO0Cpk' },
+  { category: 'Organizing & Cleaning', title: 'Polo folding (4x speed)', youtubeId: '5jBJ5KX8vUw' },
+  { category: 'Organizing & Cleaning', title: 'Towel folding (4x speed)', youtubeId: '8bb8N5k8qRg' },
+  { category: 'Organizing & Cleaning', title: 'Laundry folding (4x speed)', youtubeId: 'G6aPuxH4MDI' },
+].map((x) => ({ ...x, tags: inferTags(x.title, x.category) }));
+
+const categories = Array.from(new Set(items.map((i) => i.category)));
+const allTags = Array.from(new Set(items.flatMap((i) => i.tags ?? []))).sort((a, b) => a.localeCompare(b));
+---
+
+<WikiLayout title={pageTitle} locale={locale}>
+  <article class="task-page">
+    <header class="task-header">
+      <h1>{pageTitle}</h1>
+      <p class="task-intro">{intro}</p>
+      <div class="task-actions">
+        <button type="button" class="task-link task-link--filter is-active" data-category="__all">All</button>
+        <button type="button" class="task-link task-link--filter" data-category="Serving">Serving</button>
+        <button type="button" class="task-link task-link--filter" data-category="Organizing & Cleaning">
+          Organizing &amp; Cleaning
+        </button>
+      </div>
+    </header>
+
+    <section class="task-filter" aria-label="Hashtag search">
+      <div class="task-filter-title">{locale === 'ko' ? 'Hashtag search' : 'Hashtag search'}</div>
+      <div class="task-search-row">
+        <input
+          class="task-search"
+          type="search"
+          inputmode="search"
+          autocomplete="off"
+          spellcheck="false"
+          placeholder={locale === 'ko' ? '예: coffee, folding, cleaning' : 'e.g. coffee, folding, cleaning'}
+          aria-label={locale === 'ko' ? '해시태그 검색' : 'Hashtag search'}
+        />
+      </div>
+      <div class="task-filter-hint">
+        {locale === 'ko'
+          ? '태그(예: coffee, towel, folding)로 검색하면 해당 태그가 포함된 영상만 표시됩니다.'
+          : 'Type a hashtag (without #) to filter videos by tags.'}
+      </div>
+    </section>
+
+    {categories.map((cat) => (
+      <section class="task-section" data-category={cat}>
+        <h2>{categoryLabel(cat)}</h2>
+        <div class="task-grid">
+          {items
+            .filter((x) => x.category === cat)
+            .map((x) => (
+              <article class="task-card" data-tags={(x.tags ?? []).join(' ')}>
+                <div class="task-video">
+                  <iframe
+                    loading="lazy"
+                    src={`https://www.youtube-nocookie.com/embed/${x.youtubeId}`}
+                    title={x.title}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen
+                  />
+                </div>
+                <div class="task-meta">
+                  <div class="task-title">{x.title}</div>
+                  {x.description ? <div class="task-desc">{x.description}</div> : null}
+                  {x.tags?.length ? (
+                    <div class="task-tags">
+                      {x.tags.map((t) => (
+                        <span class="task-tag">#{t}</span>
+                      ))}
+                    </div>
+                  ) : null}
+                </div>
+              </article>
+            ))}
+        </div>
+      </section>
+    ))}
+  </article>
+</WikiLayout>
+
+<script>
+  (function () {
+    function run() {
+      try {
+        var query = '';
+        var activeCategory = '__all';
+        var cards = Array.prototype.slice.call(document.querySelectorAll('.task-card[data-tags]'));
+        var sections = Array.prototype.slice.call(document.querySelectorAll('.task-section[data-category]'));
+        var catBtns = Array.prototype.slice.call(
+          document.querySelectorAll('.task-actions .task-link--filter[data-category]'),
+        );
+        var searchInput = document.querySelector('.task-search');
+
+        function normalize(s) {
+          return (s || '').toString().trim().replace(/^#/, '').toLowerCase();
+        }
+        function parseTokens(s) {
+          return normalize(s)
+            .split(/[^a-z0-9]+/g)
+            .map(function (x) { return x.trim(); })
+            .filter(Boolean);
+        }
+
+        function applyFilters() {
+          var tokens = parseTokens(query);
+          cards.forEach(function (card) {
+            var tags = normalize(card.getAttribute('data-tags') || '')
+              .split(/\\s+/)
+              .map(function (t) { return t.trim(); })
+              .filter(Boolean);
+
+            var section = card.closest ? card.closest('.task-section') : null;
+            var cardCat = normalize((section && section.getAttribute('data-category')) || '');
+
+            var okCat = activeCategory === '__all' || cardCat === normalize(activeCategory);
+            var okTag =
+              tokens.length === 0 ||
+              tokens.every(function (tok) {
+                return tags.some(function (t) { return t.indexOf(tok) >= 0; });
+              });
+
+            card.style.display = okCat && okTag ? '' : 'none';
+          });
+
+          sections.forEach(function (s) {
+            var anyVisible = false;
+            s.querySelectorAll('.task-card').forEach(function (card) {
+              if (card.style.display !== 'none') anyVisible = true;
+            });
+            s.style.display = anyVisible ? '' : 'none';
+          });
+        }
+
+        function setActiveCategory(cat) {
+          activeCategory = (cat || '').toString().trim() || '__all';
+          catBtns.forEach(function (b) {
+            b.classList.toggle('is-active', (b.getAttribute('data-category') || '').trim() === activeCategory);
+          });
+          applyFilters();
+        }
+
+        catBtns.forEach(function (b) {
+          b.addEventListener('click', function () {
+            setActiveCategory(b.getAttribute('data-category') || '__all');
+          });
+        });
+
+        function onSearch() {
+          query = (searchInput && searchInput.value) || '';
+          applyFilters();
+        }
+        if (searchInput) {
+          searchInput.addEventListener('input', onSearch);
+          searchInput.addEventListener('change', onSearch);
+          searchInput.addEventListener('search', onSearch);
+          searchInput.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') {
+              e.preventDefault();
+              onSearch();
+            }
+          });
+        }
+
+        setActiveCategory('__all');
+        applyFilters();
+      } catch (_) {}
+    }
+
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run);
+    else run();
+  })();
+</script>
+
+<style>
+  .task-page { max-width: 960px; padding: 0 1rem 3rem; }
+  .task-header { margin: 0 0 1.25rem; }
+  .task-header h1 { font-size: 1.75rem; margin: 0 0 0.5rem; }
+  .task-intro { color: var(--muted); margin: 0 0 0.75rem; line-height: 1.6; }
+  .task-actions { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .task-link {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.35rem 0.6rem;
+    border-radius: 999px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.85rem;
+  }
+  .task-link:hover { color: var(--accent); border-color: rgba(51, 123, 250, 0.55); }
+  .task-link--filter { cursor: pointer; }
+  .task-link--filter.is-active { color: #fff; background: rgba(37, 99, 235, 0.95); border-color: rgba(37, 99, 235, 0.95); }
+
+  .task-filter { margin: 0.25rem 0 1.25rem; padding: 0.75rem 0.85rem; border: 1px solid var(--border); border-radius: 12px; background: var(--surface); }
+  .task-filter-title { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-bottom: 0.5rem; }
+  .task-search-row { display: flex; gap: 0.5rem; }
+  .task-search {
+    width: min(520px, 100%);
+    padding: 0.5rem 0.7rem;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: rgba(15, 23, 42, 0.35);
+    color: var(--text);
+    outline: none;
+    font-size: 0.9rem;
+  }
+  .task-search:focus { border-color: rgba(37, 99, 235, 0.8); box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.18); }
+  .task-filter-hint { margin-top: 0.55rem; font-size: 0.85rem; color: var(--muted); }
+
+  .task-section { margin-top: 1.5rem; }
+  .task-section h2 {
+    font-size: 1.1rem;
+    margin: 0 0 0.75rem;
+    color: var(--muted);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.25rem;
+  }
+
+  .task-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+  @media (max-width: 900px) {
+    .task-grid { grid-template-columns: 1fr; }
+  }
+
+  .task-card {
+    border: 1px solid var(--border);
+    background: var(--surface);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .task-video {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #0b1220;
+  }
+  .task-video iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+  .task-meta { padding: 0.75rem 0.85rem 0.9rem; }
+  .task-title { font-weight: 600; line-height: 1.35; }
+  .task-desc { margin-top: 0.35rem; color: var(--muted); font-size: 0.9rem; line-height: 1.5; }
+  .task-tags { margin-top: 0.6rem; display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .task-tag {
+    font-size: 0.75rem;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    padding: 0.15rem 0.45rem;
+    border-radius: 999px;
+    background: rgba(51, 123, 250, 0.06);
+  }
+</style>
+

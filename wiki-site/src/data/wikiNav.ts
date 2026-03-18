@@ -6,7 +6,10 @@ export type WikiNavItem = { label: string; href?: string; children?: WikiNavItem
 export function getWikiNav(locale: Locale, base: string): WikiNavItem[] {
   const prefix = `${base}/${locale}`;
   const s = i18n[locale]?.sidebar ?? i18n.en.sidebar;
-  const w = (path: string) => `${prefix}/wiki/${path}`;
+  const w = (path: string) => {
+    const clean = path.replace(/\/+$/, '');
+    return `${prefix}/wiki/${clean}/`;
+  };
   return [
     { label: s.wikiDocs, children: [{ label: s.home, href: `${prefix}/` }] },
     { label: s.companyGroup, children: [{ label: s.companyAbout, href: w('01-company/about.md') }] },
@@ -16,7 +19,8 @@ export function getWikiNav(locale: Locale, base: string): WikiNavItem[] {
         { label: s.productOverview, href: w('02-product/README.md') },
         { label: 'Data Platform', href: w('02-product/01-data-platform.md') },
         { label: 'Foundation Model', href: w('02-product/02-foundation-model.md') },
-        { label: 'Operations', href: w('02-product/03-operations.md') },
+        { label: 'Task & Applications', href: w('02-product/03-task-and-applications') },
+        { label: 'Operations', href: w('02-product/04-operations.md') },
       ],
     },
     {
@@ -25,7 +29,7 @@ export function getWikiNav(locale: Locale, base: string): WikiNavItem[] {
         { label: 'Robotics', href: w('03-domains/01-robotics/01-robotics.md') },
         {
           id: 'model-class',
-          label: 'Model class',
+          label: 'Model Class',
           children: [
             { label: 'Overview', href: w('03-domains/02-model-class/01-overview.md') },
             { label: 'LLM', href: w('03-domains/02-model-class/02-llm.md') },

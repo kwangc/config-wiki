@@ -82,6 +82,7 @@ function isActive(href: string): boolean {
         el.addEventListener('toggle', function () {
           try {
             localStorage.setItem(key, el.open ? '1' : '0');
+            window.dispatchEvent(new CustomEvent('wiki-nav-toggle', { detail: { id: id, open: el.open } }));
           } catch (_) {}
         });
       });

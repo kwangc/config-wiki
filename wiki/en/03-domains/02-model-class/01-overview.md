@@ -1,4 +1,4 @@
-# Model class
+# Model Class
 
 High-level model families: **VLM**, **LLM**, **VLA**.
 
