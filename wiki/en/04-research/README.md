@@ -20,7 +20,8 @@ Summaries of papers, technical blogs, and articles. One-line summary + key point
 
 | Title | One-line | Keywords | Link |
 |-------|----------|----------|------|
-| (e.g.) RT-2 | VL model for robot action | VLA, Google | TBD |
+| RT-2 | VLA that transfers web vision-language knowledge to low-level robot actions | #VLA #data #foundation-model #sim2real | [rt-2.md](rt-2.md) |
+| SmolVLM | Small & efficient multimodal models with resource-efficient tokenization | #VLM #efficient #on-device | [smolvlm.md](smolvlm.md) |
 
 ---
 
