@@ -92,3 +92,11 @@ This makes training **more stable**, which is important for robot deployments.
 - [Teleoperation](02-teleops.md)
 - [Behavior Cloning](03-behavior-cloning.md)
 - [VLA](../02-model-class/03-vla.md)
+
+---
+
+## Food for Thought
+
+- Real-world RL is slow/expensive (sample inefficiency) and learning from sparse success signals is hard; if you invest in reward shaping, curricula, and evaluation harnesses, RL becomes a practical product lever instead of a long research cycle.
+- Safety constraints severely limit exploration; if you couple RL with supervisor-style safety gating and shielded action spaces (including simulation-first), you can improve policies without unacceptable hardware risk.
+- Continuous actions are harder to explore than discrete ones, leading to instability; if you standardize hybrid training (BC initialization + RL fine-tuning) and choose action representations carefully, learning becomes both safer and more efficient.

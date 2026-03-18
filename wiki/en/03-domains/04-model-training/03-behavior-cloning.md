@@ -81,3 +81,11 @@ Mitigation strategies:
 - [Teleoperation](02-teleops.md)
 - [Robot Learning (RL)](04-robot-learning-rl.md)
 - [VLA](../02-model-class/03-vla.md)
+
+---
+
+## Food for Thought
+
+- BC suffers from covariate shift: training sees human-trajectory states, deployment sees policy-generated states; if you add closed-loop data collection (dagger-like relabeling) and retraining automation, compounding errors become containable.
+- Supervised loss alone doesn’t guarantee task success under contact-rich dynamics; if you enrich targets with outcome/safety signals (success labels, contact events, failure reasons) you turn “imitate” into “survive real execution.”
+- Demo diversity is limited by labeling cost; if you productize balanced scenario selection and active coverage (initial states, styles, environments), generalization improves without linear increases in data budget.

@@ -84,3 +84,11 @@ RL을 함께 쓸 때:
 - [Robot Learning (RL)](../04-model-training/04-robot-learning-rl.md)
 - [AI / ML 기초](ai-ml.md)
 - [VLA](../02-model-class/03-vla.md)
+
+---
+
+## Food for Thought
+
+- (이미지, 언어, 로봇 상태) → 로봇 액션 매핑은 비선형적이고 representation/아키텍처 선택에 민감합니다; 제어에 중요한 신호 중심으로 fusion/action head를 설계하면 일반화가 “제품 약속”이 될 수 있습니다.
+- BC는 사람처럼 행동하게 만들기엔 강하지만 회복/견고성을 자동으로 해결하지는 못합니다; safety-aware 목표와 표준화된 action target을 가진 “BC→RL” 학습 프로토콜을 만들면 학습이 더 안정적으로 운영됩니다.
+- 딥러닝 VLA 학습/퓨전 스택은 계산량이 크지만, 결국 엣지에 배포해야 합니다; 압축/양자화와 on-device 검증을 학습 단계에 포함시키면 “훈련되는 모델이 곧 배포되는 모델”이 됩니다.

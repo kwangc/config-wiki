@@ -56,3 +56,11 @@
 - [Foundation Model](../../02-product/02-foundation-model.md) — 인코딩·학습
 - [Evaluation](../07-evaluation/01-overview.md), [Safety](../09-safety/01-overview.md) — 평가·안전
 
+---
+
+## Food for Thought
+
+- on-device 배포는 지연/메모리/연산 예산이 빡빡하고, 양자화(quantization)가 액션 정확도를 조용히 망가뜨릴 수 있습니다; calibration + 검증 + fallback 컨트롤러까지 포함한 툴체인을 제품화하면 엣지 배포가 안정화됩니다.
+- form factor와 장착 디테일은 통합 변수를 크게 늘려 원인 추적이 어렵습니다; 모델/프리셋/스키마를 묶어 호환성 체크가 들어간 패키징을 표준화하면 롤아웃 시간이 줄어듭니다.
+- 롤아웃·운영은 단순 배포가 아니라 shadow/canary, 안전 체크, 메트릭, 긴급 롤백이 포함돼야 합니다; ops 표면을 제품화하면 정책을 지속적으로 업데이트해도 회귀 위험이 낮아집니다.
+

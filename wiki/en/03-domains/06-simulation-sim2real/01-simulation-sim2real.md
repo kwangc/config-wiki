@@ -35,3 +35,11 @@ Transferring policies trained in simulation to **real-world robots** and reducin
 - [Data & Scaling](../05-data-scaling/01-data-scaling.md)
 - [Data Platform](../../02-product/01-data-platform.md)
 - [Glossary](../../06-glossary/README.md)
+
+---
+
+## Food for Thought
+
+- The reality gap comes from physics, sensors, and appearance mismatch, and it’s why “works in sim” doesn’t ship; if you build a dynamic digital twin + validation loop that keeps sim aligned, the gap becomes measurable and reducible.
+- Domain randomization can help but is often a blunt instrument; if you calibrate sim parameters from real logs and use mixed training, you can converge on the true system distribution instead of chasing luck.
+- Maintaining sim pipelines is engineering-heavy, and results decay when the world changes; if you productize evaluation that continuously compares sim metrics to real rollouts, the system can self-correct over time.

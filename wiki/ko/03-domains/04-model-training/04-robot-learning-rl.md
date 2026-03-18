@@ -99,3 +99,11 @@ PPO(Proximal Policy Optimization)는 다음을 목표로 합니다.
 - [Teleoperation](02-teleops.md)
 - [Behavior Cloning](03-behavior-cloning.md)
 - [VLA](../02-model-class/03-vla.md)
+
+---
+
+## Food for Thought
+
+- 로봇 RL은 샘플 비효율(에피소드가 느리고 비용이 큼)이고, 성공/실패만으로 희소 보상을 다루기 어렵습니다; 보상 설계(셔이핑), 커리큘럼, 평가 하네스를 제품화하면 RL이 “학술 실험”이 아니라 운영 가능한 성장 레버가 됩니다.
+- 안전 제약 때문에 탐색이 제한되는데, 이를 해결 기회로 보면 supervisor 스타일의 safety gating과 shielded action space(시뮬 우선)를 붙이는 방식이 효과적입니다.
+- 연속 action 탐색은 이산보다 불안정해지기 쉽습니다; 해결하면 BC 초기화 + RL 미세조정 같은 하이브리드 학습과 액션 표현 표준화로 학습 효율과 안정성을 동시에 개선할 수 있습니다.

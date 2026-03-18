@@ -73,3 +73,11 @@ This role split should be reflected in:
 - [Behavior Cloning](03-behavior-cloning.md)
 - [Robotics](../01-robotics/01-robotics.md)
 - [Data & Scaling](../05-data-scaling/01-data-scaling.md)
+
+---
+
+## Food for Thought
+
+- Teleop is expensive and risky, and data quality depends on tight synchronization and stable action logging; if we build teleop tools with latency-aware capture + automatic quality scoring, collecting demos becomes a predictable, repeatable product workflow.
+- Teleop data is only useful when action representation matches the control stack (joint-space vs EE-space); if you enforce schema contracts and automated validation/conversion, “log it” turns into “train it reliably.”
+- For bimanual tasks, role splits (support vs acting) must be reflected in logging and later policy/action head design; if we productize left/right action capture schemas and scenario templates, coverage becomes systematic instead of ad-hoc.

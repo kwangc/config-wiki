@@ -35,3 +35,11 @@
 - [Robotics](../01-robotics/01-robotics.md)
 - [Data Platform](../../02-product/01-data-platform.md)
 - [Research](../../04-research/README.md)
+
+---
+
+## Food for Thought
+
+- Scaling data without coverage/balance often leaves long-tail failures untouched; if you productize coverage metrics and dataset imbalance detection, “data scale” becomes an operational lever.
+- Real vs sim vs synthetic augmentation changes transfer in non-obvious ways; if you add sim→real validation gates that decide which source to trust, the system can converge toward better-performing mixtures automatically.
+- Label noise and long-tail task coverage are expensive to fix manually; if you build quality validation and demonstration synthesis tooling, data problems become solvable engineering work rather than recurring surprises.

@@ -1,13 +1,18 @@
 # Robotics
 
-Basics and bimanual manipulation context.
+Basics and bimanual manipulation context — focusing on **hardware taxonomy** and **system architecture**.
 
 ---
+
+## What this page covers
+
+- **Hardware taxonomy**: form factors, DOF, end-effectors, sensors, actuation, compute constraints
+- **System architecture**: control stack, policy interfaces, runtime modes, safety/supervision
 
 ## Key concepts (TBD)
 
 - **Manipulation** — grasp, place, assemble
-- **Bimanual** — two-hand coordination, symmetric/asymmetric tasks
+- **Bimanual** — two-hand coordination, symmetric/asymmetric tasks → see [Bimanual manipulation](04-bimanual.md)
 - **Simulation vs real** — sim-to-real, domain gap, data collection
 - **Control** — position/velocity/torque, policy interface
 - **Data** — teleop, demonstration, reward design

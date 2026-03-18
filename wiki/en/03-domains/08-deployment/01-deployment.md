@@ -53,3 +53,11 @@ Putting robots & VLAs on **real hardware** and into production — **form factor
 - [VLA](../02-model-class/03-vla.md)
 - [Foundation Model](../../02-product/02-foundation-model.md)
 - [Evaluation](../07-evaluation/01-overview.md), [Safety](../09-safety/01-overview.md)
+
+---
+
+## Food for Thought
+
+- On-device deployment is constrained by latency/memory, and quantization can quietly damage action accuracy; if you treat quantization as a controlled product toolchain (calibration + validation + fallback controllers), edge deployment becomes reliable.
+- Form factors and mounting details create integration variance that’s hard to debug; if you standardize deployment packaging (model + presets + schemas) with compatibility checks, rollout becomes faster across hardware SKUs.
+- Rollout/ops isn’t just “launch code”: safety checks, metrics, shadow/canary, and rollback must be built in; if you productize that ops surface, you can ship policies continuously without fearing regressions.

@@ -73,3 +73,11 @@ $$
 - [Behavior Cloning](03-behavior-cloning.md)
 - [Robotics](../01-robotics/01-robotics.md)
 - [Data & Scaling](../05-data-scaling/01-data-scaling.md)
+
+---
+
+## Food for Thought
+
+- teleop은 실세계에서 비용·위험이 큰 편이고, 데이터의 품질은 동기화와 action 로깅 안정성에 좌우됩니다; 해결하면 latency-aware capture + 자동 품질 점수로 데모 수집을 “반복 가능한 제품 프로세스”로 만들 수 있습니다.
+- teleop 로그는 액션 표현(joint-space vs EE-space)이 실제 control stack과 맞지 않으면 학습이 바로 무너집니다; 해결 기회는 스키마 계약(contracts)과 자동 검증/변환을 툴링으로 표준화하는 것입니다.
+- 바이매뉴얼은 왼손/오른손 역할 분리가 데이터/헤드 설계로 직결됩니다; 이 역할 분리를 반영한 좌/우 action capture 스키마와 시나리오 템플릿을 제품화하면 커버리지가 산발적이 아니라 체계적으로 쌓입니다.

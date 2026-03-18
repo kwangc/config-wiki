@@ -36,3 +36,11 @@
 - [Data Platform](../../02-product/01-data-platform.md) — 데이터 인프라
 - [Glossary](../../06-glossary/README.md) — Sim2Real, domain gap, domain randomization
 
+---
+
+## Food for Thought
+
+- reality gap은 물리, 센서, 외관(appearance)이 어긋나서 생기기 때문에 “시뮬에서 잘 된다”가 곧 “현장에서도 된다”로 이어지지 않습니다; 실세계 로그를 반영해 sim을 맞추는 dynamic digital twin + 검증 루프를 만들면 갭을 수치로 줄일 수 있습니다.
+- domain randomization은 도움이 되지만 종종 뭉뚱그린 접근이라 진짜 시스템 분포에 수렴하지 못할 수 있습니다; 실제 로그 기반으로 파라미터를 보정하고 mixed training을 적용하면 luck이 아니라 학습 결과로 전이가 좋아집니다.
+- 시뮬 파이프라인은 유지 비용이 크고, 시간이 지나면 결과가 decay됩니다; sim 메트릭과 실 롤아웃을 지속 비교하는 평가 체계를 제품화하면 스스로 보정되는 흐름으로 만들 수 있습니다.
+

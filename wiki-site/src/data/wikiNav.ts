@@ -21,12 +21,22 @@ export function getWikiNav(locale: Locale, base: string): WikiNavItem[] {
         { label: 'Foundation Model', href: w('02-product/02-foundation-model.md') },
         { label: 'Task & Applications', href: w('02-product/03-task-and-applications') },
         { label: 'Operations', href: w('02-product/04-operations.md') },
+        { label: 'Product Strategy', href: w('02-product/05-product-strategy.md') },
       ],
     },
     {
       label: 'Domains',
       children: [
-        { label: 'Robotics', href: w('03-domains/01-robotics/01-robotics.md') },
+        {
+          id: 'robotics',
+          label: 'Robotics',
+          children: [
+            { label: 'Overview', href: w('03-domains/01-robotics/01-robotics.md') },
+            { label: 'Hardware taxonomy', href: w('03-domains/01-robotics/02-hardware-taxonomy.md') },
+            { label: 'System architecture', href: w('03-domains/01-robotics/03-system-architecture.md') },
+            { label: 'Bimanual', href: w('03-domains/01-robotics/04-bimanual.md') },
+          ],
+        },
         {
           id: 'model-class',
           label: 'Model Class',

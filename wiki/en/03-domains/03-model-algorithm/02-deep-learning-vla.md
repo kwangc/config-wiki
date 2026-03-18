@@ -88,3 +88,11 @@ Often:
 - [Robot Learning (RL)](../04-model-training/04-robot-learning-rl.md)
 - [AI / ML basics](ai-ml.md)
 - [VLA](../02-model-class/03-vla.md)
+
+---
+
+## Food for Thought
+
+- The core mapping (image, language, robot state) → robot action is highly non-linear and sensitive to representation/architecture choices; if you design fusion/action heads around control-relevant signals (not just accuracy), generalization becomes a product promise.
+- BC-style imitation is strong for getting “human-like” behavior, but it doesn’t automatically solve recovery/robustness; if you build a unified BC→RL fine-tuning protocol with safety-aware objectives and standardized action targets, learning becomes dependable instead of fragile.
+- Deep VLA training and fusion stacks are compute-heavy, but edge deployment has tight budgets; if you integrate compression/quantization and on-device validation into training, the model that trains is also the model that ships.

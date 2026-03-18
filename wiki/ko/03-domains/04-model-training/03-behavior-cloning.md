@@ -81,3 +81,11 @@ RL의 강점:
 - [Teleoperation](02-teleops.md)
 - [Robot Learning (RL)](04-robot-learning-rl.md)
 - [VLA](../02-model-class/03-vla.md)
+
+---
+
+## Food for Thought
+
+- BC의 가장 큰 함정은 covariate shift입니다(학습은 사람 trajectory state만 보고, 실행은 정책이 만든 state를 보게 됨); closed-loop 데이터 수집(DAgger류 리레이블링)과 재학습 자동화를 넣으면 compounding error를 통제 가능한 비용으로 낮출 수 있습니다.
+- 지도학습 loss는 “사람처럼 따라하기”에는 강하지만, 접촉이 많은 실제 태스크 성공/회복을 직접 최적화하진 못합니다; 성공 라벨/실패 이유/접촉 이벤트 같은 목표를 학습 타겟에 결합하면 “모방”이 “생존”으로 바뀝니다.
+- 시연 다양성은 라벨링 비용 때문에 제한되기 쉽습니다; 해결하면 기회는 “어떤 초기상태/환경/스타일을 수집해야 하는지”를 지표 기반으로 선택하는 제품(액티브 커버리지)입니다.
