@@ -123,6 +123,21 @@ function sliceForModel(s, maxChars) {
   return `${head}\n\n[...truncated...]\n\n${tail}`;
 }
 
+function pickRecapInput(sectionText, { maxBulletLines = 35, maxHeaderLines = 6, maxChars = 6500 } = {}) {
+  if (!sectionText) return '';
+  const lines = sectionText
+    .split('\n')
+    .map((l) => l.trim())
+    .filter(Boolean);
+
+  const bulletLines = lines.filter((l) => /^[-•]\s+/.test(l)).slice(0, maxBulletLines);
+  const headerLines = lines
+    .filter((l) => !/^[-•]\s+/.test(l))
+    .slice(0, maxHeaderLines);
+
+  return sliceForModel([...headerLines, ...bulletLines].join('\n'), maxChars);
+}
+
 function extractIssueLinksFromIssuesHtml(html) {
   // Extract anchor hrefs that look like: https://news.smol.ai/issues/26-03-16-not-much
   // or: /issues/26-03-16-not-much
@@ -174,7 +189,9 @@ function extractCardTitleFromIssuesHtml(html, issueUrl, issueSlug) {
 
   // Strip the leading date like "Mar 10 ".
   const cleaned = raw.replace(/^(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+\d{1,2}\s+/i, '');
-  return cleaned || raw || null;
+  // Listing UI sometimes appends "Show details".
+  const finalTitle = (cleaned || raw || '').replace(/\s*Show details\s*$/i, '').trim();
+  return finalTitle || null;
 }
 
 function buildGeminiPrompt({ twitterText, redditText, discordText, issueTitle }) {
@@ -358,7 +375,14 @@ async function saveNews(items) {
 
 async function main() {
   const existing = await loadExistingNews();
-  const existingById = new Map((existing.items ?? []).map((x) => [x.id, x]));
+  const existingItems = (existing.items ?? []).filter((x) => {
+    if (!x || typeof x !== 'object') return false;
+    if (typeof x.id !== 'string') return false;
+    if (!/^(\d{2})-(\d{2})-(\d{2})-/.test(x.id)) return false;
+    if (typeof x.url !== 'string' || !x.url.startsWith('https://news.smol.ai/issues/')) return false;
+    return true;
+  });
+  const existingById = new Map(existingItems.map((x) => [x.id, x]));
 
   const issuesRes = await fetch(ISSUES_URL);
   if (!issuesRes.ok) throw new Error(`Failed to fetch issues list: ${issuesRes.status} ${issuesRes.statusText}`);
@@ -377,9 +401,8 @@ async function main() {
     // Prefer deterministic ordering (newer first)
     .sort((a, b) => dateToMs(b.date) - dateToMs(a.date));
 
-  const toProcess = filtered
-    .filter((x) => !existingById.has(x.slug))
-    .slice(0, MAX_PROCESS_NEW);
+  // Always refresh the latest N issues so summary quality/title changes propagate.
+  const toProcess = filtered.slice(0, MAX_PROCESS_NEW);
 
   const updated = new Map(existingById);
 
@@ -400,9 +423,9 @@ async function main() {
     const discordText = extractSectionText(plainText, 'AI Discords', null);
 
     const payload = {
-      twitterText: sliceForModel(twitterText, 9000),
-      redditText: sliceForModel(redditText, 9000),
-      discordText: sliceForModel(discordText, 6000),
+      twitterText: pickRecapInput(twitterText, { maxBulletLines: 40, maxHeaderLines: 6, maxChars: 6500 }),
+      redditText: pickRecapInput(redditText, { maxBulletLines: 35, maxHeaderLines: 6, maxChars: 6500 }),
+      discordText: pickRecapInput(discordText, { maxBulletLines: 25, maxHeaderLines: 6, maxChars: 5200 }),
       issueTitle,
     };
 
