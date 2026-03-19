@@ -1,0 +1,56 @@
+name: Update Smol AI News
+
+on:
+  schedule:
+    # Daily at 03:00 UTC
+    - cron: '0 3 * * *'
+  workflow_dispatch: {}
+
+concurrency:
+  group: update-smol-ai-news
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: 'wiki-site/package-lock.json'
+
+      - name: Install deps
+        run: npm ci
+        working-directory: wiki-site
+
+      - name: Scrape + summarize + translate (Gemini)
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          # Optional: set in repo secrets
+          GEMINI_MODEL: ${{ secrets.GEMINI_MODEL }}
+        run: node scripts/update_smol_ai_news.mjs
+        working-directory: wiki-site
+
+      - name: Build (sanity check)
+        run: npm run build
+        working-directory: wiki-site
+
+      - name: Commit & push if changed
+        run: |
+          if git diff --quiet -- wiki-site/src/data/news.json; then
+            echo "news.json unchanged; skipping commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add wiki-site/src/data/news.json
+          git commit -m "chore: update Smol AI news summaries"
+          git push
+

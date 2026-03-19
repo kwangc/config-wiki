@@ -10,26 +10,176 @@ export async function getStaticPaths() {
 
 const { locale } = Astro.params as { locale: Locale };
 const t = i18n[locale] ?? i18n.en;
-const items = (newsData as { items: { id: string; title: string; url: string; summary: string; date: string; source?: string; tags?: string[] }[] }).items;
+const items = (newsData as {
+  items: {
+    id: string;
+    title: string;
+    url: string;
+    summary?: string;
+    summaryKo?: string;
+    date: string;
+    source?: string;
+    tags?: string[];
+    recaps?: {
+      twitter?: {
+        // New schema
+        bulletsKo?: string[];
+        bulletsEn?: string[];
+        // Back-compat schema
+        summaryKo?: string;
+        summaryEn?: string;
+      };
+      reddit?: {
+        bulletsKo?: string[];
+        bulletsEn?: string[];
+        summaryKo?: string;
+        summaryEn?: string;
+      };
+      discord?: {
+        bulletsKo?: string[];
+        bulletsEn?: string[];
+        summaryKo?: string;
+        summaryEn?: string;
+      };
+    };
+  }[];
+}).items;
 const sorted = [...items].sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+const topItems = sorted.slice(0, 3);
+const labels =
+  locale === 'ko'
+    ? { twitter: '트위터 요약', reddit: '레딧 요약', discord: '디스코드 요약' }
+    : { twitter: 'Twitter recap', reddit: 'Reddit recap', discord: 'Discord recap' };
+
+function toBullets(val: unknown) {
+  if (Array.isArray(val)) return val.map((x) => String(x).trim()).filter(Boolean);
+  if (typeof val === 'string') {
+    return val
+      .split('\n')
+      .map((x) => x.trim())
+      .filter(Boolean)
+      .map((line) => line.replace(/^([-•]|\d+\.)\s+/, ''));
+  }
+  return [];
+}
+
+function getSectionBullets(
+  item: (typeof items)[number],
+  section: 'twitter' | 'reddit' | 'discord'
+) {
+  const recap = item.recaps?.[section];
+  if (!recap) return [];
+
+  if (locale === 'ko') {
+    return toBullets(recap.bulletsKo ?? recap.summaryKo);
+  }
+  return toBullets(recap.bulletsEn ?? recap.summaryEn ?? recap.summaryKo);
+}
 ---
 
 <WikiLayout title={t.news.title} locale={locale}>
   <article class="news-page">
     <h1>{t.news.title}</h1>
     <p class="lead">{t.news.lead}</p>
-    <ul class="news-list">
-      {sorted.map((item) => (
-        <li class="news-item">
-          <a href={item.url} target="_blank" rel="noopener noreferrer" class="news-title">{item.title}</a>
-          <p class="news-summary">{item.summary}</p>
-          <div class="news-meta">
-            <span>{item.date}</span>
-            {item.source && <span class="source">{item.source}</span>}
-            {item.tags?.length ? <span class="tags">{item.tags.join(', ')}</span> : null}
-          </div>
-        </li>
-      ))}
+    <ul class="news-list" aria-label="News list">
+      {topItems.map((item) => {
+        const twitterBullets = getSectionBullets(item, 'twitter');
+        const redditBullets = getSectionBullets(item, 'reddit');
+        const discordBullets = getSectionBullets(item, 'discord');
+
+        const fallbackSummary =
+          locale === 'ko' ? item.summaryKo ?? item.summary ?? '' : item.summary ?? item.summaryKo ?? '';
+        const fallbackBullets = toBullets(fallbackSummary);
+
+        return (
+          <li class="news-item">
+            <details class="news-card">
+              <summary class="news-card-summary">
+                <span class="news-card-summary-left">
+                  <span class="news-card-date">{item.date}</span>
+                  <a href={item.url} target="_blank" rel="noopener noreferrer" class="news-card-title">
+                    {item.title}
+                  </a>
+                </span>
+                <span class="news-card-arrow" aria-hidden="true">▸</span>
+              </summary>
+
+              <div class="news-card-body">
+                {twitterBullets.length ? (
+                  <section class="news-section">
+                    <h2 class="news-section-title">{labels.twitter}</h2>
+                    <ul class="news-section-bullets">
+                      {twitterBullets.map((b, idx) => (
+                        <li key={`tw-${idx}`}>
+                          <a class="news-bullet-link" href={item.url} target="_blank" rel="noopener noreferrer">
+                            {b}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </section>
+                ) : null}
+
+                {redditBullets.length ? (
+                  <section class="news-section">
+                    <h2 class="news-section-title">{labels.reddit}</h2>
+                    <ul class="news-section-bullets">
+                      {redditBullets.map((b, idx) => (
+                        <li key={`rd-${idx}`}>
+                          <a class="news-bullet-link" href={item.url} target="_blank" rel="noopener noreferrer">
+                            {b}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </section>
+                ) : null}
+
+                {discordBullets.length ? (
+                  <section class="news-section">
+                    <h2 class="news-section-title">{labels.discord}</h2>
+                    <ul class="news-section-bullets">
+                      {discordBullets.map((b, idx) => (
+                        <li key={`dc-${idx}`}>
+                          <a class="news-bullet-link" href={item.url} target="_blank" rel="noopener noreferrer">
+                            {b}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </section>
+                ) : null}
+
+                {twitterBullets.length || redditBullets.length || discordBullets.length ? null : (
+                  <section class="news-section">
+                    <h2 class="news-section-title">{locale === 'ko' ? '요약' : 'Summary'}</h2>
+                    {fallbackBullets.length ? (
+                      <ul class="news-section-bullets">
+                        {fallbackBullets.map((b, idx) => (
+                          <li key={`fb-${idx}`}>
+                            <a class="news-bullet-link" href={item.url} target="_blank" rel="noopener noreferrer">
+                              {b}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <p class="news-section-summary">{fallbackSummary}</p>
+                    )}
+                  </section>
+                )}
+
+                {item.source || item.tags?.length ? (
+                  <div class="news-meta">
+                    {item.source && <span class="source">{item.source}</span>}
+                    {item.tags?.length ? <span class="tags">{item.tags.join(', ')}</span> : null}
+                  </div>
+                ) : null}
+              </div>
+            </details>
+          </li>
+        );
+      })}
     </ul>
   </article>
 </WikiLayout>
@@ -40,12 +190,79 @@ const sorted = [...items].sort((a, b) => (b.date || '').localeCompare(a.date || 
   .lead code { font-size: 0.85em; }
   .news-list { list-style: none; padding: 0; margin: 0; }
   .news-item {
-    padding: 1rem 0;
+    padding: 0.65rem 0;
     border-bottom: 1px solid var(--border);
   }
   .news-item:last-child { border-bottom: none; }
-  .news-title { font-weight: 600; font-size: 1.05rem; }
-  .news-summary { color: var(--muted); font-size: 0.95rem; margin: 0.35rem 0 0; line-height: 1.5; }
-  .news-meta { font-size: 0.8rem; color: var(--muted); margin-top: 0.35rem; }
+  .news-card {
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    background: var(--surface);
+    padding: 0.85rem 0.85rem;
+  }
+  .news-card-summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .news-card-summary::-webkit-details-marker { display: none; }
+
+  .news-card-summary-left {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+  .news-card-date { font-size: 0.85rem; color: var(--muted); }
+  .news-card-title {
+    font-weight: 650;
+    font-size: 1.05rem;
+    color: inherit;
+    text-decoration: none;
+  }
+  .news-card-title:hover { text-decoration: underline; }
+
+  .news-card-arrow {
+    font-size: 1rem;
+    color: var(--muted);
+    transition: transform 160ms ease;
+  }
+  .news-card[open] .news-card-arrow { transform: rotate(90deg); }
+
+  .news-card-body { margin-top: 0.75rem; }
+  .news-section { margin-top: 0.9rem; }
+  .news-section:first-child { margin-top: 0; }
+  .news-section-title {
+    font-weight: 650;
+    font-size: 0.95rem;
+    margin: 0 0 0.25rem 0;
+  }
+  .news-section-summary {
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin: 0;
+    line-height: 1.55;
+    white-space: pre-wrap;
+  }
+
+  .news-section-bullets {
+    margin: 0;
+    padding-left: 1.1rem;
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.55;
+  }
+  .news-section-bullets li { margin: 0.25rem 0; }
+
+  .news-bullet-link {
+    color: inherit;
+    text-decoration: none;
+  }
+  .news-bullet-link:hover { text-decoration: underline; }
+
+  .news-meta { font-size: 0.8rem; color: var(--muted); margin-top: 0.6rem; }
   .news-meta .source, .news-meta .tags { margin-left: 0.75rem; }
 </style>

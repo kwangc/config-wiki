@@ -5,9 +5,54 @@
       "title": "News 항목 예시",
       "url": "https://config.inc/",
       "summary": "automation/scripts에서 스크래핑·요약 스크립트로 이 JSON을 갱신하면 여기에 자동 반영됩니다.",
+      "summaryKo": "automation/scripts에서 스크래핑·요약 스크립트로 이 JSON을 갱신하면 여기에 자동 반영됩니다.",
       "date": "2026-03-15",
       "source": "manual",
-      "tags": ["example"]
+      "tags": ["example"],
+      "recaps": {
+        "twitter": {
+          "bulletsKo": [
+            "트위터에서 핵심 논쟁과 실험이 어떤 방향으로 전개됐는지 정리합니다.",
+            "가장 영향력 있는 연구/발표 1~2개를 먼저 뽑아 요약합니다.",
+            "실무자 관점의 장단점과 논쟁 포인트를 함께 적습니다.",
+            "다음 액션(업데이트/재현/추가 실험)을 제안하는 문장으로 마무리합니다."
+          ],
+          "bulletsEn": [
+            "Summarize the core debate and direction from Twitter threads.",
+            "Pick the most impactful papers/announcements first.",
+            "Capture the practical pros/cons and disagreement points.",
+            "Close with a suggestion for what to do next."
+          ]
+        },
+        "reddit": {
+          "bulletsKo": [
+            "레딧에서 반복 등장하는 검증/재현 이슈를 한 줄로 정리합니다.",
+            "현업 사용 사례와 실패 사례를 요약합니다.",
+            "리소스/비용/제약 같은 현실적인 관점을 포함합니다.",
+            "관련 도구/워크플로우가 무엇인지 연결해줍니다."
+          ],
+          "bulletsEn": [
+            "Summarize the most repeated verification/repro topics on Reddit.",
+            "Capture real-world use cases and failure modes.",
+            "Include practical constraints like compute/cost/resources.",
+            "Connect to the mentioned tools or workflows."
+          ]
+        },
+        "discord": {
+          "bulletsKo": [
+            "디스코드 요약은 실시간 사용자 피드백을 우선 담습니다.",
+            "구현 디테일(예: 설정/파이프라인)에서 자주 막히는 지점을 적습니다.",
+            "사람들이 공유한 해결책/우회책을 요약합니다.",
+            "향후 반복 개선에 필요한 관측 포인트를 제안합니다."
+          ],
+          "bulletsEn": [
+            "Prioritize real-time feedback from Discord discussions.",
+            "Call out frequently encountered implementation pain points.",
+            "Summarize the shared fixes/workarounds.",
+            "End with suggested observations for future iteration."
+          ]
+        }
+      }
     }
   ]
 }
