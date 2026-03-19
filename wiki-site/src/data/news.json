@@ -139,6 +139,104 @@
         }
       },
       "summaryKo": "모델 자체의 품질보다 하네스, 도구, 런타임 등 주변 인프라가 더 중요해지고 있습니다."
+    },
+    {
+      "id": "26-03-11-not-much",
+      "title": "not much happened today Show details",
+      "url": "https://news.smol.ai/issues/26-03-11-not-much",
+      "date": "2026-03-11",
+      "source": "smol-ai",
+      "recaps": {
+        "twitter": {
+          "bulletsKo": [
+            "NVIDIA는 1M 컨텍스트와 에이전트 지원을 갖춘 오픈 120B 매개변수 모델인 Nemotron 3 Super를 출시했습니다."
+          ],
+          "bulletsEn": [
+            "NVIDIA released Nemotron 3 Super, an open 120B parameter model with 1M context and agentic support."
+          ]
+        },
+        "reddit": {
+          "bulletsKo": [
+            "Qwen 모델 출시 및 벤치마크에 대한 논의가 이루어졌습니다."
+          ],
+          "bulletsEn": [
+            "Discussions covered new Qwen model releases and their benchmarks."
+          ]
+        },
+        "discord": {
+          "bulletsKo": [],
+          "bulletsEn": []
+        }
+      },
+      "summaryKo": "NVIDIA는 1M 컨텍스트와 에이전트 지원을 갖춘 오픈 120B 매개변수 모델인 Nemotron 3 Super를 출시했습니다.\nQwen 모델 출시 및 벤치마크에 대한 논의가 이루어졌습니다."
+    },
+    {
+      "id": "26-03-10-ami-labs",
+      "title": "Yann LeCun’s AMI Labs launches with a $1.03B seed to build world models around JEPA Show details",
+      "url": "https://news.smol.ai/issues/26-03-10-ami-labs",
+      "date": "2026-03-10",
+      "source": "smol-ai",
+      "recaps": {
+        "twitter": {
+          "bulletsKo": [
+            "얀 르쿤의 AMI 랩스가 10.3억 달러의 시드 투자를 받아 월드 모델 개발에 나섰습니다."
+          ],
+          "bulletsEn": [
+            "Yann LeCun’s AMI Labs launched with a $1.03B seed round to develop world models."
+          ]
+        },
+        "reddit": {
+          "bulletsKo": [
+            "레딧에서는 새로운 Qwen 모델 출시 및 벤치마크에 대한 논의가 활발했습니다."
+          ],
+          "bulletsEn": [
+            "Reddit discussions covered new Qwen model releases and their benchmarks."
+          ]
+        },
+        "discord": {
+          "bulletsKo": [
+            "AINews의 디스코드 접근이 중단되었습니다."
+          ],
+          "bulletsEn": [
+            "AINews' access to Discord was unfortunately shut down."
+          ]
+        }
+      },
+      "summaryKo": "얀 르쿤의 AMI 랩스가 10.3억 달러의 시드 투자를 받아 월드 모델 개발에 나섰습니다.\n레딧에서는 새로운 Qwen 모델 출시 및 벤치마크에 대한 논의가 활발했습니다.\nAINews의 디스코드 접근이 중단되었습니다."
+    },
+    {
+      "id": "26-03-09-autoresearch",
+      "title": "Autoresearch: Sparks of Recursive Self Improvement Show details",
+      "url": "https://news.smol.ai/issues/26-03-09-autoresearch",
+      "date": "2026-03-09",
+      "source": "smol-ai",
+      "recaps": {
+        "twitter": {
+          "bulletsKo": [
+            "REDDIT_EN"
+          ],
+          "bulletsEn": [
+            "TWITTER_KO"
+          ]
+        },
+        "reddit": {
+          "bulletsKo": [
+            "Qwen 모델 성능 및 비교에 대한 논의가 활발했습니다."
+          ],
+          "bulletsEn": [
+            "Discussions on Qwen model performance and comparisons were prominent."
+          ]
+        },
+        "discord": {
+          "bulletsKo": [
+            "다수의 AI 관련 디스코드 서버에서 채널별로 높은 활동량을 보였습니다."
+          ],
+          "bulletsEn": [
+            "Many AI-focused Discord servers showed high activity across various channels."
+          ]
+        }
+      },
+      "summaryKo": "REDDIT_EN\nQwen 모델 성능 및 비교에 대한 논의가 활발했습니다.\n다수의 AI 관련 디스코드 서버에서 채널별로 높은 활동량을 보였습니다."
     }
   ]
 }
