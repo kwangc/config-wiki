@@ -130,9 +130,10 @@ function pickRecapInput(sectionText, { maxBulletLines = 35, maxHeaderLines = 6, 
     .map((l) => l.trim())
     .filter(Boolean);
 
-  const bulletLines = lines.filter((l) => /^[-•]\s+/.test(l)).slice(0, maxBulletLines);
+  // htmlToPlainText turns <li> into "- " lines, but the page may also contain "*" bullets.
+  const bulletLines = lines.filter((l) => /^([-•*]|\d+\.)\s+/.test(l)).slice(0, maxBulletLines);
   const headerLines = lines
-    .filter((l) => !/^[-•]\s+/.test(l))
+    .filter((l) => !/^([-•*]|\d+\.)\s+/.test(l))
     .slice(0, maxHeaderLines);
 
   return sliceForModel([...headerLines, ...bulletLines].join('\n'), maxChars);
@@ -201,10 +202,12 @@ We need short, readable section recaps.
 
 Task:
 - For each section (Twitter / Reddit / Discord), output:
-  - bulleted English recap (4-5 bullets max)
-  - bulleted Korean recap (4-5 bullets max)
+  - bulleted English topic recap (6-10 bullets max)
+  - bulleted Korean topic recap (6-10 bullets max)
 - Each bullet must be a single line starting with "- ".
-- Each bullet line must be a short sentence and must not contain newline characters.
+- Each bullet line must contain at least 3 sentences (so it can cover a full topic), and must not contain newline characters.
+- Each bullet must represent ONE major topic/theme. Do not merge multiple unrelated themes into a single bullet.
+- Ensure coverage: include all major themes present in the section text; prefer missing fewer themes over making bullets too short.
 - Do NOT output any text other than the markers and their bullet lines.
 
 Issue title (card): ${issueTitle}
@@ -237,7 +240,8 @@ DISCORD_KO
 - bullet...
 
 Rules:
-- Output 4-5 bullets per section. If the input section is empty, output 0 bullets (just the marker).
+- Output 0 bullets if the input section is empty (just the marker).
+- Otherwise output up to 10 bullets per section (aim 6-10). If there are fewer major themes, output fewer bullets.
 - Use only "-" bullet lines. No numbering.
 `.trim();
 }
@@ -329,7 +333,7 @@ function parseBulletsForMarker(text, marker) {
   for (const line of lines) {
     const clean = line.replace(/^[-•]\s*/, '').trim();
     if (clean) bullets.push(clean);
-    if (bullets.length >= 5) break; // we request 4-5 max; keep it tight
+    if (bullets.length >= 10) break; // keep it bounded for UI
   }
   return bullets;
 }
@@ -423,9 +427,9 @@ async function main() {
     const discordText = extractSectionText(plainText, 'AI Discords', null);
 
     const payload = {
-      twitterText: pickRecapInput(twitterText, { maxBulletLines: 40, maxHeaderLines: 6, maxChars: 6500 }),
-      redditText: pickRecapInput(redditText, { maxBulletLines: 35, maxHeaderLines: 6, maxChars: 6500 }),
-      discordText: pickRecapInput(discordText, { maxBulletLines: 25, maxHeaderLines: 6, maxChars: 5200 }),
+      twitterText: pickRecapInput(twitterText, { maxBulletLines: 140, maxHeaderLines: 10, maxChars: 12000 }),
+      redditText: pickRecapInput(redditText, { maxBulletLines: 120, maxHeaderLines: 10, maxChars: 12000 }),
+      discordText: pickRecapInput(discordText, { maxBulletLines: 80, maxHeaderLines: 8, maxChars: 8000 }),
       issueTitle,
     };
 
