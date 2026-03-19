@@ -185,7 +185,10 @@ Task:
   - bullets_en: array of 4-5 bullet strings in English
   - bullets_ko: array of 4-5 bullet strings in Korean
 - Each bullet string should be a short sentence.
-- Output must be valid JSON only (no markdown, no extra keys).
+- Output must be valid JSON only.
+- Output must be a single JSON object with keys exactly: twitter, reddit, discord.
+- Do not wrap in markdown fences.
+- Do not include any additional commentary.
 - If a section has no useful content, return an empty array for that section.
 
 Issue title (card): ${issueTitle}
@@ -220,6 +223,8 @@ async function callGeminiForModel({ prompt, model }) {
       topP: 0.9,
       // Keep output tight because we only need 3 sections.
       maxOutputTokens: 900,
+      // Ask Gemini to return strict JSON when supported.
+      responseMimeType: 'application/json',
     },
   };
 
@@ -254,10 +259,23 @@ async function callGemini({ prompt }) {
 }
 
 function parseGeminiJson(text) {
-  // Gemini sometimes wraps in ```json ... ```. Extract the first {...} block.
-  const m = text.match(/\{[\s\S]*\}/);
-  if (!m) throw new Error(`Could not find JSON object in Gemini output: ${text.slice(0, 250)}`);
-  return JSON.parse(m[0]);
+  // Gemini sometimes wraps in markdown. Extract the outermost JSON object.
+  const first = text.indexOf('{');
+  const last = text.lastIndexOf('}');
+  if (first < 0 || last < 0 || last <= first) {
+    throw new Error(`Could not find JSON object in Gemini output: ${text.slice(0, 250)}`);
+  }
+  const jsonText = text.slice(first, last + 1);
+  try {
+    return JSON.parse(jsonText);
+  } catch (err) {
+    throw new Error(
+      `Gemini JSON parse failed. Error: ${(err && err.message) || String(err)}. Output head: ${text.slice(
+        0,
+        400
+      )}`
+    );
+  }
 }
 
 async function loadExistingNews() {
