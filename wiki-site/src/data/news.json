@@ -16,23 +16,17 @@
           ]
         },
         "reddit": {
-          "bulletsKo": [
-            "Qwen 3.5 모델 개발이 주요 논의 사항이었습니다."
-          ],
+          "bulletsKo": [],
           "bulletsEn": [
-            "Qwen 3.5 model developments were a key topic."
+            "Qwen 3.5 model developments were a significant topic of discussion, highlighting new advancements and capabilities within the AI community. Users explored its features and potential applications, contributing to a deeper understanding of its performance. This ongoing evolution of models like Qwen 3.5 continues to drive innovation in the AI landscape"
           ]
         },
         "discord": {
-          "bulletsKo": [
-            "문샷의 Attention Residuals 논문은 컴퓨팅 이점을 주장하는 새로운 아키텍처를 소개했습니다."
-          ],
-          "bulletsEn": [
-            "Moonshot's Attention Residuals paper introduced a new architecture claiming compute advantages."
-          ]
+          "bulletsKo": [],
+          "bulletsEn": []
         }
       },
-      "summaryKo": "REDDIT_EN\nQwen 3.5 모델 개발이 주요 논의 사항이었습니다.\n문샷의 Attention Residuals 논문은 컴퓨팅 이점을 주장하는 새로운 아키텍처를 소개했습니다."
+      "summaryKo": "REDDIT_EN"
     },
     {
       "id": "26-03-13-not-much",
@@ -50,11 +44,9 @@
           ]
         },
         "reddit": {
-          "bulletsKo": [
-            "옴니코더-9B 모델 출시 및 성능에 대한 논"
-          ],
+          "bulletsKo": [],
           "bulletsEn": [
-            "OmniCoder-9B model was launched, with discussions on its performance."
+            "The OmniCoder-9B and Qwen 3.5 9B models are gaining attention for their impressive performance, often compared to much larger models despite their smaller size. These models demonstrate significant potential for local deployment on consumer hardware, offering an alternative to cloud-based solutions with increasing quota restrictions."
           ]
         },
         "discord": {
@@ -62,7 +54,7 @@
           "bulletsEn": []
         }
       },
-      "summaryKo": "REDDIT_EN\n옴니코더-9B 모델 출시 및 성능에 대한 논"
+      "summaryKo": "REDDIT_EN"
     },
     {
       "id": "26-03-12-not-much",
@@ -72,31 +64,21 @@
       "source": "smol-ai",
       "recaps": {
         "twitter": {
-          "bulletsKo": [
-            "REDDIT_EN"
-          ],
+          "bulletsKo": [],
           "bulletsEn": [
-            "TWITTER_KO"
+            "Anthropic launched interactive charts and diagrams in chat, demonstrating a clear move towards richer frontends for LLMs beyond simple text. This innovation allows for more dynamic and visual interactions, enhancing the overall user experience and utility of AI models. It signifies a broader trend in AI development focusing on multimodal outputs and interactive interfaces."
           ]
         },
         "reddit": {
-          "bulletsKo": [
-            "Qwen3.5 모델의 성능과 벤치마크가 주요 논의 주제였습니다."
-          ],
-          "bulletsEn": [
-            "Qwen3.5 모델의 성능과 벤치마크가 주요 논의 주제였습니다."
-          ]
+          "bulletsKo": [],
+          "bulletsEn": []
         },
         "discord": {
-          "bulletsKo": [
-            "Qwen3.5 모델은 인상적인 성능을 보였지만, 심각한 안정성 문제와 상세한 버그 보고가 있었습니다."
-          ],
-          "bulletsEn": [
-            "Qwen3.5 모델은 인상적인 성능을 보였지만, 심각한 안정성 문제와 상세한 버그 보고가 있었습니다."
-          ]
+          "bulletsKo": [],
+          "bulletsEn": []
         }
       },
-      "summaryKo": "REDDIT_EN\nQwen3.5 모델의 성능과 벤치마크가 주요 논의 주제였습니다.\nQwen3.5 모델은 인상적인 성능을 보였지만, 심각한 안정성 문제와 상세한 버그 보고가 있었습니다."
+      "summaryKo": ""
     },
     {
       "id": "26-03-11-not-much",
