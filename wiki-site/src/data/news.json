@@ -2,143 +2,101 @@
   "items": [
     {
       "id": "26-03-16-not-much",
-      "title": "not much happened today Show details",
+      "title": "not much happened today",
       "url": "https://news.smol.ai/issues/26-03-16-not-much",
       "date": "2026-03-16",
       "source": "smol-ai",
       "recaps": {
         "twitter": {
           "bulletsKo": [
-            "문샷은 1.25배 연산 이점을 주장하는 새로운 아키텍처인 Attention Residuals를 발표했습니다."
+            "REDDIT_EN"
           ],
           "bulletsEn": [
-            "Moonshot introduced Attention Residuals, a new architecture claiming 1.25x compute advantage."
+            "TWITTER_KO"
           ]
         },
         "reddit": {
           "bulletsKo": [
-            "Qwen 3.5 모델 개발이 주요 주제였습니다."
+            "Qwen 3.5 모델 개발이 주요 논의 사항이었습니다."
           ],
           "bulletsEn": [
             "Qwen 3.5 model developments were a key topic."
           ]
         },
         "discord": {
-          "bulletsKo": [],
+          "bulletsKo": [
+            "문샷의 Attention Residuals 논문은 컴퓨팅 이점을 주장하는 새로운 아키텍처를 소개했습니다."
+          ],
           "bulletsEn": [
-            "DISCORD_KO"
+            "Moonshot's Attention Residuals paper introduced a new architecture claiming compute advantages."
           ]
         }
       },
-      "summaryKo": "문샷은 1.25배 연산 이점을 주장하는 새로운 아키텍처인 Attention Residuals를 발표했습니다.\nQwen 3.5 모델 개발이 주요 주제였습니다."
-    },
-    {
-      "id": "placeholder-1",
-      "title": "News 항목 예시",
-      "url": "https://config.inc/",
-      "summary": "automation/scripts에서 스크래핑·요약 스크립트로 이 JSON을 갱신하면 여기에 자동 반영됩니다.",
-      "summaryKo": "automation/scripts에서 스크래핑·요약 스크립트로 이 JSON을 갱신하면 여기에 자동 반영됩니다.",
-      "date": "2026-03-15",
-      "source": "manual",
-      "tags": [
-        "example"
-      ],
-      "recaps": {
-        "twitter": {
-          "bulletsKo": [
-            "트위터에서 핵심 논쟁과 실험이 어떤 방향으로 전개됐는지 정리합니다.",
-            "가장 영향력 있는 연구/발표 1~2개를 먼저 뽑아 요약합니다.",
-            "실무자 관점의 장단점과 논쟁 포인트를 함께 적습니다.",
-            "다음 액션(업데이트/재현/추가 실험)을 제안하는 문장으로 마무리합니다."
-          ],
-          "bulletsEn": [
-            "Summarize the core debate and direction from Twitter threads.",
-            "Pick the most impactful papers/announcements first.",
-            "Capture the practical pros/cons and disagreement points.",
-            "Close with a suggestion for what to do next."
-          ]
-        },
-        "reddit": {
-          "bulletsKo": [
-            "레딧에서 반복 등장하는 검증/재현 이슈를 한 줄로 정리합니다.",
-            "현업 사용 사례와 실패 사례를 요약합니다.",
-            "리소스/비용/제약 같은 현실적인 관점을 포함합니다.",
-            "관련 도구/워크플로우가 무엇인지 연결해줍니다."
-          ],
-          "bulletsEn": [
-            "Summarize the most repeated verification/repro topics on Reddit.",
-            "Capture real-world use cases and failure modes.",
-            "Include practical constraints like compute/cost/resources.",
-            "Connect to the mentioned tools or workflows."
-          ]
-        },
-        "discord": {
-          "bulletsKo": [
-            "디스코드 요약은 실시간 사용자 피드백을 우선 담습니다.",
-            "구현 디테일(예: 설정/파이프라인)에서 자주 막히는 지점을 적습니다.",
-            "사람들이 공유한 해결책/우회책을 요약합니다.",
-            "향후 반복 개선에 필요한 관측 포인트를 제안합니다."
-          ],
-          "bulletsEn": [
-            "Prioritize real-time feedback from Discord discussions.",
-            "Call out frequently encountered implementation pain points.",
-            "Summarize the shared fixes/workarounds.",
-            "End with suggested observations for future iteration."
-          ]
-        }
-      }
+      "summaryKo": "REDDIT_EN\nQwen 3.5 모델 개발이 주요 논의 사항이었습니다.\n문샷의 Attention Residuals 논문은 컴퓨팅 이점을 주장하는 새로운 아키텍처를 소개했습니다."
     },
     {
       "id": "26-03-13-not-much",
-      "title": "not much happened today Show details",
+      "title": "not much happened today",
       "url": "https://news.smol.ai/issues/26-03-13-not-much",
       "date": "2026-03-13",
       "source": "smol-ai",
       "recaps": {
         "twitter": {
           "bulletsKo": [
-            "MCP 도구는 사용 편의성과 수요 사이의 논쟁이 있었으며, 확정적 API와 유연한 스킬 간의 대조를 보였습니다."
+            "REDDIT_EN"
           ],
           "bulletsEn": [
-            "Debates on MCP tools focused on ergonomics versus demand, contrasting deterministic APIs with flexible skills."
+            "TWITTER_KO"
           ]
         },
         "reddit": {
-          "bulletsKo": [],
-          "bulletsEn": []
+          "bulletsKo": [
+            "옴니코더-9B 모델 출시 및 성능에 대한 논"
+          ],
+          "bulletsEn": [
+            "OmniCoder-9B model was launched, with discussions on its performance."
+          ]
         },
         "discord": {
           "bulletsKo": [],
           "bulletsEn": []
         }
       },
-      "summaryKo": "MCP 도구는 사용 편의성과 수요 사이의 논쟁이 있었으며, 확정적 API와 유연한 스킬 간의 대조를 보였습니다."
+      "summaryKo": "REDDIT_EN\n옴니코더-9B 모델 출시 및 성능에 대한 논"
     },
     {
       "id": "26-03-12-not-much",
-      "title": "not much happened today Show details",
+      "title": "not much happened today",
       "url": "https://news.smol.ai/issues/26-03-12-not-much",
       "date": "2026-03-12",
       "source": "smol-ai",
       "recaps": {
         "twitter": {
           "bulletsKo": [
-            "모델 자체의 품질보다 하네스, 도구, 런타임 등 주변 인프라가 더 중요해지고 있습니다."
+            "REDDIT_EN"
           ],
           "bulletsEn": [
-            "Model harnesses and surrounding infrastructure are now seen as more critical than raw model quality."
+            "TWITTER_KO"
           ]
         },
         "reddit": {
-          "bulletsKo": [],
-          "bulletsEn": []
+          "bulletsKo": [
+            "Qwen3.5 모델의 성능과 벤치마크가 주요 논의 주제였습니다."
+          ],
+          "bulletsEn": [
+            "Qwen3.5 모델의 성능과 벤치마크가 주요 논의 주제였습니다."
+          ]
         },
         "discord": {
-          "bulletsKo": [],
-          "bulletsEn": []
+          "bulletsKo": [
+            "Qwen3.5 모델은 인상적인 성능을 보였지만, 심각한 안정성 문제와 상세한 버그 보고가 있었습니다."
+          ],
+          "bulletsEn": [
+            "Qwen3.5 모델은 인상적인 성능을 보였지만, 심각한 안정성 문제와 상세한 버그 보고가 있었습니다."
+          ]
         }
       },
-      "summaryKo": "모델 자체의 품질보다 하네스, 도구, 런타임 등 주변 인프라가 더 중요해지고 있습니다."
+      "summaryKo": "REDDIT_EN\nQwen3.5 모델의 성능과 벤치마크가 주요 논의 주제였습니다.\nQwen3.5 모델은 인상적인 성능을 보였지만, 심각한 안정성 문제와 상세한 버그 보고가 있었습니다."
     },
     {
       "id": "26-03-11-not-much",
