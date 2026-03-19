@@ -295,7 +295,11 @@ const ALL_MARKERS = ['TWITTER_EN', 'TWITTER_KO', 'REDDIT_EN', 'REDDIT_KO', 'DISC
 function parseBulletsForMarker(text, marker) {
   const escaped = marker.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   const markersAlt = ALL_MARKERS.map((m) => m.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|');
-  const re = new RegExp(`${escaped}\\s*\\n([\\s\\S]*?)(?=\\n(?:${markersAlt})\\s*\\n|$)`, 'm');
+  // Allow optional ":" right after marker, e.g. "TWITTER_EN:".
+  const re = new RegExp(
+    `${escaped}\\s*:?\\s*\\n([\\s\\S]*?)(?=\\n(?:${markersAlt})\\s*:?\\s*\\n|$)`,
+    'm'
+  );
   const m = text.match(re);
   const block = m?.[1] ?? '';
 
