@@ -1,6 +1,12 @@
 name: Update Smol AI News
 
 on:
+  push:
+    branches: [main]
+    paths:
+      # Avoid retrigger loops: we only run when the scraper/workflow code changes.
+      - '.github/workflows/update-smol-ai-news.yml'
+      - 'wiki-site/scripts/update_smol_ai_news.mjs'
   schedule:
     # Daily at 03:00 UTC
     - cron: '0 3 * * *'
