@@ -27,6 +27,10 @@
 - **한 줄 요약:** 자원 효율적인 토큰화로 온디바이스가 가능한 소형 VLM
 - **키워드:** #VLM, #efficient, #on-device
 
+### [Attention Is All You Need](../attention-is-all-you-need.md/)
+- **한 줄 요약:** Transformer: 순환을 없애고 self-attention만으로 병렬·장거리 시퀀스 모델링
+- **키워드:** #transformer, #attention, #foundation-model, #LLM
+
 ---
 
 ## 키워드별 분류

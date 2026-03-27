@@ -26,6 +26,10 @@ Summaries of papers, technical blogs, and articles. One-line summary + key point
 - **One line:** Small & efficient multimodal models with resource-efficient tokenization
 - **Keywords:** #VLM #efficient #on-device
 
+### [Attention Is All You Need](../attention-is-all-you-need.md/)
+- **One line:** Transformer architecture: replace recurrence with self-attention for parallel, long-range sequence modeling
+- **Keywords:** #transformer #attention #foundation-model #LLM
+
 ---
 
 ## Keywords
