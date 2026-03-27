@@ -1,108 +1,87 @@
 # OpenVLA: An Open-Source Vision-Language-Action Model
 
-> **Published:** 2024-06-13 · arXiv [2406.09246](https://arxiv.org/abs/2406.09246)
-> **Authors:** Moo Jin Kim, Karl Pertsch, Siddharth Karamcheti, Ted Xiao, Ashwin Balakrishna, Suraj Nair, Rafael Rafailov, Ethan Foster, Grace Lam, Pannag Sanketi, Quan Vuong, Thomas Kollar, Benjamin Burchfiel, Russ Tedrake, Dorsa Sadigh, Sergey Levine, Percy Liang, Chelsea Finn
-> **Resources:** [GitHub](https://github.com/openvla/openvla) · [HuggingFace](https://huggingface.co/openvla/openvla-7b)
+*arXiv* (OpenVLA)
 
 ---
 
-## Brief summary
+## 1) Brief summary (public date, authors)
 
-OpenVLA is a fully open-source 7B-parameter VLA model that demonstrates frontier-level robot manipulation performance while being significantly smaller and cheaper to run than prior closed models (RT-2 is 55B parameters). It is built on top of the **Prismatic VLM** backbone (SigLIP + DINOv2 vision encoders + Llama 2 7B language model), trained on the **Open X-Embodiment (OXE)** dataset: 970,000 robot trajectories across 22 robot embodiments and 527 skills.
-
-The key insight: by training a strong open VLM backbone on diverse, large-scale robot data, a 7B model can match or exceed a 55B closed model — and can be fine-tuned to new robots and tasks with as few as ~100 demonstrations using LoRA.
+- **Public date:** 2024-06 (arXiv v1 posted **2024-06-13**)
+- **arXiv:** [2406.09246](https://arxiv.org/abs/2406.09246)
+- **Authors (representative):** Moo Jin Kim, Karl Pertsch, Siddharth Karamcheti, Ted Xiao, Ashwin Balakrishna, Suraj Nair, Rafael Rafailov, Chelsea Finn, Sergey Levine, Percy Liang (+ many co-authors)
+- **GitHub:** [github.com/openvla/openvla](https://github.com/openvla/openvla)
+- **HuggingFace:** [openvla/openvla-7b](https://huggingface.co/openvla/openvla-7b)
 
 ---
 
-## Detailed summary
+## 2) Detailed summary
 
-### Problem
+### Core idea: open-source VLA that matches closed 55B models at 7B
 
-Prior VLA models (RT-2) demonstrated that web-scale VLMs can be repurposed for robot control, but:
-- Weights are closed (not publicly released)
-- 55B parameters → expensive to run, fine-tune, or study
-- Training data not public → hard to understand failure modes
-- Difficult for the community to build on
+RT-2 demonstrated that web-scale VLMs can be repurposed for robot control, but its weights are closed, it costs 55B parameters to run, and its training data is not public. OpenVLA asks: *can an open-source model match or exceed RT-2 at a fraction of the cost?*
+
+OpenVLA is a fully open-source 7B-parameter VLA built on the **Prismatic VLM** backbone (SigLIP + DINOv2 vision encoders + Llama 2 7B), trained on the **Open X-Embodiment (OXE)** dataset: 970,000 robot trajectories across 22 robot embodiments and 527 skills.
 
 ### Architecture
 
-OpenVLA is built on the **Prismatic VLM** architecture:
+OpenVLA uses the **Prismatic VLM** architecture:
 
-- **Vision encoders (dual)**: SigLIP (language-image pretraining) + DINOv2 (self-supervised ViT); their features are concatenated to provide richer visual representations
-- **Projection**: linear layer mapping concatenated visual features into the LLM token space
-- **Language model**: Llama 2 7B (decoder-only); processes visual tokens + text tokens together
-- **Action prediction**: model predicts the next token autoregressively, including action tokens
+- **Vision encoders (dual):** SigLIP (language-image pretraining) + DINOv2 (self-supervised ViT); their features are concatenated to provide richer visual representations
+- **Projection:** linear layer mapping concatenated visual features into the LLM token space
+- **Language model:** Llama 2 7B (decoder-only); processes visual tokens + text tokens together
+- **Action prediction:** the model predicts action tokens autoregressively, exactly as it would predict text
 
 ### Action representation
 
 Robot actions are represented as **7-dimensional vectors**:
+
 - 6-DoF end-effector delta (Δx, Δy, Δz, Δroll, Δpitch, Δyaw)
 - 1 gripper command (open/close)
 
-Each of the 7 dimensions is **discretized into 256 bins** and represented as a text token from the LLM's vocabulary. The model predicts these 7 tokens sequentially, just as it would predict any text.
-
-This is the same token-based approach as RT-2, but with a fully open implementation.
+Each of the 7 dimensions is **discretized into 256 bins** and mapped to a text token from the LLM's vocabulary. The model predicts these 7 tokens sequentially — the same token-based approach as RT-2, but fully open.
 
 ### Training data: Open X-Embodiment (OXE)
 
 - **970,000 trajectories** from 22 robot embodiments
-- Covers 527 distinct skills across diverse environments
-- Mixture of teleoperated demonstrations, scripted policies, and human video
-- Dataset is publicly available → training is reproducible
+- 527 distinct skills across diverse environments
+- Mix of teleoperated demonstrations, scripted policies, and human video
+- Publicly available → training is fully reproducible
 
 OpenVLA uses a carefully tuned **data mixture** to balance across embodiments and skill types — over-sampling rare skills and down-sampling over-represented ones.
 
 ### Results
 
 **BridgeV2 benchmark** (real robot, unseen objects):
-- OpenVLA (7B): 73.7% success rate
-- RT-2-X (55B): 67.3% success rate
 
-**Google Robot benchmark** (tabletop manipulation):
-- OpenVLA (7B): comparable to RT-2-X with 7× fewer parameters
+| Model | Params | Success rate |
+|-------|--------|-------------|
+| OpenVLA | 7B | **73.7%** |
+| RT-2-X | 55B | 67.3% |
+| Octo | 93M | 56.9% |
 
-**Key finding**: A well-trained 7B open model outperforms a 55B closed model when trained on the same diverse dataset.
-
-### Fine-tuning with LoRA
-
-OpenVLA can be adapted to new robots and tasks efficiently:
-- **LoRA (Low-Rank Adaptation)**: freeze most parameters, train only low-rank adapters
-- With ~100 demonstrations of a new task, OpenVLA achieves strong performance on that task
-- Fine-tuning a 7B model on a single GPU takes hours, not days
-
-This dramatically lowers the barrier for deploying VLAs on custom hardware or new task domains.
+**Fine-tuning:** with LoRA, OpenVLA adapts to a new robot and task with as few as ~100 demonstrations.
 
 ### Limitations
 
-- **Inference speed**: 7B model runs at ~6 Hz on an A100 — faster than 55B RT-2, but still limited for high-frequency control
-- **Single-image input**: processes one camera frame at a time; no built-in temporal modeling across frames
-- **Fixed action space**: designed for 7-DoF manipulation; adapting to different action spaces (e.g. bimanual, mobile) requires architectural changes
-- **Distribution shift**: still fails on scenes or objects far outside the training distribution
+- **Inference speed:** 7B model running on a single GPU is slower than smaller specialized models; not yet suitable for high-frequency control (>5 Hz)
+- **Single-arm only:** OXE is dominated by single-arm manipulation; bimanual and mobile manipulation generalization is untested
+- **No temporal context:** the model receives a single image frame per step, with no explicit history encoding
 
 ---
 
-## Why this matters
+## 3) Why this is an important paper
 
-OpenVLA shifted the VLA landscape by showing that **open + diverse data + right-sized model** can beat closed + scaled approaches. It established:
-
-1. The community can now build, study, and improve VLAs — not just use closed APIs
-2. Data diversity matters more than model size at this scale
-3. Fine-tuning is practical: ~100 demos + LoRA → deployable on new hardware
-
----
-
-## Config application
-
-- **Benchmark baseline**: OpenVLA is now the standard open-source reference for VLA comparisons
-- **Fine-tuning path**: LoRA fine-tuning on ~100 demos is the practical template for adapting to new embodiments
-- **Action tokenization**: the 7-DoF → 256-bin discretization approach is a proven design choice for action representation
-- **Data strategy**: OXE mixture rationale directly informs how to build and balance diverse training corpora
-- **Bimanual scaling**: OpenVLA's single-arm setup is the starting point; extending to 14-DoF bimanual requires rethinking the action representation and coordination structure
+- It demonstrates that **7B open-source models can outperform 55B closed models** on robot manipulation benchmarks, breaking the assumption that scale is necessary for VLA performance.
+- It establishes **Open X-Embodiment as a viable training foundation** and shows how data mixture strategy (not just raw data quantity) drives performance.
+- It provides a fully reproducible baseline — weights, code, and training data are all public — enabling the community to build on and study VLA behavior in detail.
+- LoRA fine-tuning to new robots with ~100 demos shows a practical path to **few-shot adaptation** for Config's deployment scenarios.
 
 ---
 
-## See also
+## 4) What Config can apply
 
-- [RT-2](./rt-2.md/) — the closed-source predecessor
-- [VLA](../03-domains/02-model-class/05-vla.md/) — VLA architecture overview
-- [VLM](../03-domains/02-model-class/04-vlm.md/) — VLM foundations
+- **Open-source as a starting point:** OpenVLA-7B is a practical base model for Config's robotics work. Fine-tuning with LoRA on Config-specific robots and tasks is lower cost than training from scratch.
+- **Data mixture strategy:** the OXE mixture recipe — over-sampling rare skills, down-sampling dominant embodiments — is directly applicable when Config builds its own multi-robot training set.
+- **Dual vision encoder design:** using both SigLIP (language-aligned) and DINOv2 (spatial/structural) encoders provides complementary visual features. Config can evaluate whether this dual-encoder approach improves grounding for its specific manipulation tasks.
+- **Benchmark design:** OpenVLA's evaluation on BridgeV2 with unseen objects is a concrete template for Config's own evaluation harness — structured, reproducible, and measuring generalization rather than in-distribution performance.
+- **Inference pipeline:** the paper's throughput analysis (single GPU, ~6 Hz with optimization) gives Config a realistic budget for on-robot deployment planning.

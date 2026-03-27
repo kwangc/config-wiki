@@ -79,6 +79,7 @@ export function getWikiNav(locale: Locale, base: string): WikiNavItem[] {
       children: [
         { label: 'Overview', href: w('04-research/README.md') },
         { label: 'Attention Is All You Need', href: w('04-research/attention-is-all-you-need.md') },
+        { label: 'CLIP', href: w('04-research/clip.md') },
         { label: 'RT-2', href: w('04-research/rt-2.md') },
         { label: 'OpenVLA', href: w('04-research/openvla.md') },
         { label: 'SmolVLM', href: w('04-research/smolvlm.md') },

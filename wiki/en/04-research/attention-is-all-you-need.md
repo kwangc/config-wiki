@@ -94,9 +94,3 @@ The paper ablates each component:
 - **Cross-attention for multimodal fusion:** The encoder-decoder cross-attention pattern (language queries attending to visual keys/values) is the conceptual template for how language instructions condition on visual observations in VLA models.
 - **Positional encoding considerations for robot state:** When encoding temporal sequences of robot observations or action histories, positional encoding strategy (sinusoidal vs. learned vs. RoPE) directly affects how well the model tracks time steps and action ordering.
 
----
-
-## 참고
-
-- arXiv: [1706.03762](https://arxiv.org/abs/1706.03762)
-- Related: [RT-2](rt-2.md)
