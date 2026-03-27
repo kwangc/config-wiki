@@ -6,6 +6,7 @@ wiki-site/dist/
 wiki-site/.astro/
 wiki-site/src/content/wiki/
 wiki-site/src/data/wiki-last-modified.json
+wiki-site/public/pagefind/
 .wiki-site/
 *.log
 .DS_Store

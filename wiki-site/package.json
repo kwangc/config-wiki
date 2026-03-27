@@ -5,7 +5,7 @@
   "scripts": {
     "copy-wiki": "node scripts/copy-wiki.js",
     "dev": "npm run copy-wiki && astro dev",
-    "build": "npm run copy-wiki && astro build && npx pagefind --site dist",
+    "build": "npm run copy-wiki && astro build && npx pagefind --site dist && cp -r dist/pagefind public/pagefind",
     "preview": "astro preview"
   },
   "dependencies": {

@@ -84,12 +84,12 @@ const wikiNav = getWikiNav(locale, base);
       />
       <span class="topnav-logo-text">Config Wiki</span>
     </a>
+    <Search locale={locale} />
   </div>
   <nav class="topnav-links">
     <a href={prefix + '/'} class:list={['topnav-link', { 'is-active': isWiki }]}>{t.wiki}</a>
     <a href={prefix + '/news/'} class:list={['topnav-link', { 'is-active': isNews }]}>{t.news}</a>
     <a href={prefix + '/about/'} class:list={['topnav-link', { 'is-active': isAboutMe }]}>{t.aboutMe}</a>
-    <Search locale={locale} />
     <div class="topnav-lang-wrap">
       <button type="button" class="topnav-lang-trigger" aria-haspopup="listbox" aria-expanded="false" aria-label="Select language" id="lang-trigger">
         <span class="topnav-lang-current">{currentLabel}</span>
@@ -603,7 +603,7 @@ const wikiNav = getWikiNav(locale, base);
   .topnav-left {
     display: flex;
     align-items: center;
-    gap: 0.35rem;
+    gap: 1.25rem;
     min-width: 0;
   }
   .topnav-menu-wrap {
@@ -704,6 +704,8 @@ const wikiNav = getWikiNav(locale, base);
     font-size: 1.1rem;
     color: var(--text);
     text-decoration: none;
+    flex-shrink: 0;
+    white-space: nowrap;
   }
   .topnav-brand:hover {
     color: var(--text);

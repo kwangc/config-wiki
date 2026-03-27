@@ -5,58 +5,100 @@ interface Props {
 }
 const { locale = 'en' } = Astro.props;
 const base = (import.meta.env.BASE_URL || '/').replace(/\/$/, '') || '';
-const placeholder = locale === 'ko' ? '검색 (⌘K)' : 'Search (⌘K)';
+const placeholder = locale === 'ko' ? 'VLA, teleop, diffusion ...' : 'VLA, teleop, diffusion ...';
+const ariaLabel = locale === 'ko' ? '검색 (⌘K)' : 'Search (⌘K)';
 const closeLabel = locale === 'ko' ? '닫기' : 'Close';
+const noIndexMsg = locale === 'ko'
+  ? '검색 인덱스 없음. <code>npm run build</code> 후 다시 시도하세요.'
+  : 'Search index not found. Run <code>npm run build</code> and try again.';
 ---
 
-<!-- Search trigger button -->
+<!-- Inline search trigger (fake input) -->
 <button
   type="button"
   id="search-trigger"
-  class="search-trigger"
-  aria-label={placeholder}
-  title={placeholder}
+  class="search-bar"
+  aria-label={ariaLabel}
+  title={ariaLabel}
 >
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+  <svg class="search-bar-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
     <circle cx="11" cy="11" r="8"/>
     <path d="m21 21-4.35-4.35"/>
   </svg>
+  <span class="search-bar-placeholder">{placeholder}</span>
+  <kbd class="search-bar-kbd">⌘K</kbd>
 </button>
 
 <!-- Search modal overlay -->
-<div id="search-modal" class="search-modal" aria-hidden="true" role="dialog" aria-label={placeholder}>
+<div id="search-modal" class="search-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label={ariaLabel}>
   <div class="search-modal-backdrop" id="search-modal-backdrop"></div>
   <div class="search-modal-panel">
     <div class="search-modal-header">
-      <div id="search-ui-container"></div>
       <button type="button" class="search-modal-close" id="search-modal-close" aria-label={closeLabel}>
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        <kbd class="search-esc-kbd">esc</kbd>
       </button>
+    </div>
+    <div class="search-modal-inner">
+      <div id="search-ui-container"></div>
     </div>
   </div>
 </div>
 
 <style>
-  .search-trigger {
+  /* ── Inline search bar ── */
+  .search-bar {
     display: flex;
     align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    border-radius: 6px;
+    gap: 7px;
+    height: 2rem;
+    padding: 0 10px;
+    border-radius: 7px;
     border: 1px solid var(--border);
-    background: transparent;
+    background: var(--bg);
     color: var(--muted);
     cursor: pointer;
-    transition: color 0.15s, background 0.15s, border-color 0.15s;
-    flex-shrink: 0;
+    font-size: 0.82rem;
+    font-family: inherit;
+    white-space: nowrap;
+    transition: border-color 0.15s, box-shadow 0.15s, color 0.15s;
+    min-width: 220px;
+    max-width: 380px;
+    flex: 1 1 280px;
   }
-  .search-trigger:hover {
-    color: var(--text);
-    background: var(--surface);
+  .search-bar:hover {
     border-color: var(--accent);
+    color: var(--text);
+    box-shadow: 0 0 0 2px rgba(51, 123, 250, 0.12);
+  }
+  .search-bar:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 1px;
+  }
+  .search-bar-icon {
+    flex-shrink: 0;
+    opacity: 0.6;
+  }
+  .search-bar-placeholder {
+    flex: 1;
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .search-bar-kbd {
+    flex-shrink: 0;
+    font-size: 0.68rem;
+    font-family: inherit;
+    color: var(--muted);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1px 5px;
+    line-height: 1.5;
+    opacity: 0.7;
   }
 
+  /* ── Modal overlay ── */
   .search-modal {
     display: none;
     position: fixed;
@@ -64,74 +106,80 @@ const closeLabel = locale === 'ko' ? '닫기' : 'Close';
     z-index: 9000;
     align-items: flex-start;
     justify-content: center;
-    padding-top: 80px;
+    padding-top: 72px;
+    padding-inline: 16px;
   }
   .search-modal[aria-hidden="false"] {
     display: flex;
   }
-
   .search-modal-backdrop {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(2px);
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(3px);
   }
-
   .search-modal-panel {
     position: relative;
     z-index: 1;
-    width: min(640px, calc(100vw - 32px));
+    width: min(660px, 100%);
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.4);
-    max-height: calc(100vh - 120px);
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.45);
     display: flex;
     flex-direction: column;
+    max-height: calc(100vh - 100px);
   }
-
   .search-modal-header {
     display: flex;
-    align-items: flex-start;
-    gap: 8px;
-    padding: 8px 8px 8px 16px;
-    flex: 1;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 8px 12px 0;
+    flex-shrink: 0;
+  }
+  .search-modal-inner {
     overflow-y: auto;
-  }
-
-  #search-ui-container {
+    padding: 8px 16px 16px;
     flex: 1;
-    min-width: 0;
   }
-
   .search-modal-close {
     display: flex;
     align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    flex-shrink: 0;
+    gap: 4px;
     border-radius: 6px;
     border: 1px solid var(--border);
     background: transparent;
     color: var(--muted);
     cursor: pointer;
-    margin-top: 10px;
+    padding: 3px 8px;
+    font-family: inherit;
+    font-size: 0.75rem;
   }
   .search-modal-close:hover {
     color: var(--text);
     background: var(--bg);
   }
+  .search-esc-kbd {
+    font-size: 0.65rem;
+    font-family: inherit;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 1px 4px;
+  }
 
-  /* Pagefind UI overrides */
+  /* ── Pagefind UI theme overrides ── */
   :global(#search-ui-container .pagefind-ui) {
-    --pagefind-ui-scale: 0.9;
+    --pagefind-ui-scale: 0.92;
     --pagefind-ui-primary: var(--accent);
     --pagefind-ui-text: var(--text);
     --pagefind-ui-background: var(--surface);
     --pagefind-ui-border: var(--border);
     --pagefind-ui-tag: var(--surface);
+    --pagefind-ui-border-width: 1px;
+    --pagefind-ui-border-radius: 8px;
+    --pagefind-ui-image-border-radius: 4px;
     --pagefind-ui-font: inherit;
   }
   :global(#search-ui-container .pagefind-ui__search-input) {
@@ -139,18 +187,43 @@ const closeLabel = locale === 'ko' ? '닫기' : 'Close';
     color: var(--text) !important;
     border-color: var(--border) !important;
   }
+  :global(#search-ui-container .pagefind-ui__search-input:focus) {
+    border-color: var(--accent) !important;
+    box-shadow: 0 0 0 2px rgba(51, 123, 250, 0.15) !important;
+    outline: none !important;
+  }
   :global(#search-ui-container .pagefind-ui__result) {
     border-color: var(--border) !important;
+    padding: 10px 0 !important;
   }
   :global(#search-ui-container .pagefind-ui__result-link) {
     color: var(--accent) !important;
+    font-weight: 600 !important;
   }
   :global(#search-ui-container .pagefind-ui__result-excerpt) {
     color: var(--muted) !important;
+    font-size: 0.83rem !important;
+  }
+  :global(#search-ui-container .pagefind-ui__search-clear) {
+    background: var(--surface) !important;
+    color: var(--muted) !important;
+  }
+  :global(#search-ui-container .pagefind-ui__message) {
+    color: var(--muted) !important;
+    font-size: 0.85rem !important;
+  }
+
+  /* ── Mobile: hide kbd shortcut hint ── */
+  @media (max-width: 768px) {
+    .search-bar-kbd { display: none; }
+    .search-bar {
+      min-width: 120px;
+      flex: 1 1 120px;
+    }
   }
 </style>
 
-<script define:vars={{ base }}>
+<script define:vars={{ base, noIndexMsg }}>
   const trigger = document.getElementById('search-trigger');
   const modal = document.getElementById('search-modal');
   const backdrop = document.getElementById('search-modal-backdrop');
@@ -163,13 +236,11 @@ const closeLabel = locale === 'ko' ? '닫기' : 'Close';
     if (initialized) return;
     initialized = true;
     try {
-      // Load Pagefind CSS
       const link = document.createElement('link');
       link.rel = 'stylesheet';
       link.href = `${base}/pagefind/pagefind-ui.css`;
       document.head.appendChild(link);
 
-      // Load Pagefind UI JS
       await new Promise((resolve, reject) => {
         const script = document.createElement('script');
         script.src = `${base}/pagefind/pagefind-ui.js`;
@@ -178,7 +249,6 @@ const closeLabel = locale === 'ko' ? '닫기' : 'Close';
         document.head.appendChild(script);
       });
 
-      // Init PagefindUI
       new window.PagefindUI({
         element: '#search-ui-container',
         showImages: false,
@@ -186,26 +256,22 @@ const closeLabel = locale === 'ko' ? '닫기' : 'Close';
         resetStyles: false,
         baseUrl: base || '/',
       });
-
-      // Focus the input after init
-      setTimeout(() => {
-        const input = container.querySelector('input[type="text"], input[type="search"]');
-        if (input) input.focus();
-      }, 50);
-    } catch (e) {
-      container.innerHTML = '<p style="padding:16px;color:var(--muted);font-size:14px;">Search index not available. Run <code>npm run build</code> first.</p>';
+    } catch (_) {
+      container.innerHTML = `<p style="padding:12px 4px;color:var(--muted);font-size:0.85rem;">${noIndexMsg}</p>`;
     }
+  }
+
+  function focusInput() {
+    setTimeout(() => {
+      const input = container.querySelector('input[type="text"],input[type="search"]');
+      if (input) input.focus();
+    }, 60);
   }
 
   function openModal() {
     modal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
-    initPagefind().then(() => {
-      setTimeout(() => {
-        const input = container.querySelector('input[type="text"], input[type="search"]');
-        if (input) input.focus();
-      }, 50);
-    });
+    initPagefind().then(focusInput);
   }
 
   function closeModal() {
@@ -221,11 +287,7 @@ const closeLabel = locale === 'ko' ? '닫기' : 'Close';
   document.addEventListener('keydown', (e) => {
     if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
       e.preventDefault();
-      if (modal.getAttribute('aria-hidden') === 'false') {
-        closeModal();
-      } else {
-        openModal();
-      }
+      modal.getAttribute('aria-hidden') === 'false' ? closeModal() : openModal();
     }
     if (e.key === 'Escape' && modal.getAttribute('aria-hidden') === 'false') {
       closeModal();
