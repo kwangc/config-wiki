@@ -13,12 +13,12 @@ const t = i18n[locale] ?? i18n.en;
 const prefix = `${base}/${locale}`;
 
 const sections: { key: string; path: string }[] = [
-  { key: 'company', path: '01-company/about.md' },
-  { key: 'product', path: '02-product/README.md' },
-  { key: 'domains', path: '03-domains/README.md' },
-  { key: 'research', path: '04-research/README.md' },
-  { key: 'industry', path: '05-industry/README.md' },
-  { key: 'glossary', path: '06-glossary/README.md' },
+  { key: 'company', path: '01-company/about' },
+  { key: 'product', path: '02-product' },
+  { key: 'domains', path: '03-domains' },
+  { key: 'research', path: '04-research' },
+  { key: 'industry', path: '05-industry' },
+  { key: 'glossary', path: '06-glossary' },
 ];
 ---
 
@@ -51,29 +51,29 @@ const sections: { key: string; path: string }[] = [
         {locale === 'ko' ? (
           <>
             <li>
-              <strong>엔지니어</strong>: <a href={`${prefix}/wiki/02-product/README.md/`}>Product 개요</a> → <a href={`${prefix}/wiki/03-domains/05-data-scaling/01-data-scaling.md/`}>Data & Scaling</a>
+              <strong>엔지니어</strong>: <a href={`${prefix}/wiki/02-product/`}>Product 개요</a> → <a href={`${prefix}/wiki/03-domains/05-data-scaling/01-data-scaling/`}>Data & Scaling</a>
             </li>
             <li>
-              <strong>아키텍트</strong>: <a href={`${prefix}/wiki/03-domains/README.md/`}>Domains 개요</a> → <a href={`${prefix}/wiki/03-domains/02-model-class/01-overview.md/`}>Model Class</a> → <a href={`${prefix}/wiki/03-domains/09-safety/01-overview.md/`}>Safety</a>
+              <strong>아키텍트</strong>: <a href={`${prefix}/wiki/03-domains/`}>Domains 개요</a> → <a href={`${prefix}/wiki/03-domains/02-model-class/01-overview/`}>Model Class</a> → <a href={`${prefix}/wiki/03-domains/09-safety/01-overview/`}>Safety</a>
             </li>
             <li>
-              <strong>전체 맥락</strong>: <a href={`${prefix}/wiki/04-research/README.md/`}>Research index</a> → <a href={`${prefix}/wiki/06-glossary/README.md/`}>Glossary</a>
+              <strong>전체 맥락</strong>: <a href={`${prefix}/wiki/04-research/`}>Research index</a> → <a href={`${prefix}/wiki/06-glossary/`}>Glossary</a>
             </li>
           </>
         ) : (
           <>
             <li>
-              <strong>Engineer</strong>: <a href={`${prefix}/wiki/02-product/README.md/`}>Product overview</a> →{' '}
-              <a href={`${prefix}/wiki/03-domains/05-data-scaling/01-data-scaling.md/`}>Data & Scaling</a>
+              <strong>Engineer</strong>: <a href={`${prefix}/wiki/02-product/`}>Product overview</a> →{' '}
+              <a href={`${prefix}/wiki/03-domains/05-data-scaling/01-data-scaling/`}>Data & Scaling</a>
             </li>
             <li>
-              <strong>Architect</strong>: <a href={`${prefix}/wiki/03-domains/README.md/`}>Domains overview</a> →{' '}
-              <a href={`${prefix}/wiki/03-domains/02-model-class/01-overview.md/`}>Model Class</a> →{' '}
-              <a href={`${prefix}/wiki/03-domains/09-safety/01-overview.md/`}>Safety</a>
+              <strong>Architect</strong>: <a href={`${prefix}/wiki/03-domains/`}>Domains overview</a> →{' '}
+              <a href={`${prefix}/wiki/03-domains/02-model-class/01-overview/`}>Model Class</a> →{' '}
+              <a href={`${prefix}/wiki/03-domains/09-safety/01-overview/`}>Safety</a>
             </li>
             <li>
-              <strong>Big picture</strong>: <a href={`${prefix}/wiki/04-research/README.md/`}>Research index</a> →{' '}
-              <a href={`${prefix}/wiki/06-glossary/README.md/`}>Glossary</a>
+              <strong>Big picture</strong>: <a href={`${prefix}/wiki/04-research/`}>Research index</a> →{' '}
+              <a href={`${prefix}/wiki/06-glossary/`}>Glossary</a>
             </li>
           </>
         )}
