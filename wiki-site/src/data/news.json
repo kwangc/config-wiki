@@ -8,49 +8,21 @@
       "source": "smol-ai",
       "recaps": {
         "twitter": {
-          "bulletsKo": [
-            "AI 트위터 섹션은 오늘 별다른 일이 없었다고 간략하게 언급했습니다.",
-            "이는 트위터에서 AI 커뮤니티에 상대적으로 조용한 시기가 있었음을 나타냅니다.",
-            "전반적인 분위기는 주요 발표나 중요한 토론이 부족했음을 시사합니다."
-          ],
-          "bulletsEn": [
-            "The AI Twitter section was brief, noting that not much happened today.",
-            "This indicates a period of relative quiet in the AI community on Twitter.",
-            "The overall sentiment suggests a lack of major announcements or significant discussions."
-          ]
+          "bulletsKo": [],
+          "bulletsEn": []
         },
         "reddit": {
-          "bulletsKo": [
-            "Mistral AI의 Voxtral TTS 모델을 포함한 새로운 모델과 벤치마크가 출시되었으며, 이는 강력한 성능과 효율성을 보여줍니다.",
-            "R9700 AI PRO 및 향후 Intel GPU의 VRAM 및 대역폭 기능에 대한 논의와 함께 Intel GPU 출시가 논의되었습니다.",
-            "TurboQuant 및 RotorQuant와 같은 혁신적인 AI 기술 및 도구가 탐구되었으며, 양자화에서의 이론적 차이점과 응용에 대한 논의가 있었습니다.",
-            "사용자는 Claude의 코드 사용 및 제한에 대한 문제를 보고했으며, 사용량 할당량이 빠르게 소진되고 Codex와 같은 대안을 고려하고 있습니다.",
-            "Sora의 종료와 그 영향이 논의 주제였으나, 요약에서는 세부 정보가 제공되지 않았습니다.",
-            "Google TurboQuant 및 Gemini 업데이트도 언급되었으며, 사용자는 Gemini 2.5 Pro의 잠재적인 지역별 가용성 문제에 대해 문의했습니다."
-          ],
-          "bulletsEn": [
-            "New models and benchmarks were launched, including Mistral AI's Voxtral TTS model, which shows strong performance and efficiency.",
-            "Intel GPU launches were discussed, with the R9700 AI PRO and upcoming Intel GPUs being compared for their VRAM and bandwidth capabilities.",
-            "Innovative AI techniques and tools were explored, such as TurboQuant and RotorQuant, with discussions on their theoretical differences and applications in quantization.",
-            "Users reported issues with Claude's code usage and limits, experiencing rapid exhaustion of usage quotas and considering alternatives like Codex.",
-            "The shutdown of Sora and its implications were a topic of discussion, though details were not provided in the recap.",
-            "Google TurboQuant and Gemini updates were also mentioned, with a user inquiring about potential regional availability issues for Gemini 2.5 Pro."
-          ]
+          "bulletsKo": [],
+          "bulletsEn": []
         },
         "discord": {
-          "bulletsKo": [
-            "AI 디스코드 섹션은 오늘 별다른 일이 없었다고 간략하게 언급했습니다.",
-            "이는 디스코드에서 AI 커뮤니티에 상대적으로 조용한 시기가 있었음을 나타냅니다.",
-            "전반적인 분위기는 주요 발표나 중요한 토론이 부족했음을 시사합니다."
-          ],
+          "bulletsKo": [],
           "bulletsEn": [
-            "The AI Discords section was brief, noting that not much happened today.",
-            "This indicates a period of relative quiet in the AI community on Discord.",
-            "The overall sentiment suggests a lack of major announcements or significant discussions."
+            "Mistral AI has launched Voxtral, a 3-billion-parameter TTS model that reportedly surpasses ElevenLabs Flash v2.5 in human preference tests. This model is highly efficient, requiring only 3 GB of RAM and achieving a rapid"
           ]
         }
       },
-      "summaryKo": "AI 트위터 섹션은 오늘 별다른 일이 없었다고 간략하게 언급했습니다.\n이는 트위터에서 AI 커뮤니티에 상대적으로 조용한 시기가 있었음을 나타냅니다.\n전반적인 분위기는 주요 발표나 중요한 토론이 부족했음을 시사합니다.\nMistral AI의 Voxtral TTS 모델을 포함한 새로운 모델과 벤치마크가 출시되었으며, 이는 강력한 성능과 효율성을 보여줍니다.\nR9700 AI PRO 및 향후 Intel GPU의 VRAM 및 대역폭 기능에 대한 논의와 함께 Intel GPU 출시가 논의되었습니다.\nTurboQuant 및 RotorQuant와 같은 혁신적인 AI 기술 및 도구가 탐구되었으며, 양자화에서의 이론적 차이점과 응용에 대한 논의가 있었습니다.\n사용자는 Claude의 코드 사용 및 제한에 대한 문제를 보고했으며, 사용량 할당량이 빠르게 소진되고 Codex와 같은 대안을 고려하고 있습니다.\nSora의 종료와 그 영향이 논의 주제였으나, 요약에서는 세부 정보가 제공되지 않았습니다.\nGoogle TurboQuant 및 Gemini 업데이트도 언급되었으며, 사용자는 Gemini 2.5 Pro의 잠재적인 지역별 가용성 문제에 대해 문의했습니다.\nAI 디스코드 섹션은 오늘 별다른 일이 없었다고 간략하게 언급했습니다.\n이는 디스코드에서 AI 커뮤니티에 상대적으로 조용한 시기가 있었음을 나타냅니다.\n전반적인 분위기는 주요 발표나 중요한 토론이 부족했음을 시사합니다."
+      "summaryKo": ""
     },
     {
       "id": "26-03-25-not-much",
@@ -65,7 +37,10 @@
         },
         "reddit": {
           "bulletsKo": [],
-          "bulletsEn": []
+          "bulletsEn": [
+            "Intel launched new GPUs with specific features, marking their entry into the competitive AI hardware market. These new offerings aim to provide alternatives for AI computation, potentially impacting local LLM development. The community is evaluating their performance and compatibility with existing AI workflows.",
+            "A supply chain attack impacted LiteLLM, prompting"
+          ]
         },
         "discord": {
           "bulletsKo": [],
@@ -83,7 +58,10 @@
       "recaps": {
         "twitter": {
           "bulletsKo": [],
-          "bulletsEn": []
+          "bulletsEn": [
+            "The LiteLLM supply-chain compromise was a significant event, with karpathy providing a detailed technical breakdown of the PyPI attack and its extensive blast radius. This analysis was crucial for understanding the implications of the security breach across the AI ecosystem. It highlighted the vulnerabilities in dependency management and the need for robust security practices.",
+            "AnthropicAI published an important"
+          ]
         },
         "reddit": {
           "bulletsKo": [],
