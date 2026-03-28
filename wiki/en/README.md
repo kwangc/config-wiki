@@ -16,7 +16,7 @@ Single place for **company, domain, research, and industry** knowledge. Updated 
 
 | Doc | Description |
 |-----|-------------|
-| [Product overview](../02-product/README/) | Data Platform & Foundation Model summary |
+| [Product overview](../02-product/) | Data Platform & Foundation Model summary |
 | [Data Platform](../02-product/01-data-platform/) | Data Platform structure & tech stack (to be filled) |
 | [Foundation Model](../02-product/02-foundation-model/) | Foundation Model encoding & training (to be filled) |
 
@@ -26,7 +26,7 @@ Single place for **company, domain, research, and industry** knowledge. Updated 
 
 | Doc | Description |
 |-----|-------------|
-| [Domains overview](../03-domains/README/) | Robotics → Model Class → Training/Data/Simulation → Evaluation/Deployment — how the stack connects |
+| [Domains overview](../03-domains/) | Robotics → Model Class → Training/Data/Simulation → Evaluation/Deployment — how the stack connects |
 | [LLM](../03-domains/02-model-class/03-llm/) | Large Language Model, transformer, prompting, evaluation |
 | [VLM](../03-domains/02-model-class/04-vlm/) | Vision-Language Model, grounding, multimodal perception |
 | [VLA](../03-domains/02-model-class/05-vla/) | Vision-Language-Action, multimodal, robot control |
@@ -41,7 +41,7 @@ Single place for **company, domain, research, and industry** knowledge. Updated 
 
 | Doc | Description |
 |-----|-------------|
-| [Research index](../04-research/README/) | Papers & technical blog summaries |
+| [Research index](../04-research/) | Papers & technical blog summaries |
 
 ---
 
@@ -49,7 +49,7 @@ Single place for **company, domain, research, and industry** knowledge. Updated 
 
 | Doc | Description |
 |-----|-------------|
-| [Industry index](../05-industry/README/) | Market, competitors, trends |
+| [Industry index](../05-industry/) | Market, competitors, trends |
 
 ---
 
@@ -57,7 +57,7 @@ Single place for **company, domain, research, and industry** knowledge. Updated 
 
 | Doc | Description |
 |-----|-------------|
-| [Glossary](../06-glossary/README/) | Key terms (teleop, sim2real, proprioception, etc.) |
+| [Glossary](../06-glossary/) | Key terms (teleop, sim2real, proprioception, etc.) |
 
 ---
 

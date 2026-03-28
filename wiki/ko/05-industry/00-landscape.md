@@ -13,21 +13,48 @@
 - **X축: Model-first ↔ Hardware-first** — AI/소프트웨어에서 주로 가치를 창출하는가, 아니면 자체 로봇 하드웨어에서 창출하는가?
 - **Y축: Generalist ↔ Specialist** — 다양한 태스크/엠보디먼트에 작동하는 정책을 목표로 하는가, 아니면 하나의 특정 도메인에 최적화하는가?
 
-```
-                        Model-first
-                              |
-          [Generalist]   [Physical Intelligence]
-                |              |
-   범용태스크 --+----[Config]--+--------------------- 특화태스크
-               |              |
-         [Octo] |         [1X Technologies]
-                |              |
-          [Figure]       [Agility Robotics]
-                |              |
-          [Unitree]     [Boston Dynamics]
-                              |
-                        Hardware-first
-```
+<svg viewBox="0 0 600 480" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:680px;display:block;margin:1.5rem auto;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;">
+  <rect width="600" height="480" rx="14" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <clipPath id="clip-tl-ko"><rect width="600" height="480" rx="14"/></clipPath>
+  <rect x="0" y="0" width="298" height="238" fill="#EFF6FF" clip-path="url(#clip-tl-ko)"/>
+  <line x1="55" y1="238" x2="545" y2="238" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="5,4"/>
+  <line x1="298" y1="44" x2="298" y2="436" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="5,4"/>
+  <polygon points="298,44 293,56 303,56" fill="#94a3b8"/>
+  <polygon points="298,436 293,424 303,424" fill="#94a3b8"/>
+  <polygon points="55,238 67,233 67,243" fill="#94a3b8"/>
+  <polygon points="545,238 533,233 533,243" fill="#94a3b8"/>
+  <text x="298" y="33" text-anchor="middle" fill="#64748b" font-size="10.5" font-weight="600" letter-spacing="0.07em">MODEL-FIRST</text>
+  <text x="298" y="462" text-anchor="middle" fill="#64748b" font-size="10.5" font-weight="600" letter-spacing="0.07em">HARDWARE-FIRST</text>
+  <text x="30" y="238" text-anchor="middle" fill="#64748b" font-size="10.5" font-weight="600" letter-spacing="0.07em" transform="rotate(-90,30,238)">범용</text>
+  <text x="570" y="238" text-anchor="middle" fill="#64748b" font-size="10.5" font-weight="600" letter-spacing="0.07em" transform="rotate(90,570,238)">특화</text>
+  <text x="62" y="64" fill="#93c5fd" font-size="9" font-weight="500">Model-first · 범용</text>
+  <text x="312" y="64" fill="#94a3b8" font-size="9" font-weight="400" opacity="0.8">Model-first · 특화</text>
+  <text x="62" y="424" fill="#94a3b8" font-size="9" font-weight="400" opacity="0.8">Hardware-first · 범용</text>
+  <text x="312" y="424" fill="#94a3b8" font-size="9" font-weight="400" opacity="0.8">Hardware-first · 특화</text>
+  <circle cx="108" cy="92" r="5" fill="#94a3b8"/>
+  <text x="120" y="96" fill="#475569" font-size="10.5">Generalist</text>
+  <circle cx="192" cy="108" r="5" fill="#94a3b8"/>
+  <text x="204" y="112" fill="#475569" font-size="10.5">Physical Intelligence</text>
+  <circle cx="162" cy="172" r="5" fill="#94a3b8"/>
+  <text x="174" y="176" fill="#475569" font-size="10.5">NVIDIA GR00T</text>
+  <circle cx="210" cy="268" r="5" fill="#94a3b8"/>
+  <text x="222" y="272" fill="#475569" font-size="10.5">1X Technologies</text>
+  <circle cx="190" cy="315" r="5" fill="#94a3b8"/>
+  <text x="202" y="319" fill="#475569" font-size="10.5">Figure</text>
+  <circle cx="238" cy="352" r="5" fill="#94a3b8"/>
+  <text x="250" y="356" fill="#475569" font-size="10.5">Apptronik</text>
+  <circle cx="152" cy="378" r="5" fill="#94a3b8"/>
+  <text x="164" y="382" fill="#475569" font-size="10.5">Unitree</text>
+  <circle cx="380" cy="338" r="5" fill="#94a3b8"/>
+  <text x="392" y="342" fill="#475569" font-size="10.5">Agility Robotics</text>
+  <circle cx="448" cy="372" r="5" fill="#94a3b8"/>
+  <text x="390" y="368" fill="#475569" font-size="10.5">Boston Dynamics</text>
+  <circle cx="492" cy="400" r="5" fill="#94a3b8"/>
+  <text x="434" y="396" fill="#475569" font-size="10.5">Machina Labs</text>
+  <circle cx="232" cy="140" r="13" fill="#DBEAFE" stroke="#3B82F6" stroke-width="2" opacity="0.85"/>
+  <circle cx="232" cy="140" r="6" fill="#2563EB"/>
+  <text x="250" y="135" fill="#1D4ED8" font-size="12.5" font-weight="700">Config</text>
+</svg>
 
 Config는 **Model-first + Generalist** 사분면에 위치하며, **데이터-to-액션 라벨 인터페이스** (바이매뉴얼 정밀도 + 시나리오 다양성 + closed-loop 반복)로 차별화됩니다.
 

@@ -34,7 +34,8 @@ const entry = entries.find((e) => e.id === id)
 if (!entry) return Astro.redirect(import.meta.env.BASE_URL.replace(/\/$/, '') + '/' + locale + '/');
 
 const { Content, headings } = await entry.render();
-const title = (entry.data as { title?: string }).title ?? slugStr.split('/').pop() ?? 'Wiki';
+const h1 = headings.find((h) => h.depth === 1)?.text;
+const title = h1 ?? (entry.data as { title?: string }).title ?? slugStr.split('/').pop() ?? 'Wiki';
 const lastModifiedMap = wikiLastModified as Record<string, string>;
 const lastEdited = lastModifiedMap[entry.id] ?? new Date().toISOString().slice(0, 10);
 ---
