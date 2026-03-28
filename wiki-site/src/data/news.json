@@ -8,8 +8,12 @@
       "source": "smol-ai",
       "recaps": {
         "twitter": {
-          "bulletsKo": [],
-          "bulletsEn": []
+          "bulletsKo": [
+            "AI 트위터 요약 섹션에는"
+          ],
+          "bulletsEn": [
+            "The AI Twitter Recap section indicates that there was no specific news or significant activity to report from AI Twitter for this issue. This suggests a quiet period on the platform regarding major AI developments. The absence of detailed updates implies a lack of notable trends or discussions during the covered timeframe."
+          ]
         },
         "reddit": {
           "bulletsKo": [],
@@ -17,12 +21,10 @@
         },
         "discord": {
           "bulletsKo": [],
-          "bulletsEn": [
-            "Mistral AI has launched Voxtral, a 3-billion-parameter TTS model that reportedly surpasses ElevenLabs Flash v2.5 in human preference tests. This model is highly efficient, requiring only 3 GB of RAM and achieving a rapid"
-          ]
+          "bulletsEn": []
         }
       },
-      "summaryKo": ""
+      "summaryKo": "AI 트위터 요약 섹션에는"
     },
     {
       "id": "26-03-25-not-much",
@@ -32,22 +34,23 @@
       "source": "smol-ai",
       "recaps": {
         "twitter": {
-          "bulletsKo": [],
-          "bulletsEn": []
+          "bulletsKo": [
+            "AI 트위터 요약 섹"
+          ],
+          "bulletsEn": [
+            "The AI Twitter Recap section indicates that not much significant activity or major news topics were specifically highlighted for Twitter on this particular day. This suggests a relatively quiet period for major AI-related announcements or discussions on the platform. Therefore, no specific trends or breakthroughs were deemed noteworthy enough for a detailed summary."
+          ]
         },
         "reddit": {
           "bulletsKo": [],
-          "bulletsEn": [
-            "Intel launched new GPUs with specific features, marking their entry into the competitive AI hardware market. These new offerings aim to provide alternatives for AI computation, potentially impacting local LLM development. The community is evaluating their performance and compatibility with existing AI workflows.",
-            "A supply chain attack impacted LiteLLM, prompting"
-          ]
+          "bulletsEn": []
         },
         "discord": {
           "bulletsKo": [],
           "bulletsEn": []
         }
       },
-      "summaryKo": ""
+      "summaryKo": "AI 트위터 요약 섹"
     },
     {
       "id": "26-03-24-not-much",
@@ -57,10 +60,11 @@
       "source": "smol-ai",
       "recaps": {
         "twitter": {
-          "bulletsKo": [],
+          "bulletsKo": [
+            "AI 트위터 요약 섹션은 해당 날짜에 트"
+          ],
           "bulletsEn": [
-            "The LiteLLM supply-chain compromise was a significant event, with karpathy providing a detailed technical breakdown of the PyPI attack and its extensive blast radius. This analysis was crucial for understanding the implications of the security breach across the AI ecosystem. It highlighted the vulnerabilities in dependency management and the need for robust security practices.",
-            "AnthropicAI published an important"
+            "The AI Twitter Recap section indicates that not much significant activity or major news was reported on Twitter for the day. This suggests a quiet period for AI-related discussions and announcements on the platform. The lack of detailed content implies no standout trends or breakthroughs were widely shared."
           ]
         },
         "reddit": {
@@ -72,7 +76,7 @@
           "bulletsEn": []
         }
       },
-      "summaryKo": ""
+      "summaryKo": "AI 트위터 요약 섹션은 해당 날짜에 트"
     },
     {
       "id": "26-03-23-not-much",
