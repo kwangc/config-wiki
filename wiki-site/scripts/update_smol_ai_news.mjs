@@ -367,7 +367,7 @@ function parseBulletsForMarker(text, marker) {
   const escapeRegExp = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
   const anyMarkerAlt = ALL_MARKERS.map((m) => escapeRegExp(m)).join('|');
-  const markerRe = new RegExp(`${escapeRegExp(marker)}\\s*:?'`, 'i');
+  const markerRe = new RegExp(`${escapeRegExp(marker)}\\s*:?`, 'i');
 
   // Find marker start (position-based parsing to avoid newline-format issues).
   const startMatch = markerRe.exec(text);
