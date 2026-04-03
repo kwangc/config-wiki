@@ -1,8 +1,32 @@
 {
   "items": [
     {
-      "id": "26-03-31-claude-code-leak",
+      "id": "26-04-01-not-much",
       "title": "not much happened today",
+      "url": "https://news.smol.ai/issues/26-04-01-not-much",
+      "date": "2026-04-01",
+      "source": "smol-ai",
+      "recaps": {
+        "twitter": {
+          "bulletsKo": [],
+          "bulletsEn": [
+            "Major open-weight model releases included Arcee Trinity-Large-Thinking, Z.ai GLM-5V-Turbo, and Falcon Perception, emphasizing developer utility, efficiency, and multimodal capabilities. These models, often released under open licenses, garnered significant community interest for their competitive performance in reasoning, vision coding, and segmentation tasks. The launches signal a growing trend towards"
+          ]
+        },
+        "reddit": {
+          "bulletsKo": [],
+          "bulletsEn": []
+        },
+        "discord": {
+          "bulletsKo": [],
+          "bulletsEn": []
+        }
+      },
+      "summaryKo": ""
+    },
+    {
+      "id": "26-03-31-claude-code-leak",
+      "title": "The Claude Code Source Leak",
       "url": "https://news.smol.ai/issues/26-03-31-claude-code-leak",
       "date": "2026-03-31",
       "source": "smol-ai",
@@ -10,7 +34,7 @@
         "twitter": {
           "bulletsKo": [],
           "bulletsEn": [
-            "The Claude Code source artifacts were extensively leaked via source maps, leading to rapid public reverse-engineering and widespread discussion within the AI community. This incident, while embarrassing for Anthropic, primarily exposed the sophisticated orchestration logic and agent harness design rather than the core model weights. The leak quickly became a focal point for understanding state-of-the-art agent architecture."
+            "The Claude Code source leak became the top story, revealing substantial source artifacts via shipped source maps and package contents, triggering rapid public reverse-engineering and mirroring. This incident quickly shifted discussion from an \"embarrassing leak\" to what it revealed about state-of-the-art agent harness design, highlighting the unexpected exposure of proprietary information. The exposed material did"
           ]
         },
         "reddit": {
@@ -34,10 +58,7 @@
         "twitter": {
           "bulletsKo": [],
           "bulletsEn": [
-            "Claude Code now features computer use, allowing agents to open apps, interact with UIs, and test code directly from the CLI in a research preview for Pro/Max users. This capability is crucial for closed-loop verification, enabling a full code-run-inspect-fix-retest cycle that engineers consider the missing piece for reliable app iteration. It significantly enhances the practical utility of coding agents by providing direct environmental interaction.",
-            "Cross-agent composition is becoming a standard, exemplified by OpenAI's Codex plugin for Claude Code, which enables triggering reviews and rescue flows from within Anthropic's toolchain using a ChatGPT subscription. This development signals a shift towards composable coding stacks rather than monolithic products, fostering a more integrated and flexible AI development environment. The observation that late-night Codex tasks run longer suggests a pattern of delegating complex, time-consuming tasks to background agents.",
-            "The quality of AI harnesses, encompassing tooling, prompt/runtime orchestration, and review loops, is now visibly a first-order variable, with model capability deltas narrowing. Performance differences are increasingly attributed to the surrounding infrastructure rather than just the base model, as demonstrated by Opus scoring higher in Cursor than in Claude Code. This highlights the growing importance of engineering the environment in which AI models operate.",
-            "Nous shipped a major Hermes Agent update, driving widespread migrations from OpenClaw-like setups due to its improved compaction, adaptability, and faster shipping cadence. The"
+            "Anthropic's Claude Code now features computer use, enabling agents to interact with UIs, open apps, and test directly from the CLI in a research preview. This innovation allows for closed-loop verification, where agents can build, run, inspect, fix, and re-test code, addressing a critical missing piece for reliable application iteration. Engineers view this as a"
           ]
         },
         "reddit": {
