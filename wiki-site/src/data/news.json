@@ -1,6 +1,54 @@
 {
   "items": [
     {
+      "id": "26-04-03-not-much",
+      "title": "not much happened today",
+      "url": "https://news.smol.ai/issues/26-04-03-not-much",
+      "date": "2026-04-03",
+      "source": "smol-ai",
+      "recaps": {
+        "twitter": {
+          "bulletsKo": [],
+          "bulletsEn": [
+            "Google launched Gemma 4 under Apache 2.0, positioning it for reasoning, agents, multimodality, and on-device use, with community reaction emphasizing its \"real\" open-weights status and broad usability. Experts like @fchollet praised it as Google's strongest open model, highlighting its efficiency and performance against larger models. This release marks a"
+          ]
+        },
+        "reddit": {
+          "bulletsKo": [],
+          "bulletsEn": []
+        },
+        "discord": {
+          "bulletsKo": [],
+          "bulletsEn": []
+        }
+      },
+      "summaryKo": ""
+    },
+    {
+      "id": "26-04-02-gemma-4",
+      "title": "Gemma 4",
+      "url": "https://news.smol.ai/issues/26-04-02-gemma-4",
+      "date": "2026-04-02",
+      "source": "smol-ai",
+      "recaps": {
+        "twitter": {
+          "bulletsKo": [],
+          "bulletsEn": [
+            "Google DeepMind launched Gemma 4, an open-weight model family under an Apache 2.0 license, featuring multimodal capabilities and long context up to 256K tokens. This release is strategically positioned for reasoning, agentic workflows, and local/edge deployment, marking a significant shift in Google's open-source approach. The model'"
+          ]
+        },
+        "reddit": {
+          "bulletsKo": [],
+          "bulletsEn": []
+        },
+        "discord": {
+          "bulletsKo": [],
+          "bulletsEn": []
+        }
+      },
+      "summaryKo": ""
+    },
+    {
       "id": "26-04-01-not-much",
       "title": "not much happened today",
       "url": "https://news.smol.ai/issues/26-04-01-not-much",
@@ -10,7 +58,7 @@
         "twitter": {
           "bulletsKo": [],
           "bulletsEn": [
-            "Major open-weight model releases included Arcee Trinity-Large-Thinking, Z.ai GLM-5V-Turbo, and Falcon Perception, emphasizing developer utility, efficiency, and multimodal capabilities. These models, often released under open licenses, garnered significant community interest for their competitive performance in reasoning, vision coding, and segmentation tasks. The launches signal a growing trend towards"
+            "Arcee's Trinity-Large-Thinking model was a significant open-weight release under Apache 2.0, targeting developers and enterprises for inspection, hosting, and post-training. It demonstrated strong agentic performance, including high rankings on benchmarks like PinchBench and Tau2-Airline, and was highlighted as a milestone for \"American open source\" due to"
           ]
         },
         "reddit": {
