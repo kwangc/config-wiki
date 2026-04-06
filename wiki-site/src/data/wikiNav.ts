@@ -35,6 +35,7 @@ export function getWikiNav(locale: Locale, base: string): WikiNavItem[] {
             { label: 'Hardware taxonomy', href: w('03-domains/01-robotics/02-hardware-taxonomy.md') },
             { label: 'System architecture', href: w('03-domains/01-robotics/03-system-architecture.md') },
             { label: 'Bimanual', href: w('03-domains/01-robotics/04-bimanual.md') },
+            { label: 'Robot Manufacturers', href: w('03-domains/01-robotics/05-robot-manufacturers.md') },
           ],
         },
         {
