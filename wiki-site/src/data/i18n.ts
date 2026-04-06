@@ -19,15 +19,11 @@ export const i18n: Record<
     toc: { onThisPage: string; createdBy: string; lastEditedBy: string; lastEdited: string };
     about: {
       title: string;
-      role: string;
+      mission: string;
+      team: string;
       education: string;
       experience: string;
       focus: string;
-      focusDesc: string;
-      totalExperience: string;
-      degree: string;
-      highSchool: string;
-      highSchoolMajor: string;
     };
     news: { title: string; lead: string };
     dirNames: Record<string, string>;
@@ -37,7 +33,7 @@ export const i18n: Record<
     nav: {
       wiki: 'Wiki',
       news: 'News',
-      aboutMe: 'About me',
+      aboutMe: 'About Us',
       drawerTitle: 'Menu',
       themeSelect: 'Color theme',
       themeLightLabel: 'Light',
@@ -65,16 +61,12 @@ export const i18n: Record<
       lastEdited: 'Last edited',
     },
     about: {
-      title: 'Tony Lee',
-      role: 'Head of Product @ Config Intelligence Inc.',
+      title: 'About Us',
+      mission: 'Building the data infrastructure and technology that enable general-purpose bimanual robotics.',
+      team: 'Team',
       education: 'Education',
       experience: 'Experience',
       focus: 'Focus',
-      focusDesc: 'AI, LLM, VLA, robotics—learning and tracking industry research. Using this wiki to organize company knowledge, domains, and news; and Claude/Claude Code for workflow automation.',
-      totalExperience: 'Total experience ≈ 10 years 3 months',
-      degree: 'B.S. Chemical Engineering',
-      highSchool: 'Daewon Foreign Language High School',
-      highSchoolMajor: 'French major',
     },
     news: {
       title: 'News',
@@ -95,7 +87,7 @@ export const i18n: Record<
     nav: {
       wiki: 'Wiki',
       news: 'News',
-      aboutMe: '소개',
+      aboutMe: 'About Us',
       drawerTitle: '메뉴',
       themeSelect: '색 테마',
       themeLightLabel: '라이트',
@@ -123,16 +115,12 @@ export const i18n: Record<
       lastEdited: 'Last edited',
     },
     about: {
-      title: '이광현',
-      role: 'Head of Product @ Config Intelligence Inc.',
+      title: 'About Us',
+      mission: '범용 양팔 로보틱스를 가능하게 하는 데이터 인프라와 기술을 구축합니다.',
+      team: '팀',
       education: '학력',
       experience: '경력',
       focus: '관심 분야',
-      focusDesc: 'AI, LLM, VLA, 로봇공학—산업 리서치 학습 및 추적. 이 위키로 회사 지식, 도메인, 뉴스를 정리하고, Claude/Claude Code로 워크플로우 자동화를 진행합니다.',
-      totalExperience: '총 경력 약 10년 3개월',
-      degree: '화학공학 학사',
-      highSchool: '대원외국어고등학교',
-      highSchoolMajor: '프랑스어과',
     },
     news: {
       title: 'News',

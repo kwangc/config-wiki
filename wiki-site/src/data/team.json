@@ -1,0 +1,65 @@
+{
+  "members": [
+    {
+      "id": "tony-lee",
+      "name": "Tony Lee",
+      "nameKo": "이광현",
+      "photo": "/images/tony-lee.png",
+      "title": "Head of Product",
+      "intro": "Product & research at Config Inc. Focused on AI, LLM, VLA, and robotics.",
+      "introKo": "Config Inc. 제품·리서치 담당. AI, LLM, VLA, 로봇공학 분야를 주로 탐구합니다.",
+      "links": {
+        "linkedin": "https://www.linkedin.com/in/kwangc/",
+        "github": "https://github.com/kwangc",
+        "huggingface": "https://huggingface.co/kwangc",
+        "instagram": "https://www.instagram.com/kwangc"
+      },
+      "education": [
+        {
+          "school": "University of California, Berkeley",
+          "degree": "B.S. Chemical Engineering",
+          "degreeKo": "화학공학 학사"
+        },
+        {
+          "school": "대원외국어고등학교",
+          "schoolEn": "Daewon Foreign Language High School",
+          "degree": "프랑스어과",
+          "degreeKo": "프랑스어과"
+        }
+      ],
+      "experience": [
+        {
+          "period": "2026.04.~",
+          "company": "Config Intelligence Inc.",
+          "role": "Head of Product",
+          "desc": "Data infrastructure & foundation models for general-purpose bimanual robotics.",
+          "descKo": "범용 양팔 로보틱스를 위한 데이터 인프라 및 파운데이션 모델."
+        },
+        {
+          "period": "2022.02.~2026.04.",
+          "company": "Toss",
+          "role": "Platform Product Owner"
+        },
+        {
+          "period": "2021.03.~2022.01.",
+          "company": "Tridge",
+          "role": "Senior Product Manager"
+        },
+        {
+          "period": "2018.07.~2021.03.",
+          "company": "Lineable",
+          "role": "COO & CTO"
+        },
+        {
+          "period": "2014.07.~2016.11.",
+          "company": "Samsung E&A",
+          "role": "Process Engineer"
+        }
+      ],
+      "totalExperience": "Total experience ≈ 10 years 3 months",
+      "totalExperienceKo": "총 경력 약 10년 3개월",
+      "focus": "AI, LLM, VLA, robotics—learning and tracking industry research. Using this wiki to organize company knowledge, domains, and news; and Claude/Claude Code for workflow automation.",
+      "focusKo": "AI, LLM, VLA, 로봇공학—산업 리서치 학습 및 추적. 이 위키로 회사 지식, 도메인, 뉴스를 정리하고, Claude/Claude Code로 워크플로우 자동화를 진행합니다."
+    }
+  ]
+}

@@ -12,7 +12,6 @@ export function getWikiNav(locale: Locale, base: string): WikiNavItem[] {
   };
   return [
     { label: s.wikiDocs, children: [{ label: s.home, href: `${prefix}/` }] },
-    { label: s.companyGroup, children: [{ label: s.companyAbout, href: w('01-company/about.md') }] },
     {
       label: 'Product',
       children: [

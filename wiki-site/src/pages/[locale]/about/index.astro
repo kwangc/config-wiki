@@ -2,6 +2,7 @@
 import WikiLayout from '../../../layouts/WikiLayout.astro';
 import { i18n } from '../../../data/i18n';
 import type { Locale } from '../../../data/i18n';
+import teamData from '../../../data/team.json';
 
 export async function getStaticPaths() {
   return [{ params: { locale: 'en' } }, { params: { locale: 'ko' } }];
@@ -10,146 +11,372 @@ export async function getStaticPaths() {
 const { locale } = Astro.params as { locale: Locale };
 const base = import.meta.env.BASE_URL.replace(/\/$/, '') || '';
 const t = i18n[locale] ?? i18n.en;
+const members = teamData.members;
+
+const svgLinkedIn = `<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.9 6 2.5 6S0 4.88 0 3.5 1.08 1 2.5 1s2.48 1.12 2.48 2.5zM.32 8.16h4.36V24H.32V8.16zM8.34 8.16h4.18v2.16h.06c.58-1.1 2-2.26 4.12-2.26 4.4 0 5.21 2.9 5.21 6.68V24h-4.36v-8.02c0-1.92-.04-4.4-2.68-4.4-2.68 0-3.09 2.09-3.09 4.26V24H8.34V8.16z"/></svg>`;
+const svgGitHub = `<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.73.5.7 5.53.7 11.8c0 5 3.26 9.23 7.78 10.72.57.1.78-.25.78-.55 0-.27-.01-1.15-.02-2.08-3.17.69-3.84-1.36-3.84-1.36-.52-1.3-1.27-1.64-1.27-1.64-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.02 1.76 2.68 1.25 3.33.96.1-.74.4-1.25.72-1.54-2.53-.29-5.2-1.27-5.2-5.64 0-1.25.45-2.27 1.19-3.07-.12-.29-.52-1.47.11-3.06 0 0 .98-.31 3.2 1.17.93-.26 1.92-.39 2.9-.4.98.01 1.97.14 2.9.4 2.22-1.48 3.2-1.17 3.2-1.17.63 1.59.23 2.77.11 3.06.74.8 1.19 1.82 1.19 3.07 0 4.38-2.68 5.35-5.23 5.64.41.35.77 1.05.77 2.12 0 1.53-.01 2.76-.01 3.14 0 .3.21.66.79.55 4.52-1.49 7.77-5.72 7.77-10.72C23.3 5.53 18.27.5 12 .5z"/></svg>`;
+const svgHF = `<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.025 1.13c-5.77 0-10.449 4.647-10.449 10.378 0 1.112.178 2.181.503 3.185.064-.222.203-.444.416-.577a.96.96 0 0 1 .524-.15c.293 0 .584.124.84.284.278.173.48.408.71.694.226.282.458.611.684.951v-.014c.017-.324.106-.622.264-.874s.403-.487.762-.543c.3-.047.596.06.787.203s.31.313.4.467c.15.257.212.468.233.542.01.026.653 1.552 1.657 2.54.616.605 1.01 1.223 1.082 1.912.055.537-.096 1.059-.38 1.572.637.121 1.294.187 1.967.187.657 0 1.298-.063 1.921-.178-.287-.517-.44-1.041-.384-1.581.07-.69.465-1.307 1.081-1.913 1.004-.987 1.647-2.513 1.657-2.539.021-.074.083-.285.233-.542.09-.154.208-.323.4-.467a1.08 1.08 0 0 1 .787-.203c.359.056.604.29.762.543s.247.55.265.874v.015c.225-.34.457-.67.683-.952.23-.286.432-.52.71-.694.257-.16.547-.284.84-.285a.97.97 0 0 1 .524.151c.228.143.373.388.43.625l.006.04a10.3 10.3 0 0 0 .534-3.273c0-5.731-4.678-10.378-10.449-10.378M8.327 6.583a1.5 1.5 0 0 1 .713.174 1.487 1.487 0 0 1 .617 2.013c-.183.343-.762-.214-1.102-.094-.38.134-.532.914-.917.71a1.487 1.487 0 0 1 .69-2.803m7.486 0a1.487 1.487 0 0 1 .689 2.803c-.385.204-.536-.576-.916-.71-.34-.12-.92.437-1.103.094a1.487 1.487 0 0 1 .617-2.013 1.5 1.5 0 0 1 .713-.174m-10.68 1.55a.96.96 0 1 1 0 1.921.96.96 0 0 1 0-1.92m13.838 0a.96.96 0 1 1 0 1.92.96.96 0 0 1 0-1.92M8.489 11.458c.588.01 1.965 1.157 3.572 1.164 1.607-.007 2.984-1.155 3.572-1.164.196-.003.305.12.305.454 0 .886-.424 2.328-1.563 3.202-.22-.756-1.396-1.366-1.63-1.32q-.011.001-.02.006l-.044.026-.01.008-.03.024q-.018.017-.035.036l-.032.04a1 1 0 0 0-.058.09l-.014.025q-.049.088-.11.19a1 1 0 0 1-.083.116 1.2 1.2 0 0 1-.173.18q-.035.029-.075.058a1.3 1.3 0 0 1-.251-.243 1 1 0 0 1-.076-.107c-.124-.193-.177-.363-.337-.444-.034-.016-.104-.008-.2.022q-.094.03-.216.087-.06.028-.125.063l-.13.074q-.067.04-.136.086a3 3 0 0 0-.135.096 3 3 0 0 0-.26.219 2 2 0 0 0-.12.121 2 2 0 0 0-.106.128l-.002.002a2 2 0 0 0-.09.132l-.001.001a1.2 1.2 0 0 0-.105.212q-.013.036-.024.073c-1.139-.875-1.563-2.317-1.563-3.203 0-.334.109-.457.305-.454"/></svg>`;
+const svgInstagram = `<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"/></svg>`;
+
+function linkIcon(type: string) {
+  if (type === 'linkedin') return svgLinkedIn;
+  if (type === 'github') return svgGitHub;
+  if (type === 'huggingface') return svgHF;
+  if (type === 'instagram') return svgInstagram;
+  return '';
+}
+function linkLabel(type: string) {
+  if (type === 'linkedin') return 'LinkedIn';
+  if (type === 'github') return 'GitHub';
+  if (type === 'huggingface') return 'Hugging Face';
+  if (type === 'instagram') return 'Instagram';
+  return type;
+}
 ---
 
 <WikiLayout title={t.about.title} locale={locale}>
   <article class="about-page">
-    <div class="about-header">
-      <img src={`${base}/images/tony-lee.png`} alt={t.about.title} class="about-photo" width="160" height="160" />
-      <div class="about-intro">
-        <h1>{t.about.title}</h1>
-        <p class="about-role">{t.about.role}</p>
-        <div class="about-links" aria-label="Social links">
-          <a href="https://www.linkedin.com/in/kwangc/" target="_blank" rel="noreferrer" class="about-link" aria-label="LinkedIn">
-            <svg class="about-link-icon" viewBox="0 0 24 24" aria-hidden="true">
-              <path
-                d="M4.98 3.5C4.98 4.88 3.9 6 2.5 6S0 4.88 0 3.5 1.08 1 2.5 1s2.48 1.12 2.48 2.5zM.32 8.16h4.36V24H.32V8.16zM8.34 8.16h4.18v2.16h.06c.58-1.1 2-2.26 4.12-2.26 4.4 0 5.21 2.9 5.21 6.68V24h-4.36v-8.02c0-1.92-.04-4.4-2.68-4.4-2.68 0-3.09 2.09-3.09 4.26V24H8.34V8.16z"
-              />
-            </svg>
-          </a>
-          <a href="https://github.com/kwangc" target="_blank" rel="noreferrer" class="about-link" aria-label="GitHub">
-            <svg class="about-link-icon" viewBox="0 0 24 24" aria-hidden="true">
-              <path
-                d="M12 .5C5.73.5.7 5.53.7 11.8c0 5 3.26 9.23 7.78 10.72.57.1.78-.25.78-.55 0-.27-.01-1.15-.02-2.08-3.17.69-3.84-1.36-3.84-1.36-.52-1.3-1.27-1.64-1.27-1.64-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.02 1.76 2.68 1.25 3.33.96.1-.74.4-1.25.72-1.54-2.53-.29-5.2-1.27-5.2-5.64 0-1.25.45-2.27 1.19-3.07-.12-.29-.52-1.47.11-3.06 0 0 .98-.31 3.2 1.17.93-.26 1.92-.39 2.9-.4.98.01 1.97.14 2.9.4 2.22-1.48 3.2-1.17 3.2-1.17.63 1.59.23 2.77.11 3.06.74.8 1.19 1.82 1.19 3.07 0 4.38-2.68 5.35-5.23 5.64.41.35.77 1.05.77 2.12 0 1.53-.01 2.76-.01 3.14 0 .3.21.66.79.55 4.52-1.49 7.77-5.72 7.77-10.72C23.3 5.53 18.27.5 12 .5z"
-              />
-            </svg>
-          </a>
-          <a href="https://huggingface.co/kwangc" target="_blank" rel="noreferrer" class="about-link" aria-label="Hugging Face">
-            <svg class="about-link-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M12.025 1.13c-5.77 0-10.449 4.647-10.449 10.378 0 1.112.178 2.181.503 3.185.064-.222.203-.444.416-.577a.96.96 0 0 1 .524-.15c.293 0 .584.124.84.284.278.173.48.408.71.694.226.282.458.611.684.951v-.014c.017-.324.106-.622.264-.874s.403-.487.762-.543c.3-.047.596.06.787.203s.31.313.4.467c.15.257.212.468.233.542.01.026.653 1.552 1.657 2.54.616.605 1.01 1.223 1.082 1.912.055.537-.096 1.059-.38 1.572.637.121 1.294.187 1.967.187.657 0 1.298-.063 1.921-.178-.287-.517-.44-1.041-.384-1.581.07-.69.465-1.307 1.081-1.913 1.004-.987 1.647-2.513 1.657-2.539.021-.074.083-.285.233-.542.09-.154.208-.323.4-.467a1.08 1.08 0 0 1 .787-.203c.359.056.604.29.762.543s.247.55.265.874v.015c.225-.34.457-.67.683-.952.23-.286.432-.52.71-.694.257-.16.547-.284.84-.285a.97.97 0 0 1 .524.151c.228.143.373.388.43.625l.006.04a10.3 10.3 0 0 0 .534-3.273c0-5.731-4.678-10.378-10.449-10.378M8.327 6.583a1.5 1.5 0 0 1 .713.174 1.487 1.487 0 0 1 .617 2.013c-.183.343-.762-.214-1.102-.094-.38.134-.532.914-.917.71a1.487 1.487 0 0 1 .69-2.803m7.486 0a1.487 1.487 0 0 1 .689 2.803c-.385.204-.536-.576-.916-.71-.34-.12-.92.437-1.103.094a1.487 1.487 0 0 1 .617-2.013 1.5 1.5 0 0 1 .713-.174m-10.68 1.55a.96.96 0 1 1 0 1.921.96.96 0 0 1 0-1.92m13.838 0a.96.96 0 1 1 0 1.92.96.96 0 0 1 0-1.92M8.489 11.458c.588.01 1.965 1.157 3.572 1.164 1.607-.007 2.984-1.155 3.572-1.164.196-.003.305.12.305.454 0 .886-.424 2.328-1.563 3.202-.22-.756-1.396-1.366-1.63-1.32q-.011.001-.02.006l-.044.026-.01.008-.03.024q-.018.017-.035.036l-.032.04a1 1 0 0 0-.058.09l-.014.025q-.049.088-.11.19a1 1 0 0 1-.083.116 1.2 1.2 0 0 1-.173.18q-.035.029-.075.058a1.3 1.3 0 0 1-.251-.243 1 1 0 0 1-.076-.107c-.124-.193-.177-.363-.337-.444-.034-.016-.104-.008-.2.022q-.094.03-.216.087-.06.028-.125.063l-.13.074q-.067.04-.136.086a3 3 0 0 0-.135.096 3 3 0 0 0-.26.219 2 2 0 0 0-.12.121 2 2 0 0 0-.106.128l-.002.002a2 2 0 0 0-.09.132l-.001.001a1.2 1.2 0 0 0-.105.212q-.013.036-.024.073c-1.139-.875-1.563-2.317-1.563-3.203 0-.334.109-.457.305-.454m.836 10.354c.824-1.19.766-2.082-.365-3.194-1.13-1.112-1.789-2.738-1.789-2.738s-.246-.945-.806-.858-.97 1.499.202 2.362c1.173.864-.233 1.45-.685.64-.45-.812-1.683-2.896-2.322-3.295s-1.089-.175-.938.647 2.822 2.813 2.562 3.244-1.176-.506-1.176-.506-2.866-2.567-3.49-1.898.473 1.23 2.037 2.16c1.564.932 1.686 1.178 1.464 1.53s-3.675-2.511-4-1.297c-.323 1.214 3.524 1.567 3.287 2.405-.238.839-2.71-1.587-3.216-.642-.506.946 3.49 2.056 3.522 2.064 1.29.33 4.568 1.028 5.713-.624m5.349 0c-.824-1.19-.766-2.082.365-3.194 1.13-1.112 1.789-2.738 1.789-2.738s.246-.945.806-.858.97 1.499-.202 2.362c-1.173.864.233 1.45.685.64.451-.812 1.683-2.896 2.322-3.295s1.089-.175.938.647-2.822 2.813-2.562 3.244 1.176-.506 1.176-.506 2.866-2.567 3.49-1.898-.473 1.23-2.037 2.16c-1.564.932-1.686 1.178-1.464 1.53s3.675-2.511 4-1.297c.323 1.214-3.524 1.567-3.287 2.405.238.839 2.71-1.587 3.216-.642.506.946-3.49 2.056-3.522 2.064-1.29.33-4.568 1.028-5.713-.624"/>
-            </svg>
-          </a>
-          <a href="https://www.instagram.com/kwangc" target="_blank" rel="noreferrer" class="about-link" aria-label="Instagram">
-            <svg class="about-link-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path
-                d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"
-              />
-            </svg>
-          </a>
-        </div>
+
+    <!-- Company header -->
+    <div class="company-header">
+      <div class="company-logo-wrap">
+        <img src={`${base}/images/config-logo.png`} alt="Config Intelligence" class="company-logo" width="56" height="56" onerror="this.style.display='none'" />
+      </div>
+      <div class="company-info">
+        <h1 class="company-name">Config Intelligence Inc.</h1>
+        <p class="company-mission">{t.about.mission}</p>
+        <p class="company-location">Seoul, Korea</p>
       </div>
     </div>
 
-    <section class="about-section">
-      <h2>{t.about.education}</h2>
-      <ul class="about-edu-list">
-        <li>
-          <strong>University of California, Berkeley</strong> — {t.about.degree}
-        </li>
-        <li>
-          <strong>{t.about.highSchool}</strong> — {t.about.highSchoolMajor}
-        </li>
-      </ul>
+    <!-- Team section -->
+    <section class="team-section">
+      <h2 class="team-heading">{t.about.team}</h2>
+      <div class="team-grid">
+        {members.map((member) => (
+          <button
+            class="member-card"
+            data-member={member.id}
+            aria-haspopup="dialog"
+            aria-label={locale === 'ko' ? `${member.nameKo} 상세 보기` : `View ${member.name} details`}
+          >
+            <img
+              src={`${base}${member.photo}`}
+              alt={member.name}
+              class="member-photo"
+              width="80"
+              height="80"
+              onerror="this.style.display='none'"
+            />
+            <div class="member-info">
+              <span class="member-name">{locale === 'ko' ? member.nameKo : member.name}</span>
+              <span class="member-title">{member.title}</span>
+              <span class="member-intro">{locale === 'ko' ? member.introKo : member.intro}</span>
+            </div>
+          </button>
+        ))}
+      </div>
     </section>
 
-    <section class="about-section">
-      <h2>
-        {t.about.experience}
-        <span class="about-exp-total">· {t.about.totalExperience}</span>
-      </h2>
-      <ul>
-        <li><strong>2026.04.~</strong> · <strong>Config Intelligence Inc.</strong> — Head of Product. Data infrastructure & foundation models for general-purpose bimanual robotics.</li>
-        <li><strong>2022.02.~2026.04.</strong> · <strong>Toss</strong> — Platform Product Owner</li>
-        <li><strong>2021.03.~2022.01.</strong> · <strong>Tridge</strong> — Senior Product Manager</li>
-        <li><strong>2018.07.~2021.03.</strong> · <strong>Lineable</strong> — COO & CTO</li>
-        <li><strong>2014.07.~2016.11.</strong> · <strong>Samsung E&A</strong> — Process Engineer</li>
-      </ul>
-    </section>
+    <!-- Modals -->
+    {members.map((member) => (
+      <dialog class="member-modal" id={`modal-${member.id}`} aria-label={member.name}>
+        <div class="modal-inner">
+          <button class="modal-close" aria-label="Close">&times;</button>
+          <div class="modal-header">
+            <img
+              src={`${base}${member.photo}`}
+              alt={member.name}
+              class="modal-photo"
+              width="96"
+              height="96"
+              onerror="this.style.display='none'"
+            />
+            <div class="modal-header-info">
+              <h2 class="modal-name">{locale === 'ko' ? member.nameKo : member.name}</h2>
+              <p class="modal-title">{member.title}</p>
+              <div class="modal-links">
+                {Object.entries(member.links).map(([type, url]) => (
+                  <a
+                    href={url}
+                    target="_blank"
+                    rel="noreferrer"
+                    class="about-link"
+                    aria-label={linkLabel(type)}
+                    set:html={linkIcon(type)}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
 
-    <section class="about-section">
-      <h2>{t.about.focus}</h2>
-      <p>{t.about.focusDesc}</p>
-    </section>
+          <div class="modal-body">
+            <section class="modal-section">
+              <h3>{t.about.education}</h3>
+              <ul>
+                {member.education.map((edu) => (
+                  <li>
+                    <strong>{locale === 'ko' && edu.schoolEn ? edu.school : (edu.schoolEn ?? edu.school)}</strong>
+                    {' — '}
+                    {locale === 'ko' ? edu.degreeKo : edu.degree}
+                  </li>
+                ))}
+              </ul>
+            </section>
+
+            <section class="modal-section">
+              <h3>
+                {t.about.experience}
+                <span class="modal-exp-total">
+                  · {locale === 'ko' ? member.totalExperienceKo : member.totalExperience}
+                </span>
+              </h3>
+              <ul>
+                {member.experience.map((exp) => (
+                  <li>
+                    <strong>{exp.period}</strong> · <strong>{exp.company}</strong> — {exp.role}
+                    {exp.desc && locale !== 'ko' ? ` · ${exp.desc}` : ''}
+                    {exp.descKo && locale === 'ko' ? ` · ${exp.descKo}` : ''}
+                  </li>
+                ))}
+              </ul>
+            </section>
+
+            <section class="modal-section">
+              <h3>{t.about.focus}</h3>
+              <p>{locale === 'ko' ? member.focusKo : member.focus}</p>
+            </section>
+          </div>
+        </div>
+      </dialog>
+    ))}
+
   </article>
 </WikiLayout>
 
+<script>
+  // Open modal on card click
+  document.querySelectorAll<HTMLButtonElement>('.member-card').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const id = btn.dataset.member;
+      const modal = document.getElementById(`modal-${id}`) as HTMLDialogElement | null;
+      if (modal) modal.showModal();
+    });
+  });
+
+  // Close modal on X button
+  document.querySelectorAll<HTMLButtonElement>('.modal-close').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const modal = btn.closest('dialog') as HTMLDialogElement | null;
+      if (modal) modal.close();
+    });
+  });
+
+  // Close modal on backdrop click
+  document.querySelectorAll<HTMLDialogElement>('.member-modal').forEach((modal) => {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) modal.close();
+    });
+  });
+</script>
+
 <style>
-  .about-page { max-width: 640px; padding: 0 1rem 3rem; }
-  .about-header {
+  .about-page { max-width: 720px; padding: 0 1rem 3rem; }
+
+  /* Company header */
+  .company-header {
     display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    margin-bottom: 2rem;
+    align-items: flex-start;
+    gap: 1.25rem;
+    padding: 1.5rem 1.5rem;
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    background: var(--surface);
+    margin-bottom: 2.5rem;
   }
-  .about-photo {
-    width: 160px;
-    height: 160px;
+  .company-logo-wrap { flex-shrink: 0; }
+  .company-logo {
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
+    object-fit: contain;
+  }
+  .company-name {
+    font-size: 1.35rem;
+    font-weight: 700;
+    margin: 0 0 0.35rem 0;
+  }
+  .company-mission {
+    color: var(--muted);
+    margin: 0 0 0.25rem 0;
+    font-size: 0.97rem;
+    line-height: 1.55;
+  }
+  .company-location {
+    font-size: 0.82rem;
+    color: var(--muted);
+    margin: 0;
+  }
+
+  /* Team section */
+  .team-heading {
+    font-size: 1.05rem;
+    color: var(--muted);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.3rem;
+    margin-bottom: 1rem;
+  }
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 0.85rem;
+  }
+
+  /* Member card */
+  .member-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem;
+    border: 1px solid var(--border);
+    border-radius: 0.85rem;
+    background: var(--surface);
+    cursor: pointer;
+    text-align: left;
+    width: 100%;
+    transition: border-color 0.12s, box-shadow 0.12s;
+    color: var(--text);
+    font: inherit;
+  }
+  .member-card:hover {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(51, 123, 250, 0.1);
+  }
+  .member-photo {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
     object-fit: cover;
     object-position: top;
-    border-radius: 12px;
     flex-shrink: 0;
   }
-  .about-intro h1 { font-size: 1.75rem; margin: 0 0 0.5rem 0; }
-  .about-role { color: var(--muted); margin: 0; font-size: 1rem; }
-  .about-links {
-    margin-top: 0.75rem;
+  .member-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+  .member-name { font-weight: 700; font-size: 1rem; }
+  .member-title { font-size: 0.85rem; color: var(--muted); }
+  .member-intro { font-size: 0.85rem; color: var(--muted); line-height: 1.45; margin-top: 0.1rem; }
+
+  /* Modal */
+  .member-modal {
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    background: var(--bg);
+    color: var(--text);
+    padding: 0;
+    max-width: 600px;
+    width: calc(100vw - 2rem);
+    max-height: calc(100vh - 4rem);
+    overflow: hidden;
+  }
+  .member-modal::backdrop {
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(2px);
+  }
+  .modal-inner {
+    overflow-y: auto;
+    max-height: calc(100vh - 4rem);
+    padding: 1.5rem;
+    position: relative;
+  }
+  .modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+  }
+  .modal-close:hover { background: var(--border); }
+
+  .modal-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+  .modal-photo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: top;
+    flex-shrink: 0;
+  }
+  .modal-name { font-size: 1.35rem; font-weight: 700; margin: 0 0 0.2rem 0; }
+  .modal-title { font-size: 0.9rem; color: var(--muted); margin: 0 0 0.65rem 0; }
+  .modal-links {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
+    gap: 0.4rem;
   }
+
+  /* Social link buttons (shared between card and modal) */
   .about-link {
-    width: 34px;
-    height: 34px;
+    width: 32px;
+    height: 32px;
     border-radius: 999px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background: var(--social-btn-bg);
-    color: var(--social-btn-fg);
+    background: var(--social-btn-bg, var(--surface));
+    color: var(--social-btn-fg, var(--muted));
     text-decoration: none;
-    box-shadow: var(--social-btn-shadow);
+    border: 1px solid var(--border);
   }
   .about-link:hover {
-    background: rgba(37, 99, 235, 0.95);
-    color: var(--on-accent);
+    background: rgba(37, 99, 235, 0.9);
+    color: #fff;
     text-decoration: none;
   }
-  .about-link-icon {
-    width: 18px;
-    height: 18px;
-    display: block;
+  .about-link svg {
+    width: 16px;
+    height: 16px;
     fill: currentColor;
+    display: block;
   }
-  .about-section { margin-top: 1.5rem; }
-  .about-section h2 {
-    font-size: 1.1rem;
-    margin-bottom: 0.5rem;
+
+  /* Modal body */
+  .modal-body { display: flex; flex-direction: column; gap: 1.25rem; }
+  .modal-section h3 {
+    font-size: 1rem;
     color: var(--muted);
     border-bottom: 1px solid var(--border);
     padding-bottom: 0.25rem;
+    margin: 0 0 0.5rem 0;
     display: flex;
     flex-wrap: wrap;
     gap: 0.25rem 0.5rem;
     align-items: baseline;
   }
-  .about-section ul { margin: 0.5rem 0 0; padding-left: 1.25rem; }
-  .about-section li { margin-bottom: 0.5rem; line-height: 1.5; }
-  .about-edu-list {
-    list-style: disc;
-  }
-  .about-exp-total {
-    font-size: 0.85rem;
-    color: var(--muted);
-    font-weight: 400;
+  .modal-exp-total { font-size: 0.8rem; font-weight: 400; color: var(--muted); }
+  .modal-section ul { margin: 0; padding-left: 1.2rem; }
+  .modal-section li { margin-bottom: 0.45rem; line-height: 1.5; font-size: 0.93rem; }
+  .modal-section p { margin: 0; font-size: 0.93rem; color: var(--muted); line-height: 1.6; }
+
+  @media (max-width: 480px) {
+    .company-header { flex-direction: column; gap: 0.85rem; }
+    .modal-header { flex-direction: column; gap: 0.75rem; }
   }
 </style>
