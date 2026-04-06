@@ -21,3 +21,4 @@ wiki-site/public/pagefind/
 .vscode/
 *.swp
 *.swo
+.gstack/

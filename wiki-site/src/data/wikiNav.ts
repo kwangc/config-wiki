@@ -76,7 +76,14 @@ export function getWikiNav(locale: Locale, base: string): WikiNavItem[] {
             { label: 'Robot Learning (RL)', href: w('03-domains/04-model-training/04-robot-learning-rl.md') },
           ],
         },
-        { label: 'Data & Scaling', href: w('03-domains/05-data-scaling/01-data-scaling.md') },
+        {
+          id: 'domain-data-scaling',
+          label: 'Data & Scaling',
+          children: [
+            { label: 'Overview', href: w('03-domains/05-data-scaling/01-data-scaling.md') },
+            { label: 'Robot Dataset Formats', href: w('03-domains/05-data-scaling/02-robot-dataset-formats.md') },
+          ],
+        },
         { label: 'Simulation', href: w('03-domains/06-simulation-sim2real/01-simulation-sim2real.md') },
         { label: 'Evaluation', href: w('03-domains/07-evaluation/01-overview.md') },
         { label: 'Deployment', href: w('03-domains/08-deployment/01-deployment.md') },
@@ -130,6 +137,7 @@ export function getWikiNav(locale: Locale, base: string): WikiNavItem[] {
             { label: 'Physical Intelligence', href: w('05-industry/01-physical-intelligence.md') },
             { label: 'Generalist', href: w('05-industry/02-generalist.md') },
             { label: 'NVIDIA GR00T', href: w('05-industry/08-nvidia-groo-t.md') },
+            { label: 'HF LeRobot', href: w('05-industry/11-huggingface-lerobot.md') },
           ],
         },
         {
