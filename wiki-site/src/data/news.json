@@ -10,7 +10,7 @@
         "twitter": {
           "bulletsKo": [],
           "bulletsEn": [
-            "GLM-5.1 has made a significant breakthrough in coding performance, reaching #3 on Code Arena and reportedly surpassing Gemini 3.1 and GPT-5.4. This achievement highlights the rapid advancement of open-source coding models and their quick adoption by tooling vendors. The release signifies a competitive shift in the AI landscape, with Z.ai also holding the"
+            "GLM-5.1 has achieved a significant milestone in coding performance, reaching #3 on Code Arena and becoming the #1 open model, surpassing major competitors like Gemini 3.1 and GPT-5.4. This breakthrough has led to rapid adoption by tooling vendors and a strategic focus on accessibility, fine-tunable baselines, and knowledge sharing within the"
           ]
         },
         "reddit": {
@@ -34,7 +34,7 @@
         "twitter": {
           "bulletsKo": [],
           "bulletsEn": [
-            "The emergence of restricted cyber-capable AI models, exemplified by Anthropic's Mythos and similar OpenAI initiatives, is normalizing, sparking debate on their safety and the validity of dramatic claims. Discussions focus on whether the public evidence supports the most dramatic assertions, with some arguing the narrative is ahead of the technical proof. This signifies a pivotal moment in AI deployment, raising critical"
+            "Restricted cyber-capable models like Anthropic's Mythos and similar OpenAI initiatives are becoming normalized, sparking debate on their inherent dangers versus the supporting evidence. The discussion often focuses on the limited, staggered rollout of these models and their potential implications for cybersecurity, with some arguing they could ultimately harden software. Community pushback has centered on the design of evaluations, benchmark ceilings"
           ]
         },
         "reddit": {
@@ -58,7 +58,7 @@
         "twitter": {
           "bulletsKo": [],
           "bulletsEn": [
-            "Meta Superintelligence Labs officially launched Muse Spark, a natively multimodal reasoning model featuring tool use, visual chain of thought, and multi-agent orchestration. The model is accessible via meta.ai and the Meta AI app, with plans to open-source future iterations. Meta researchers highlighted that the entire stack was rebuilt in approximately nine months, signaling Spark as the initial"
+            "Meta Superintelligence Labs officially launched Muse Spark, its first natively multimodal reasoning model, featuring tool use, visual chain of thought, and multi-agent orchestration. The model is live in meta.ai and the Meta AI app, with plans to open-source future versions, and Meta researchers emphasized rebuilding the stack in ~9 months as the first step in a larger scaling roadmap"
           ]
         },
         "reddit": {
