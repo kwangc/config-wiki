@@ -1,6 +1,54 @@
 {
   "items": [
     {
+      "id": "26-04-14-not-much",
+      "title": "not much happened today",
+      "url": "https://news.smol.ai/issues/26-04-14-not-much",
+      "date": "2026-04-14",
+      "source": "smol-ai",
+      "recaps": {
+        "twitter": {
+          "bulletsKo": [],
+          "bulletsEn": [
+            "Agent infrastructure is rapidly maturing with Hermes Agent gaining traction as a reliable open-source local stack, offering operational stability and new features like web UI and messaging integrations. LangChain is also pushing \"deep agents\" towards deployable, multi-tenant, and async systems, addressing platform concerns like tenancy and long-lived tasks. Furthermore, harness design is becoming a"
+          ]
+        },
+        "reddit": {
+          "bulletsKo": [],
+          "bulletsEn": []
+        },
+        "discord": {
+          "bulletsKo": [],
+          "bulletsEn": []
+        }
+      },
+      "summaryKo": ""
+    },
+    {
+      "id": "26-04-13-not-much",
+      "title": "not much happened today",
+      "url": "https://news.smol.ai/issues/26-04-13-not-much",
+      "date": "2026-04-13",
+      "source": "smol-ai",
+      "recaps": {
+        "twitter": {
+          "bulletsKo": [],
+          "bulletsEn": [
+            "Harness engineering is emerging as a critical discipline, shifting the focus from individual models to complex system design. This involves integrating components like filesystems, memory, and subagents, indicating that the bottleneck in AI development is moving towards architectural decisions rather than mere implementation. Andrew Ng and Steve Yegge highlight this trend, noting enterprise adoption still lags behind frontier practices despite"
+          ]
+        },
+        "reddit": {
+          "bulletsKo": [],
+          "bulletsEn": []
+        },
+        "discord": {
+          "bulletsKo": [],
+          "bulletsEn": []
+        }
+      },
+      "summaryKo": ""
+    },
+    {
       "id": "26-04-10-not-much",
       "title": "not much happened today",
       "url": "https://news.smol.ai/issues/26-04-10-not-much",
@@ -10,7 +58,7 @@
         "twitter": {
           "bulletsKo": [],
           "bulletsEn": [
-            "GLM-5.1 has achieved a significant milestone in coding performance, reaching #3 on Code Arena and becoming the #1 open model, surpassing major competitors like Gemini 3.1 and GPT-5.4. This breakthrough has led to rapid adoption by tooling vendors and a strategic focus on accessibility, fine-tunable baselines, and knowledge sharing within the"
+            "GLM-5.1's breakthrough performance in coding, reaching frontier-tier status on Code Arena and surpassing major models, highlights the rapid advancement and adoption of open-source coding models. Z.ai also secured the #1 open model rank, indicating a strong community push for accessible, fine-tunable baselines and shared architectural insights. This trend makes high"
           ]
         },
         "reddit": {
