@@ -10,8 +10,7 @@
         "twitter": {
           "bulletsKo": [],
           "bulletsEn": [
-            "Anthropic launched Claude Design, a research-preview tool powered by Claude Opus 4.7, enabling prototype and slide generation from natural language instructions. This move positions Anthropic beyond chat/coding into design tooling, directly challenging existing platforms like Figma, and sparked significant market reaction and discussion about its features.",
-            "Claude Opus 4.7 received broadly favorable"
+            "Anthropic launched Claude Design, a research-preview tool for generating prototypes and slides from natural language, powered by Claude Opus 4.7. This move positions Anthropic beyond traditional chat/coding into design tooling, directly competing with Figma and causing a notable market reaction. The tool offers inline refinement, various export options, and handoff to Claude Code for implementation."
           ]
         },
         "reddit": {
@@ -39,7 +38,7 @@
         "reddit": {
           "bulletsKo": [],
           "bulletsEn": [
-            "The new Qwen3.6-35B-A3B model has been released, showcasing superior performance in agentic coding and reasoning tasks, outperforming predecessors like Qwen3.5-27B and Gemma4-31B. This sparse MoE model, with 3"
+            "The Qwen3.6-35B-A3B model has been released, showcasing superior performance in agentic coding and reasoning tasks compared to predecessors like Qwen3.5-27B and Gemma4-31B. This sparse MoE model, with 35B"
           ]
         },
         "discord": {
@@ -59,7 +58,8 @@
         "twitter": {
           "bulletsKo": [],
           "bulletsEn": [
-            "OpenAI has significantly expanded its Agents SDK, open-sourcing the harness to decouple it from compute and storage, thereby enabling the creation of long-running, durable agents with primitives for file/computer use, skills, memory, and compaction. This strategic move allows third parties to more easily reproduce \"Codex-style\" agents and shifts the focus of differentiation towards orchestration,"
+            "OpenAI significantly expanded its Agents SDK, open-sourcing the agent harness and separating it from compute/storage to enable long-running, durable agents with primitives for file/computer use, skills, memory, and compaction. This strategic move allows third-party reproducibility of \"Codex-style\" agents and shifts differentiation towards orchestration and secure execution.",
+            "A robust ecosystem"
           ]
         },
         "reddit": {
