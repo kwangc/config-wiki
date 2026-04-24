@@ -1,6 +1,30 @@
 {
   "items": [
     {
+      "id": "26-04-23-gpt-55",
+      "title": "GPT 5.5",
+      "url": "https://news.smol.ai/issues/26-04-23-gpt-55",
+      "date": "2026-04-23",
+      "source": "smol-ai",
+      "recaps": {
+        "twitter": {
+          "bulletsKo": [],
+          "bulletsEn": [
+            "GPT-5.5's Official Launch and Strategic Positioning: OpenAI launched GPT-5.5 as its new flagship model, immediately rolling it out in ChatGPT and Codex for \"real work and powering agents.\" The company emphasized its capability for lower-micromanagement agentic tasks, including advanced coding, computer use, knowledge work, and scientific research. API access is"
+          ]
+        },
+        "reddit": {
+          "bulletsKo": [],
+          "bulletsEn": []
+        },
+        "discord": {
+          "bulletsKo": [],
+          "bulletsEn": []
+        }
+      },
+      "summaryKo": ""
+    },
+    {
       "id": "26-04-22-not-much",
       "title": "not much happened today",
       "url": "https://news.smol.ai/issues/26-04-22-not-much",
@@ -10,8 +34,7 @@
         "twitter": {
           "bulletsKo": [],
           "bulletsEn": [
-            "Alibaba released Qwen3.6-27B, a dense, Apache 2.0 open model with strong coding claims, beating larger predecessors on major benchmarks. It supports native vision-language reasoning and saw immediate ecosystem support from vLLM, Unsloth, ggml, and Ollama. Early user reports highlighted its strong performance for local frontend/design and image tasks, indicating its practical utility.",
-            "OpenAI quietly open-sourced a practical Privacy Filter, a lightweight Apache 2.0 MoE model designed for PII detection and masking. This 1.5B total / 50M active MoE model features a 128"
+            "Alibaba released Qwen3.6-27B, an Apache 2.0 open model with strong coding performance, beating larger models, and supporting multimodal reasoning. It quickly gained ecosystem support from vLLM, Unsloth, ggml, and Ollama, with early users reporting strong performance for local tasks. This model features both thinking and non-"
           ]
         },
         "reddit": {
@@ -35,7 +58,7 @@
         "twitter": {
           "bulletsKo": [],
           "bulletsEn": [
-            "OpenAI launched GPT-Image-2, a significant product update for ChatGPT, Codex, and API, featuring stronger text rendering, layout fidelity, editing, multilingual support, and \"thinking\" capabilities for image generation. The model can search the web, generate multiple candidates, self-check outputs, and produce complex artifacts like slides, infographics, and QR codes, with rapid"
+            "OpenAI launched GPT-Image-2, a new image generation model across ChatGPT, Codex, and API, featuring stronger text rendering, layout fidelity, editing, multilingual support, and \"thinking\" capabilities for generating complex artifacts like slides and QR codes. This model is already being integrated into downstream tools such as Figma and Canva, showcasing its immediate practical utility. Benchmarks confirm its"
           ]
         },
         "reddit": {
@@ -809,40 +832,6 @@
         }
       },
       "summaryKo": "얀 르쿤의 AMI 랩스가 10.3억 달러의 시드 투자를 받아 월드 모델 개발에 나섰습니다.\n레딧에서는 새로운 Qwen 모델 출시 및 벤치마크에 대한 논의가 활발했습니다.\nAINews의 디스코드 접근이 중단되었습니다."
-    },
-    {
-      "id": "26-03-09-autoresearch",
-      "title": "Autoresearch: Sparks of Recursive Self Improvement Show details",
-      "url": "https://news.smol.ai/issues/26-03-09-autoresearch",
-      "date": "2026-03-09",
-      "source": "smol-ai",
-      "recaps": {
-        "twitter": {
-          "bulletsKo": [
-            "REDDIT_EN"
-          ],
-          "bulletsEn": [
-            "TWITTER_KO"
-          ]
-        },
-        "reddit": {
-          "bulletsKo": [
-            "Qwen 모델 성능 및 비교에 대한 논의가 활발했습니다."
-          ],
-          "bulletsEn": [
-            "Discussions on Qwen model performance and comparisons were prominent."
-          ]
-        },
-        "discord": {
-          "bulletsKo": [
-            "다수의 AI 관련 디스코드 서버에서 채널별로 높은 활동량을 보였습니다."
-          ],
-          "bulletsEn": [
-            "Many AI-focused Discord servers showed high activity across various channels."
-          ]
-        }
-      },
-      "summaryKo": "REDDIT_EN\nQwen 모델 성능 및 비교에 대한 논의가 활발했습니다.\n다수의 AI 관련 디스코드 서버에서 채널별로 높은 활동량을 보였습니다."
     }
   ]
 }
