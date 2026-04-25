@@ -10,7 +10,7 @@
         "twitter": {
           "bulletsKo": [],
           "bulletsEn": [
-            "GPT-5.5's Official Launch and Strategic Positioning: OpenAI launched GPT-5.5 as its new flagship model, immediately rolling it out in ChatGPT and Codex for \"real work and powering agents.\" The company emphasized its capability for lower-micromanagement agentic tasks, including advanced coding, computer use, knowledge work, and scientific research. API access is"
+            "OpenAI launched GPT-5.5 as its new flagship frontier model, designed for \"real work and powering agents,\" rolling it out immediately in ChatGPT and Codex. API access is delayed due to higher safety requirements, emphasizing a cautious approach to broader deployment. This model aims to enable lower-micromanagement agentic work, significantly improving coding, computer use, knowledge work"
           ]
         },
         "reddit": {
@@ -34,7 +34,7 @@
         "twitter": {
           "bulletsKo": [],
           "bulletsEn": [
-            "Alibaba released Qwen3.6-27B, an Apache 2.0 open model with strong coding performance, beating larger models, and supporting multimodal reasoning. It quickly gained ecosystem support from vLLM, Unsloth, ggml, and Ollama, with early users reporting strong performance for local tasks. This model features both thinking and non-"
+            "Qwen3.6-27B was released as a powerful local/open coding model by Alibaba, featuring a dense architecture, Apache 2.0 license, and both thinking and non-thinking modes. It claims to outperform much larger models on key coding benchmarks and supports native vision-language reasoning over images and video. The AI ecosystem quickly adopted it, with"
           ]
         },
         "reddit": {
@@ -58,7 +58,8 @@
         "twitter": {
           "bulletsKo": [],
           "bulletsEn": [
-            "OpenAI launched GPT-Image-2, a new image generation model across ChatGPT, Codex, and API, featuring stronger text rendering, layout fidelity, editing, multilingual support, and \"thinking\" capabilities for generating complex artifacts like slides and QR codes. This model is already being integrated into downstream tools such as Figma and Canva, showcasing its immediate practical utility. Benchmarks confirm its"
+            "OpenAI launched GPT-Image-2, emphasizing stronger text rendering, layout fidelity, editing, multilingual support, and \"thinking\" for images, quickly integrating into major downstream tools like Figma and Canva. Benchmarks show a significant jump, especially for practical image tasks like UI/mockups, suggesting image generation is becoming a front-end for coding agents.",
+            "Hugging"
           ]
         },
         "reddit": {
@@ -798,40 +799,6 @@
         }
       },
       "summaryKo": "NVIDIA는 1M 컨텍스트와 에이전트 지원을 갖춘 오픈 120B 매개변수 모델인 Nemotron 3 Super를 출시했습니다.\nQwen 모델 출시 및 벤치마크에 대한 논의가 이루어졌습니다."
-    },
-    {
-      "id": "26-03-10-ami-labs",
-      "title": "Yann LeCun’s AMI Labs launches with a $1.03B seed to build world models around JEPA Show details",
-      "url": "https://news.smol.ai/issues/26-03-10-ami-labs",
-      "date": "2026-03-10",
-      "source": "smol-ai",
-      "recaps": {
-        "twitter": {
-          "bulletsKo": [
-            "얀 르쿤의 AMI 랩스가 10.3억 달러의 시드 투자를 받아 월드 모델 개발에 나섰습니다."
-          ],
-          "bulletsEn": [
-            "Yann LeCun’s AMI Labs launched with a $1.03B seed round to develop world models."
-          ]
-        },
-        "reddit": {
-          "bulletsKo": [
-            "레딧에서는 새로운 Qwen 모델 출시 및 벤치마크에 대한 논의가 활발했습니다."
-          ],
-          "bulletsEn": [
-            "Reddit discussions covered new Qwen model releases and their benchmarks."
-          ]
-        },
-        "discord": {
-          "bulletsKo": [
-            "AINews의 디스코드 접근이 중단되었습니다."
-          ],
-          "bulletsEn": [
-            "AINews' access to Discord was unfortunately shut down."
-          ]
-        }
-      },
-      "summaryKo": "얀 르쿤의 AMI 랩스가 10.3억 달러의 시드 투자를 받아 월드 모델 개발에 나섰습니다.\n레딧에서는 새로운 Qwen 모델 출시 및 벤치마크에 대한 논의가 활발했습니다.\nAINews의 디스코드 접근이 중단되었습니다."
     }
   ]
 }
