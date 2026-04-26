@@ -1,6 +1,30 @@
 {
   "items": [
     {
+      "id": "26-04-24-deepseek-v4",
+      "title": "DeepSeek v4",
+      "url": "https://news.smol.ai/issues/26-04-24-deepseek-v4",
+      "date": "2026-04-24",
+      "source": "smol-ai",
+      "recaps": {
+        "twitter": {
+          "bulletsKo": [],
+          "bulletsEn": [
+            "DeepSeek released DeepSeek-V4 Pro and V4 Flash, marking its first major architectural refresh since V3 and introducing a clear two-tier lineup. These models feature a 1M-token context, hybrid reasoning modes, and an MIT license, accompanied by a technical report widely praised by researchers. The consensus is that V4 significantly advances open-weight"
+          ]
+        },
+        "reddit": {
+          "bulletsKo": [],
+          "bulletsEn": []
+        },
+        "discord": {
+          "bulletsKo": [],
+          "bulletsEn": []
+        }
+      },
+      "summaryKo": ""
+    },
+    {
       "id": "26-04-23-gpt-55",
       "title": "GPT 5.5",
       "url": "https://news.smol.ai/issues/26-04-23-gpt-55",
@@ -10,7 +34,7 @@
         "twitter": {
           "bulletsKo": [],
           "bulletsEn": [
-            "OpenAI launched GPT-5.5 as its new flagship frontier model, designed for \"real work and powering agents,\" rolling it out immediately in ChatGPT and Codex. API access is delayed due to higher safety requirements, emphasizing a cautious approach to broader deployment. This model aims to enable lower-micromanagement agentic work, significantly improving coding, computer use, knowledge work"
+            "OpenAI launched GPT-5.5 as its new flagship frontier model, positioning it for \"real work and powering agents\" with enhanced capabilities in coding, computer use, knowledge work, and multi-step execution. The model was immediately rolled out in ChatGPT and Codex, though API access is delayed pending additional safety requirements. This release marks a significant step towards more autonomous AI"
           ]
         },
         "reddit": {
@@ -34,7 +58,7 @@
         "twitter": {
           "bulletsKo": [],
           "bulletsEn": [
-            "Qwen3.6-27B was released as a powerful local/open coding model by Alibaba, featuring a dense architecture, Apache 2.0 license, and both thinking and non-thinking modes. It claims to outperform much larger models on key coding benchmarks and supports native vision-language reasoning over images and video. The AI ecosystem quickly adopted it, with"
+            "Alibaba released Qwen3.6-27B, a dense, Apache 2.0 open coding model featuring thinking/non-thinking modes and unified multimodal capabilities. It claims to surpass larger models on major coding benchmarks, and the ecosystem quickly provided day-0 support through vLLM, Unsloth, ggml, and Ollama, with"
           ]
         },
         "reddit": {
@@ -769,36 +793,6 @@
         }
       },
       "summaryKo": ""
-    },
-    {
-      "id": "26-03-11-not-much",
-      "title": "not much happened today Show details",
-      "url": "https://news.smol.ai/issues/26-03-11-not-much",
-      "date": "2026-03-11",
-      "source": "smol-ai",
-      "recaps": {
-        "twitter": {
-          "bulletsKo": [
-            "NVIDIA는 1M 컨텍스트와 에이전트 지원을 갖춘 오픈 120B 매개변수 모델인 Nemotron 3 Super를 출시했습니다."
-          ],
-          "bulletsEn": [
-            "NVIDIA released Nemotron 3 Super, an open 120B parameter model with 1M context and agentic support."
-          ]
-        },
-        "reddit": {
-          "bulletsKo": [
-            "Qwen 모델 출시 및 벤치마크에 대한 논의가 이루어졌습니다."
-          ],
-          "bulletsEn": [
-            "Discussions covered new Qwen model releases and their benchmarks."
-          ]
-        },
-        "discord": {
-          "bulletsKo": [],
-          "bulletsEn": []
-        }
-      },
-      "summaryKo": "NVIDIA는 1M 컨텍스트와 에이전트 지원을 갖춘 오픈 120B 매개변수 모델인 Nemotron 3 Super를 출시했습니다.\nQwen 모델 출시 및 벤치마크에 대한 논의가 이루어졌습니다."
     }
   ]
 }
